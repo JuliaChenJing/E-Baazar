@@ -29,7 +29,7 @@ public class DbClassAddressTest extends TestCase {
 		List<Address> expected = DbQueries.readCustAddresses();
 		
 		//test real dbclass address
-		CustomerSubsystem css = CustomerSubsystemFacade.createCustomer();
+		CustomerSubsystem css =new CustomerSubsystemFacade();
 		DbClassAddressForTest dbclass = css.getGenericDbClassAddress();
 		CustomerProfile custProfile = css.getGenericCustomerProfile();
 		custProfile.setCustId(DEFAULT_CUST_ID);

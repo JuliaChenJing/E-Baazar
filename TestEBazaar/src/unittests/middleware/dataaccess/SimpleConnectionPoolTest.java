@@ -52,7 +52,7 @@ public class SimpleConnectionPoolTest extends TestCase {
 		String[] queries = {"select productid,productname from product",
 							"select custid,fname,lname from customer"};	
 		String[] dburls = {PRODUCT_DBURL,ACCOUNT_DBURL};	
-	    DataAccessTest test = DataAccessSubsystemFacade.createDataAccessTest();
+	    DataAccessTest test = new DataAccessSubsystemFacade();
 	    String expectedProdName = "";
 	    String prodNameFound = null;
 	    String expectedCustName = "";

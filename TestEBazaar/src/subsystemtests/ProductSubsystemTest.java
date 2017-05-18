@@ -30,7 +30,7 @@ public class ProductSubsystemTest extends TestCase {
 		String[] insertResult = DbQueries.insertCatalogRow();
 		String expected = insertResult[2];
 		
-		ProductSubsystem pss = ProductSubsystemFacade.createProductSubsystem();
+		ProductSubsystem pss =new ProductSubsystemFacade();
 		try {
 			List<String> found = pss.getCatalogList()
 				      .stream()
