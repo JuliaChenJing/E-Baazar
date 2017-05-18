@@ -1,7 +1,6 @@
 package business;
 
 public class Login {
-	//test editing
     private Integer custId;
     private String password;
     
