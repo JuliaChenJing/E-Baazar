@@ -21,7 +21,41 @@ import business.rulesubsystem.RulesSubsystemFacade;
  * execution of the application (namely, when final order
  * is submitted)
  */
-class RulesFinalOrder {//implements Rules {
+class RulesFinalOrder implements Rules {
+    @Override
+    public String getModuleName() {
+        return null;
+    }
+
+    @Override
+    public String getRulesFile() {
+        return null;
+    }
+
+    @Override
+    public void prepareData() {
+
+    }
+
+    @Override
+    public HashMap<String, DynamicBean> getTable() {
+        return null;
+    }
+
+    @Override
+    public void runRules() throws BusinessException, RuleException {
+
+    }
+
+    @Override
+    public void populateEntities(List<String> updates) {
+
+    }
+
+    @Override
+    public List<?> getUpdates() {
+        return null;
+    }
 //implement
 	
 }
