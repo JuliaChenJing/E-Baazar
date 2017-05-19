@@ -17,6 +17,8 @@ import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import business.rulesbeans.PaymentBean;
+import business.rulesbeans.ShopCartBean;
+import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import presentation.data.SessionCache;
 import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
@@ -33,7 +35,35 @@ public class CheckoutController  {
 	
 	public void runShoppingCartRules(ShoppingCartSubsystem shopCart) throws RuleException, BusinessException {
 		//implement
-		
+		try {
+			// set up
+			String moduleName = "rules-shopcart";
+			BufferedReader rulesReader =pathToRules(getClass().getClassLoader(), "shopcart-rules.clp");
+
+			// TO DO  get current user's shopping cart to pass to rules- in place of null
+
+			String deftemplateName = "shopcart-template";
+			ShopCartBean shopbean = new ShopCartBean(null);
+			HashMap<String, ShopCartBean> h = new HashMap<>();
+			h.put(deftemplateName, shopbean);
+
+			// start up the rules engine
+			ReteWrapper engine = new ReteWrapper();
+			engine.setRulesAsString(rulesReader);
+			engine.setCurrentModule(moduleName);
+			engine.setTable(h);
+			engine.runRules();
+			System.out.println(engine.getUpdates());
+			//return engine.getUpdates();
+		} catch (ValidationException ex) {
+			throw new RuleException(ex.getMessage());
+		} catch (IOException ex) {
+			throw new RuleException(ex.getMessage());
+		} catch (OperatingException ex) {
+			throw new RuleException(ex.getMessage());
+		} catch (Exception ex) {
+			throw new RuleException(ex.getMessage());
+		}
 	}
 	
 	public void runPaymentRules(Address addr, CreditCard cc) throws RuleException, BusinessException {
