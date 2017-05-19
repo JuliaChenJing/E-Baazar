@@ -4,13 +4,13 @@ import java.util.logging.Logger;
 
 import middleware.exceptions.MiddlewareException;
 import middleware.externalinterfaces.CreditVerificationProfile;
-//import publicview.IVerificationSystem;
-//import publicview.TransactionFailedException;
+import publicview.IVerificationSystem;
+import publicview.TransactionFailedException;
 
 
 class CreditVerifMediator {
 	//for testing only; should disable in production
-	/*private static int numFailures = 0;
+	private static int numFailures = 0;
 	private static final Logger LOG = Logger.getLogger(CreditVerifMediator.class.getName());
 	void processCreditRequest(IVerificationSystem v, CreditVerificationProfile profile)
 				throws MiddlewareException {
@@ -37,5 +37,5 @@ class CreditVerifMediator {
 				LOG.warning("Getting many Credit Verification failures");
 			}
 		}
-	}*/
+	}
 }
