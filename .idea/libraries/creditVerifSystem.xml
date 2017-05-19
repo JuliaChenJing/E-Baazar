@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="creditVerifSystem">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/creditVerifSystem.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/jess.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/junit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/mysql-connector-java-5.1.20-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/rulesencoding.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../e-baazar jars/rulesengine.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
