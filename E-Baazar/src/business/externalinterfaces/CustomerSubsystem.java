@@ -52,6 +52,7 @@ public interface CustomerSubsystem {
     public Address getDefaultBillingAddress();
     
     /** Used when payment window is first displayed (after login) */
+
     public CreditCard getDefaultPaymentInfo();
     public ShoppingCartSubsystem getShoppingCart();
     
