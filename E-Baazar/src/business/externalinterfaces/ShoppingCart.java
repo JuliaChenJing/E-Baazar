@@ -2,7 +2,7 @@ package business.externalinterfaces;
 
 import java.util.List;
 
-
+// a shopping cart could be a live one or a saved one
 public interface ShoppingCart {
     Address getShippingAddress();
     Address getBillingAddress();
@@ -13,6 +13,6 @@ public interface ShoppingCart {
     boolean deleteCartItem(String name);
     boolean isEmpty();
 
-    //setters for testing
+    //setters for testing   
     
 }
