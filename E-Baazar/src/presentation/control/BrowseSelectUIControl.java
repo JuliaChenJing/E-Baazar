@@ -79,17 +79,22 @@ public enum BrowseSelectUIControl {
 		}
 	}
 	
-	
+	//this is an event handler , after clicking the "Retrieve Saved Cart" button 
 	private class RetrieveSavedCartHandler implements EventHandler<ActionEvent>, Callback {
+		
+		// interface Callback requires to implement this method
 		public void doUpdate() {
 			try {
+				// check if this user have authorization to open this window
 	    		Authorization.checkAuthorization(shoppingCartWindow, CacheReader.custIsAdmin());
 	    	} catch(UnauthorizedException e) {   
 	        	displayError(e.getMessage());
 	        	return;
-	        }			
+	        }	
+			// make saved cart the live cart
 			controller.retrieveSavedCart(BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem(),
 					CacheReader.readLoggedIn());
+
 			BrowseSelectData.INSTANCE.updateCartData();
 			primaryStage.hide();
 			shoppingCartWindow.show();
@@ -100,14 +105,18 @@ public enum BrowseSelectUIControl {
 		}
 		
 		@Override
+		// interface EventHandler requires to implement this method
 		public void handle(ActionEvent evt) {
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
 			boolean isLoggedIn = CacheReader.readLoggedIn();
+			//if not logged in
 			if (!isLoggedIn) {
 				LoginUIControl loginControl = new LoginUIControl(shoppingCartWindow,
 						primaryStage, this);
 				loginControl.startLogin();
-			} else {
+			} 
+			//if logged in
+			else {
 				doUpdate();
 			}
 		}
@@ -118,6 +127,8 @@ public enum BrowseSelectUIControl {
 	public OnlinePurchaseHandler getOnlinePurchaseHandler() {
 		return new OnlinePurchaseHandler();
 	}
+	
+	// it is in BrowseSelectUIControl class, resposible for the connection between UI and the controller
 	public RetrieveSavedCartHandler getRetrieveSavedCartHandler() {
 		return new RetrieveSavedCartHandler();
 	}

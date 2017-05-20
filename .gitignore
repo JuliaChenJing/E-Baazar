@@ -1,6 +1,5 @@
 /build/
 *.class
-#test commit from Julia
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

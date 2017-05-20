@@ -26,6 +26,7 @@ public class Start extends Application {
 	}
 	
 	private Stage primaryStage; 
+	//to record the information like" you have successfully logged out"
 	private Text messageBar = new Text();
 	
 	@Override
@@ -54,6 +55,7 @@ public class Start extends Application {
 		primaryStage.show();
 	}
 	
+	//store  "E-Bazaar" as the title
 	private HBox createLabelBox() {
 		Text label = new Text("E-Bazaar");
 		label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 60));
@@ -64,6 +66,7 @@ public class Start extends Application {
 		return labelBox;	
 	}
 	
+	//store message like" you have successfully logged out"
 	private HBox createMessageBarBox() {
 		HBox box = new HBox(10);
 		box.setAlignment(Pos.BASELINE_LEFT);
@@ -75,18 +78,34 @@ public class Start extends Application {
 		MenuBar retval = new MenuBar();
 		
 		//create menus to put into menu bar
+		
+		//login menu
 		Menu loginMenu = new Menu("Login");
 		loginMenu.getItems().addAll(login(), logout());
+		
+		//customer menu
 		Menu custMenu = new Menu("Customer");
 		custMenu.getItems().addAll(onlinePurchase(), retrieveCart(), reviewOrders(), exitApp());
+		
+		//admin menu
 		Menu adminMenu = new Menu("Administrator");
 		adminMenu.getItems().addAll(maintainCatalogs(), maintainProducts());
 		
-		//add menus to menubar
+		//add menus to menu bar
 		retval.getMenus().addAll(loginMenu, custMenu, adminMenu);
 		return retval;
 	
 	}
+	
+	private MenuItem login() {
+		messageBar.setText("");
+		MenuItem retval = new MenuItem("Sign in");
+		//has to create an object from LoginUIControl to call the event handler ,following MVC pattern
+		LoginUIControl login = new LoginUIControl(primaryStage, primaryStage, new ReturnMessageCallback());
+		retval.setOnAction(login.getShowLoginHandler());
+		return retval;
+	}
+	
 	private MenuItem logout() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Sign out");
@@ -95,14 +114,7 @@ public class Start extends Application {
 		return retval;
 	}
 	
-	private MenuItem login() {
-		messageBar.setText("");
-		MenuItem retval = new MenuItem("Sign in");
-		
-		LoginUIControl login = new LoginUIControl(primaryStage, primaryStage, new ReturnMessageCallback());
-		retval.setOnAction(login.getShowLoginHandler());
-		return retval;
-	}
+	
 	private MenuItem onlinePurchase() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Online Purchase");
@@ -110,11 +122,13 @@ public class Start extends Application {
 		return retval;
 	}
 	
+	//retrieve the previous shopping cart to check the previous products saved in the shopping cart
+	// retrieveCart() is added into customer menu bar : custMenu.getItems().addAll(onlinePurchase(), retrieveCart(), reviewOrders(), exitApp());
 	private MenuItem retrieveCart() {
 		messageBar.setText("");
-		MenuItem retval = new MenuItem("Retrieve Saved Cart");
+		MenuItem retval = new MenuItem("Retrieve Saved Cart");//set the menu name
 		retval.setOnAction(BrowseSelectUIControl.INSTANCE.getRetrieveSavedCartHandler());
-		return retval;
+		return retval;//return type is a MenuItem 
 	}
 	
 	private MenuItem reviewOrders() {
@@ -123,6 +137,14 @@ public class Start extends Application {
 		retval.setOnAction(ViewOrdersUIControl.INSTANCE.getViewOrdersHandler());	
 		return retval;
 	}
+	
+	private MenuItem exitApp() {
+		MenuItem retval = new MenuItem("Exit");
+		retval.setOnAction(evt -> Platform.exit());
+		return retval;
+	}
+	
+	//movement handled only by the administrator
 	private MenuItem maintainCatalogs() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Maintain Catalogs");
@@ -135,11 +157,6 @@ public class Start extends Application {
 		retval.setOnAction(ManageProductsUIControl.INSTANCE.getMaintainProductsHandler());
 		return retval;
 	} 
-	private MenuItem exitApp() {
-		MenuItem retval = new MenuItem("Exit");
-		retval.setOnAction(evt -> Platform.exit());
-		return retval;
-	}
 	
 	public Callback getReturnMessageCallback() {
 		return new ReturnMessageCallback();
