@@ -25,14 +25,14 @@ public interface ProductSubsystem {
 	/** saves newly created catalog */
 	public int saveNewCatalog(String catName) throws BackendException;
 
-//	public Catalog getCatalogFromName(String catName) throws BackendException;
-//	/** saves a new product obtained from user input */
-//	public void saveNewProduct(Product product, Catalog catalog) throws BackendException;
-//
-//	/** deletes a product obtained from user input */
-//	public void deleteProduct(Product product) throws BackendException;
-//	
-//	/** deletes a catalog obtained from user input */
-//	public void deleteCatalog(Catalog catalog) throws BackendException;
+	public Catalog getCatalogFromName(String catName) throws BackendException;
+	/** saves a new product obtained from user input */
+	public void saveNewProduct(Product product, Catalog catalog) throws BackendException;
+
+	/** deletes a product obtained from user input */
+	public void deleteProduct(Product product) throws BackendException;
+	
+	/** deletes a catalog obtained from user input */
+	public void deleteCatalog(Catalog catalog) throws BackendException;
 
 }
