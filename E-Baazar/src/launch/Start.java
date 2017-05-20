@@ -114,7 +114,7 @@ public class Start extends Application {
 		return retval;
 	}
 	
-	
+	//returns the MenuItem button for starting the browse and select process
 	private MenuItem onlinePurchase() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Online Purchase");

@@ -63,14 +63,16 @@ public enum BrowseSelectUIControl {
 	//Number of units requested when item is first added to cart
 	private static final int INIT_QUANT_REQUESTED = 1;
 	
-	//// Handlers for browse and select portion of Start page
+	// Handlers for browse and select portion of Start page
 	private class OnlinePurchaseHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
 			try {
+				// when the window  object is created, it is populated 
 				CatalogListWindow catList = CatalogListWindow.getInstance(primaryStage, 
 					FXCollections.observableList(BrowseSelectData.INSTANCE.getCatalogList()));
-				catList.show();  
+				
+				catList.show();  //show the CatalogListWindow
 		        primaryStage.hide();
 			} catch(BackendException e) {
 				startScreenCallback.displayError("Database error. Message: " + e.getMessage());
@@ -107,6 +109,8 @@ public enum BrowseSelectUIControl {
 		@Override
 		// interface EventHandler requires to implement this method
 		public void handle(ActionEvent evt) {
+			// a shoppingCartWindow object is needed for a new window for customer to do brwose and select
+			// there will only be one ShoppingCartWindow at one time so the ShoppingCartWindow class is a singleton
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
 			boolean isLoggedIn = CacheReader.readLoggedIn();
 			//if not logged in
@@ -128,7 +132,7 @@ public enum BrowseSelectUIControl {
 		return new OnlinePurchaseHandler();
 	}
 	
-	// it is in BrowseSelectUIControl class, resposible for the connection between UI and the controller
+	// it is in BrowseSelectUIControl class, responsible for the connection between UI and the controller
 	public RetrieveSavedCartHandler getRetrieveSavedCartHandler() {
 		return new RetrieveSavedCartHandler();
 	}
@@ -238,6 +242,7 @@ public enum BrowseSelectUIControl {
 				Double.parseDouble(BrowseSelectData.INSTANCE
 					.getSelectedProduct().unitPriceProperty().get());		
 			String name = BrowseSelectData.INSTANCE.getSelectedProduct().nameProperty().get();
+			
 			CartItemPres cartPres = 
 				BrowseSelectData.INSTANCE.cartItemPresFromData(name, unitPrice, quant);
 			
@@ -291,10 +296,35 @@ public enum BrowseSelectUIControl {
 	private class SaveCartHandler implements EventHandler<ActionEvent> {
 		
 		@Override
-		public void handle(ActionEvent evt) {
-			shoppingCartWindow.displayInfo("You need to implement this handler.");	
-		}	
+		public void handle(ActionEvent evt){
+			
+			shoppingCartWindow.displayError("You need to successfully implement this handler.");
+			
+			//something wrong needs to fix down there 
+			/*
+			BrowseSelectData.INSTANCE.updateShoppingCart();
+			ShoppingCartSubsystem shopCartSs = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
+
+			controller.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
+
+			try {
+				shoppingCartWindow.clearMessages();
+				shopCartSs.saveLiveCart();
+				int numbItems = shoppingCartWindow.getCartItems().size();
+				//save successfully
+				shoppingCartWindow.displayInfo(numbItems + " Items successfully saved");	
+				shoppingCartWindow.getMessageBar().setText(numbItems + " Items successfully saved");
+			} catch (BackendException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				shoppingCartWindow.displayError("You need to successfully implement this handler.");	//save not successfully
+			}
+			*/
+			
+			
+		}
 	}
+	
 	public SaveCartHandler getSaveCartHandler() {
 		return new SaveCartHandler();
 	}

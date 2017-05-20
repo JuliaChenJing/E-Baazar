@@ -10,11 +10,13 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
+import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.ShoppingCart;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import middleware.exceptions.DatabaseException;
 import presentation.data.CartItemPres;
 import presentation.data.DefaultData;
+import presentation.util.CacheReader;
 
 public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	// the shopping cart that is used by the customer
@@ -112,4 +114,22 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		return new CartItemImpl();
 	}
 
+	@Override
+	public void saveLiveCart() throws BackendException {
+		// TODO Auto-generated method stub
+		//implement
+		//System.out.println("testing..."+customerProfile.getCustId());
+		customerProfile = CacheReader.readCustomer().getCustomerProfile();
+		CustomerSubsystem cust = CacheReader.readCustomer();
+		liveCart.setBillAddress(cust.getDefaultBillingAddress());
+		liveCart.setShipAddress(cust.getDefaultShippingAddress());
+		liveCart.setPaymentInfo(cust.getDefaultPaymentInfo());
+		DbClassShoppingCart dbShoppingCart = new DbClassShoppingCart();
+		try {
+			dbShoppingCart.saveCart(customerProfile, liveCart);
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			throw new BackendException(e);
+		}
+	}
 }

@@ -16,6 +16,7 @@ import presentation.data.CartItemPres;
 
 
 public class ShoppingCartWindow extends Stage implements DefaultShoppingCartWindow {
+	
 	private final static String TITLE_STRING = "Shopping Cart";
 
 	//DefaultShoppingCartWindow implementations

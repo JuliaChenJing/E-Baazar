@@ -2,7 +2,7 @@ package presentation.data;
 
 import business.externalinterfaces.Catalog;
 import javafx.beans.property.SimpleStringProperty;
-
+// the presentation of Catalog class
 public class CatalogPres {
 	private Catalog catalog;
     public CatalogPres() {}
