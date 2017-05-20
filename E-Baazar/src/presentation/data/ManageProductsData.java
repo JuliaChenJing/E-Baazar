@@ -13,7 +13,7 @@ import business.productsubsystem.ProductSubsystemFacade;
 
 public enum ManageProductsData {
 	INSTANCE;
-	
+	//test commit
 	private CatalogPres defaultCatalog = readDefaultCatalogFromDataSource();
 	private CatalogPres readDefaultCatalogFromDataSource() {
 		return DefaultData.CATALOG_LIST_DATA.get(0);
