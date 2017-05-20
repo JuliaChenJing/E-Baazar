@@ -98,6 +98,7 @@ public class CheckoutController  {
 		}
 	}
 
+	//return an Address
 	public Address runAddressRules(CustomerSubsystem cust, Address addr) throws RuleException, BusinessException {
 		return cust.runAddressRules(addr);
 	}

@@ -208,6 +208,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		// Address
 		AddressImpl update = (AddressImpl) transferObject.getUpdates().get(0);
 		return update;
+		
 	}
 	
 	public ShoppingCartSubsystem getShoppingCart() {

@@ -168,7 +168,8 @@ public enum CheckoutUIControl {
 		return new BackToShoppingCartHandler();
 	}
 
-	private class ProceedToPaymentHandler implements EventHandler<ActionEvent> {
+	//the event handler for check out button ,  address rules needed to be check
+	private class  ProceedToPaymentHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
 			shippingBillingWindow.clearMessages();
@@ -177,7 +178,8 @@ public enum CheckoutUIControl {
 			Address cleansedBillAddress = null;
 			CustomerSubsystem cust = CacheReader.readCustomer(); 
 			if (shippingBillingWindow.getSaveShipAddr()) {
-				try {				
+				try {
+					// run address rules for shipping address
 					cleansedShipAddress 
 					   = controller.runAddressRules(cust, shippingBillingWindow
 							.getShippingAddress());
@@ -195,6 +197,7 @@ public enum CheckoutUIControl {
 			if (rulesOk) {
 				if (shippingBillingWindow.getSaveBillAddr()) {
 					try {
+						//run address rules for billing address
 						cleansedBillAddress = controller.runAddressRules(cust, shippingBillingWindow
 								.getBillingAddress());
 					} catch (RuleException e) {
