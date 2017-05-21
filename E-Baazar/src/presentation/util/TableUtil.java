@@ -12,14 +12,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 public class TableUtil {
-
+    
 	public static <T> TableColumn<T, String> makeTableColumn(T underlyingClass, String colHeader, String nameOfProperty, int minWidth) {
 		TableColumn<T, String> tableColumn 
 		  = new TableColumn<>(colHeader);
@@ -34,6 +36,7 @@ public class TableUtil {
 		Class cl = instance.getClass();
 		return getPropertyValue(fieldname, cl, instance);
 	}
+	
 	
 	public static <T> TableColumn<T, String> makeEditableTableColumn(
 			TableView<T> table, T underlyingClass, String colHeader, String nameOfProperty, int minWidth) {

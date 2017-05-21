@@ -36,7 +36,7 @@ public class BrowseAndSelectController {
 		if(custIsLoggedIn) shopCartSS.makeSavedCartLive();	
 	}
 	
-	//new
+	
 	 public ShoppingCartSubsystem obtainCurrentShoppingCartSubsystem(CustomerSubsystem cust, 
              ShoppingCartSubsystem cachedCartSS) {
         if (cust == null) {
@@ -49,7 +49,7 @@ public class BrowseAndSelectController {
             return cust.getShoppingCart();
         }
     }
-//end new
+
 	public void runQuantityRules(Product product, String quantityRequested)
 			throws RuleException, BusinessException {
 

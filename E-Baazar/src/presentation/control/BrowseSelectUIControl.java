@@ -342,6 +342,7 @@ public enum BrowseSelectUIControl {
     public void handleEditedQuantity(CartItemPres cartItemPres, String quantRequested, TableView<CartItemPres> table) 
  			throws RuleException, BusinessException {
      	//First, check quantity requested is valid
+    	//run quantity rules
  		Product product 
  	   	  = BrowseSelectData.INSTANCE.getProductForProductName(cartItemPres.getCartItem().getItemName());
  	    runQuantityRules(product, quantRequested);

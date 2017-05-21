@@ -48,12 +48,24 @@ public interface DefaultShoppingCartWindow extends MessageableWindow, Modifiable
         
         //create columns
         TableColumn<CartItemPres, String> itemNameCol 
+      
         	= TableUtil.makeTableColumn(new CartItemPres(), "Item Name", "itemNameProperty", 200);
-        
-        //quantity column is trickier
-        
+                       //makeTableColumn(T underlyingClass, String colHeader, String nameOfProperty, int minWidth)
+       
+        //set quantity column to be edible. 
+        //It needs to run the quantity rule
 	    setQuantityCol(TableUtil.makeEditableTableColumn(getTable(), new CartItemPres(), 
-	    		"Quantity", "quantityProperty", 80));  
+	    		"Quantity",         "quantityProperty",    80));  
+	                            // makeEditableTableColumn(TableView<T> table, T underlyingClass,
+	            //String colHeader, String nameOfProperty, int minWidth)
+	    
+	    //set the event handler when editing the quantity
+		/*  public final void setOnEditCommit(EventHandler<CellEditEvent<S,T>> value) {
+		          onEditCommitProperty().set(value);
+		    }
+		 */
+
+	    
        getQuantityCol().setOnEditCommit(t -> {
 		   CartItemPres cartItemPres = t.getTableView().getItems().get(t.getTablePosition().getRow());
 		   String quantRequested = t.getNewValue();
@@ -62,10 +74,14 @@ public interface DefaultShoppingCartWindow extends MessageableWindow, Modifiable
 			   BrowseSelectUIControl.INSTANCE.handleEditedQuantity(
 				    cartItemPres, quantRequested, getTable());
 			   clearMessages();
-			   cartItemPres.setQuantity(new SimpleStringProperty(quantRequested));		   
+			   //after editing the quantity, quantity needs to be set to the entity
+			   cartItemPres.setQuantity(new SimpleStringProperty(quantRequested));
+			   //total price of all shopping cart  should be calculated again
 			   double sumTotal = GuiUtils.computeTotalInTable(getTable());
+			   //and set the new total to the cart
 			   setTotalInCart(GuiUtils.formatPrice(sumTotal));
 		   } catch(RuleException e) {
+			   //if there is something wrong ,cancel the edit and return to the previous value
 			   getQuantityCol().getCellFactory().call(getQuantityCol()).cancelEdit();		
 			   displayError(e.getMessage());
 		   } catch(BusinessException e) {
@@ -90,6 +106,8 @@ public interface DefaultShoppingCartWindow extends MessageableWindow, Modifiable
 	    });
 	}
 	
+	//the default method in an interface
+	//returns an HBox with all the settings settled
 	default public HBox setUpTopLabel() {
 		Label label = new Label(getTitleString());
         label.setFont(new Font("Arial", 16));
@@ -98,11 +116,12 @@ public interface DefaultShoppingCartWindow extends MessageableWindow, Modifiable
         labelHbox.getChildren().add(label);
         return labelHbox;
 	}
-	
+	//the default method in DefaltShoppingCart interface
+	//returns a Scene as the table in the shopping cart window
 	default public Scene createScene() {
 		
 		//set up top label
-		HBox labelHbox = setUpTopLabel();
+		HBox labelHbox = setUpTopLabel();////returns an HBox with all the settings settled
 		
 		//set up table
 		setUpTable();
