@@ -5,6 +5,7 @@ import java.sql.Types;
 import java.util.logging.Logger;
 
 import business.externalinterfaces.Catalog;
+import business.productsubsystem.DbClassCatalogTypes.Type;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
 import middleware.exceptions.DatabaseException;
@@ -88,10 +89,26 @@ class DbClassCatalog implements DbClass {
 				return null;
 		}
 	 }
+	 
+	 
     @Override
 	public void populateEntity(ResultSet resultSet) throws DatabaseException {
 		// do nothing
 
 	}
+    
+    private CatalogImpl catalog;
+	public Catalog readCatalogByName(String catName) {
+		// do something
+	
+		try {
+			dataAccessSS.atomicRead(this);
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+        return catalog;        
+	}
+
 
 }
