@@ -23,7 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import business.externalinterfaces.*;
-
+// shows the credit card information , needs to check the payment rules after clicking the checkout button
 public class PaymentWindow extends Stage implements MessageableWindow {
 	private TextField nameOnCardField = new TextField();
 	private TextField cardNumberField  = new TextField();
@@ -107,6 +107,7 @@ public class PaymentWindow extends Stage implements MessageableWindow {
         expirationField.setText(defaultPaymentInfo.get(3));
 	}
 	private HBox setUpButtons() {
+		//check out button
 		Button proceedButton = new Button("Checkout");
 		Button backButton = new Button("Previous Screen");
 		Button backToCartButton = new Button("Back to Shopping Cart");
@@ -117,6 +118,7 @@ public class PaymentWindow extends Stage implements MessageableWindow {
 		btnBox.getChildren().add(backButton);
 		backButton.setOnAction(CheckoutUIControl.INSTANCE.getBackToShipBillWindow());		
 		backToCartButton.setOnAction(CheckoutUIControl.INSTANCE.getBackToCartHandler());
+		//set the event handler of the check out button
 		proceedButton.setOnAction(CheckoutUIControl.INSTANCE.getProceedToTermsHandler());
 		return btnBox;
 	}

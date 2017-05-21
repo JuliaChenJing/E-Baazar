@@ -295,17 +295,22 @@ public enum CheckoutUIControl {
 		return new BackToCartHandler();
 	}
 
+	// the event handler for the checkout button , needs to check the credit card information 
 	private class ProceedToTermsHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
 			try {
+				//the billing address and credit card information needed 
 				controller.runPaymentRules(shippingBillingWindow.getBillingAddress(),
 					paymentWindow.getCreditCardFromWindow());
 				paymentWindow.clearMessages();
 				paymentWindow.hide();
+				
+				//ask the customer to agree with the terms
 				termsWindow = new TermsWindow();
 				termsWindow.show();
 			} catch(RuleException e) {
+				//show information like "payment information error: all payment fields are required"
 				paymentWindow.displayError(e.getMessage());
 			} catch(BusinessException e) {
 				paymentWindow.displayError(ErrorMessages.DATABASE_ERROR);

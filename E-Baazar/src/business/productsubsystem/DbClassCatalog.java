@@ -110,5 +110,4 @@ class DbClassCatalog implements DbClass {
         return catalog;        
 	}
 
-
 }
