@@ -1,28 +1,47 @@
 package presentation.data;
 
+import static presentation.util.UtilForUIClasses.catalogToCatalogPres;
+import static presentation.util.UtilForUIClasses.productToProductPres;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import business.exceptions.BackendException;
+import business.externalinterfaces.Catalog;
+import business.externalinterfaces.Product;
+import business.productsubsystem.ProductSubsystemFacade;
+import business.usecasecontrol.ManageProductsController;
+import business.util.Convert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import business.externalinterfaces.Catalog;
-import business.externalinterfaces.Product;
-import business.util.Convert;
-import business.productsubsystem.ProductSubsystemFacade;
 
 public enum ManageProductsData {
 	INSTANCE;
-	
+	//==================================================================
+	private ManageProductsController controller = new ManageProductsController();
+
 	private CatalogPres defaultCatalog = readDefaultCatalogFromDataSource();
+	private CatalogPres selectedCatalog = defaultCatalog;
+//========================================================
 	private CatalogPres readDefaultCatalogFromDataSource() {
-		return DefaultData.CATALOG_LIST_DATA.get(0);
+		//return DefaultData.CATALOG_LIST_DATA.get(0);
+		try {
+			defaultCatalog = controller.getCatalogs()
+				    .stream()
+				    .map(catalog -> catalogToCatalogPres(catalog))
+				    .collect(Collectors.toList()).get(0);
+		} catch (BackendException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return defaultCatalog;
 	}
 	public CatalogPres getDefaultCatalog() {
 		return defaultCatalog;
 	}
-	
-	private CatalogPres selectedCatalog = defaultCatalog;
+
 	public void setSelectedCatalog(CatalogPres selCatalog) {
 		selectedCatalog = selCatalog;
 	}
@@ -32,38 +51,54 @@ public enum ManageProductsData {
 	//////////// Products List model
 	private ObservableMap<CatalogPres, List<ProductPres>> productsMap
 	   = readProductsFromDataSource();
-	
+//==========================================================================
 	/** Initializes the productsMap */
 	private ObservableMap<CatalogPres, List<ProductPres>> readProductsFromDataSource() {
-		return DefaultData.PRODUCT_LIST_DATA;
+		//return DefaultData.PRODUCT_LIST_DATA;
+		ObservableMap<CatalogPres, List<ProductPres>> catMap=FXCollections.observableHashMap();
+		try {
+			List<Catalog> catalogList = controller.getCatalogs();
+			for(Catalog catalog : catalogList){
+				List<ProductPres> productPresList =
+						           controller.getProductsList(catalog)//1.1.3.1
+											 .stream()
+											 .map(product -> productToProductPres(product))
+											 .collect(Collectors.toList());
+
+				catMap.put(catalogPresFromData(catalog.getId(), catalog.getName()), productPresList);
+			}
+
+		} catch (Exception e) {
+		}
+						return FXCollections.observableMap(catMap);
 	}
-	
+
 	/** Delivers the requested products list to the UI */
 	public ObservableList<ProductPres> getProductsList(CatalogPres catPres) {
 		return FXCollections.observableList(productsMap.get(catPres));
 	}
-	
-	public ProductPres productPresFromData(Catalog c, String name, String date,  //MM/dd/yyyy 
+
+	public ProductPres productPresFromData(Catalog c, String name, String date,  //MM/dd/yyyy
 			int numAvail, double price) {
-		
-		Product product = ProductSubsystemFacade.createProduct(c, name, 
+
+		Product product = ProductSubsystemFacade.createProduct(c, name,
 				Convert.localDateForString(date), numAvail, price);
 		ProductPres prodPres = new ProductPres();
 		prodPres.setProduct(product);
 		return prodPres;
 	}
-	
+
 	public void addToProdList(CatalogPres catPres, ProductPres prodPres) {
 		ObservableList<ProductPres> newProducts =
 		           FXCollections.observableArrayList(prodPres);
 		List<ProductPres> specifiedProds = productsMap.get(catPres);
-		
+
 		//Place the new item at the bottom of the list
 		specifiedProds.addAll(newProducts);
-		
+
 	}
-	
-	/** This method looks for the 0th element of the toBeRemoved list 
+
+	/** This method looks for the 0th element of the toBeRemoved list
 	 *  and if found, removes it. In this app, removing more than one product at a time
 	 *  is  not supported.
 	 */
@@ -74,13 +109,24 @@ public enum ManageProductsData {
 		}
 		return false;
 	}
-		
+
 	//////// Catalogs List model
 	private ObservableList<CatalogPres> catalogList = readCatalogsFromDataSource();
-
+//======================================================================
 	/** Initializes the catalogList */
 	private ObservableList<CatalogPres> readCatalogsFromDataSource() {
-		return FXCollections.observableList(DefaultData.CATALOG_LIST_DATA);
+		//return FXCollections.observableList(DefaultData.CATALOG_LIST_DATA);
+
+		try {
+			catalogList=FXCollections.observableList(controller.getCatalogs()
+				    .stream()
+				    .map(catalog -> catalogToCatalogPres(catalog))
+				    .collect(Collectors.toList()));
+		} catch (BackendException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return catalogList;
 	}
 
 	/** Delivers the already-populated catalogList to the UI */
@@ -111,10 +157,10 @@ public enum ManageProductsData {
 	 * This method looks for the 0th element of the toBeRemoved list in
 	 * catalogList and if found, removes it. In this app, removing more than one
 	 * catalog at a time is not supported.
-	 * 
+	 *
 	 * This method also updates the productList by removing the products that
 	 * belong to the Catalog that is being removed.
-	 * 
+	 *
 	 * Also: If the removed catalog was being stored as the selectedCatalog,
 	 * the next item in the catalog list is set as "selected"
 	 */
@@ -136,7 +182,7 @@ public enum ManageProductsData {
 		}
 		return result;
 	}
-	
+
 	//Synchronizers
 	public class ManageProductsSynchronizer implements Synchronizer {
 		@SuppressWarnings("rawtypes")
@@ -148,7 +194,7 @@ public enum ManageProductsData {
 	public ManageProductsSynchronizer getManageProductsSynchronizer() {
 		return new ManageProductsSynchronizer();
 	}
-	
+
 	private class ManageCatalogsSynchronizer implements Synchronizer {
 		@SuppressWarnings("rawtypes")
 		@Override

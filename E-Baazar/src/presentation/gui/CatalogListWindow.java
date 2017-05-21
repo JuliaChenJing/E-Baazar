@@ -30,6 +30,7 @@ public class CatalogListWindow extends Stage implements MessageableWindow, Modif
 		
 	}
 	private static CatalogListWindow instance = null;
+	// return an object of CatalogListWindow and pupulated with cataloglist
 	public static CatalogListWindow getInstance(Stage primary, ObservableList<CatalogPres> list) {
 		if(instance == null) {
 			instance = new CatalogListWindow(primary, list);

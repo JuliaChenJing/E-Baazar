@@ -26,6 +26,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 	 *  Assumes cust id has already been stored into the order subsystem facade 
 	 *  This is created by using auxiliary methods at the bottom of this class file.
 	 *  First get all order ids for this customer. For each such id, get order data
+	 *  and form an order, and with that order id, get all order items and insert
 	 *  into the order.
 	 */
     public List<Order> getOrderHistory() throws BackendException {

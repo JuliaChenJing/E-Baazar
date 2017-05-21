@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import business.exceptions.BackendException;
 import business.externalinterfaces.Address;
-
+//needs to run address rule in this window in order to successfully go to check out 
 public class ShippingBillingWindow extends Stage implements MessageableWindow {
 	private TextField shipNameField = new TextField();
 	private TextField shipStreetField = new TextField();
@@ -195,6 +195,7 @@ public class ShippingBillingWindow extends Stage implements MessageableWindow {
    private HBox setUpButtons() {
 	    Button selectShipButton = new Button("Select Ship Address");
 		Button selectBillButton = new Button("Select Bill Address");
+		//button for checkout
 		Button proceedButton = new Button("Checkout");
 		Button backButton = new Button("Back to Cart");
 		HBox btnBox = new HBox(10);

@@ -23,7 +23,7 @@ public class GuiUtils {
 	public static String formatPrice(double d) {
 		return String.format("%.2f", d);
 	}
-	
+	//calculate the total price of all the items in the shopping cart
 	public static double computeTotalInTable(TableView table) {
 		ObservableList<CartItemPres> items = table.getItems();
 		DoubleSummaryStatistics summary 
