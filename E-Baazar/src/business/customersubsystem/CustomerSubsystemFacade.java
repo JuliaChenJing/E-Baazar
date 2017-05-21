@@ -276,7 +276,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	}
 
 	public CustomerProfile getGenericCustomerProfile() {
-		return new CustomerProfileImpl(1, "FirstTest", "LastTest");
+		return new CustomerProfileImpl(1, "testf", "testl");
 
 	}
 }

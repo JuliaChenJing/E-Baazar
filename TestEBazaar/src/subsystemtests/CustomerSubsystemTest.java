@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import business.customersubsystem.CustomerSubsystemFacade;
+import business.externalinterfaces.CustomerProfile;
+import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.ProductSubsystem;
 import business.productsubsystem.ProductSubsystemFacade;
 import dbsetup.DbQueries;
@@ -19,38 +22,39 @@ public class CustomerSubsystemTest extends TestCase {
 		AllTests.initializeProperties();
 	}
 	
-	//work from here
-	public void testGetCatalogNames() {
-		//setup
-		/*
-		 * Returns a String[] with values:
-		 * 0 - query
-		 * 1 - catalog id
-		 * 2 - catalog name
-		 */
-		String[] insertResult = DbQueries.insertCatalogRow();
-		String expected = insertResult[2];
-		
-		ProductSubsystem pss =new ProductSubsystemFacade();
-		try {
-			List<String> found = pss.getCatalogList()
-				      .stream()
-				      .map(cat -> cat.getName())
-				      .collect(Collectors.toList());
-			boolean valfound = false;
-			for(String catData : found) {			
-					if(catData.equals(expected)) valfound = true;
+	//test the public method       in CustomerSubsystemInterface
+		public void testGetGenericCustomerProfile() {
+			//setup
+			/**
+			 * Returns a String[] with values:
+			 * 0 - query
+			 * 1 - customer id
+			 * 2 - cust fname
+			 * 3 - cust lname
+			 */
+			String[] insertResult = DbQueries.insertCustomerRow();//testly insert a new customer into DB
+			String customerFirstNameInserted = insertResult[2];//customer first name "testf"
+			System.out.println(customerFirstNameInserted);
+			//create an object for CustomerSubysystem
+			CustomerSubsystem pss =new CustomerSubsystemFacade();
+			try {
+				CustomerProfile profile = pss.getGenericCustomerProfile();
+				boolean valfound = false;
+						
 				
+				System.out.println(profile.getFirstName());
+					if(profile.getFirstName().equals(customerFirstNameInserted)) 
+						valfound = true;
+					
+				assertTrue(valfound);
+				
+			} catch(Exception e) {
+				fail("Inserted value not found");
+			} finally {
+				DbQueries.deleteCatalogRow(Integer.parseInt(insertResult[1]));
 			}
-			assertTrue(valfound);
-			
-		} catch(Exception e) {
-			fail("Inserted value not found");
-		} finally {
-			DbQueries.deleteCatalogRow(Integer.parseInt(insertResult[1]));
+		
 		}
-	
-	}
 
 	
 }

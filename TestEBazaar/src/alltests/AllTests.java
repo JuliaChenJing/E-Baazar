@@ -27,7 +27,7 @@ public class AllTests extends TestSuite {
     	initializeProperties();
 	} 
 	private static boolean initialized = false;
-    
+    // a static method, could be called by AllTests.initializeProperties();
     public static void initializeProperties() {
     	if (!initialized) {
     		DbConfigProperties.readProps("resources\\dbconfig.properties");
@@ -41,6 +41,7 @@ public class AllTests extends TestSuite {
 		//$JUnit-BEGIN$ -- put fully qualified classnames of all tests here
 		suite.addTest(new TestSuite(daotests.DbClassAddressTest.class));
 		suite.addTest(new TestSuite(subsystemtests.ProductSubsystemTest.class));
+		suite.addTest(new TestSuite(subsystemtests.CustomerSubsystemTest.class));
 		suite.addTest(new TestSuite(performancetests.RulesPerformanceTests.class));
 		suite.addTest(new TestSuite(unittests.business.StringParseTest.class));		
 		//$JUnit-END$
