@@ -78,6 +78,7 @@ public class StringParseTest extends TestCase {
 		
 		log.info("...passed");
 	}
+	
 	//stringArrayContains(String[] arr, String testStr)
 	public void testStringArrayContains() {
 		String [][] arrs = { {"abc", null, "456"},
@@ -295,6 +296,4 @@ public class StringParseTest extends TestCase {
 	
 		
 	
-	
-
 }

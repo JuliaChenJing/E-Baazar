@@ -136,12 +136,14 @@ public class DbQueries {
 	 */
 	public static String[] insertCatalogRow() {
 		String[] vals = saveCatalogSql();
+		// 0 - query
 		String query = vals[0];
 		try {
 			stmt = prodCon.createStatement();
 			stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stmt.getGeneratedKeys();
 			if(rs.next()) {
+				//1 - catalog id  previously vals[1] = null;
 				vals[1] = (new Integer(rs.getInt(1)).toString());
 			}
 			stmt.close();
