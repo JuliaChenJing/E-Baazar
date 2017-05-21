@@ -17,12 +17,14 @@ import business.rulesbeans.FinalOrderBean;
 import business.rulesbeans.PaymentBean;
 import business.rulesbeans.ShopCartBean;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
+import middleware.externalinterfaces.CreditVerificationProfile;
 import presentation.data.SessionCache;
 import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
 import rulesengine.ValidationException;
 import presentation.util.CacheReader.*;
 import   business.externalinterfaces.OrderItem ;
+import  business.externalinterfaces.OrderSubsystem;
 
 import static presentation.util.CacheReader.readCustomer;
 import static presentation.util.UtilForUIClasses.pathToRules;
@@ -149,6 +151,7 @@ public class CheckoutController  {
 	 */
 	public void verifyCreditCard(CustomerSubsystem cust) throws BusinessException {
 		//implement
+		cust.checkCreditCard();
 	}
 	
 	public void saveNewAddress(CustomerSubsystem cust, Address addr) throws BackendException {		
@@ -158,9 +161,8 @@ public class CheckoutController  {
 	/** Asks Customer Subsystem to submit final order */
 	public void submitFinalOrder() throws BackendException {
 		//implement
-	
 
-
+       // TO DO
 
 
 	}

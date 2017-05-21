@@ -113,7 +113,8 @@ public interface CustomerSubsystem {
 //     *  Called when user submits final order -- customer sends its shopping cart to order subsystem
 //	 *  and order subsystem extracts items from shopping cart and prepares order
 //	 */
-//    public void submitOrder() throws BackendException;
+//
+// public void submitOrder() throws BackendException;
 //    
 //    /**
 //     * After an order is submitted, the list of orders cached in CustomerSubsystemFacade
