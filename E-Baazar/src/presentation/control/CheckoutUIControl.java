@@ -32,9 +32,7 @@ import business.exceptions.RuleException;
 import business.externalinterfaces.Address;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
-import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import business.usecasecontrol.CheckoutController;
-
 public enum CheckoutUIControl {
 	INSTANCE;
 	private CheckoutController controller = new CheckoutController();
@@ -71,59 +69,59 @@ public enum CheckoutUIControl {
 
 		@Override
 		public void handle(ActionEvent evt) {
-			
+
 			boolean rulesOk = true;
-			/* check that cart is not empty before going to next screen */	
-	
-			 try {
-	                //the billing address and credit card information needed 
-				   controller.runShoppingCartRules(CacheReader.readCustomer().getShoppingCart());	
-				    ShoppingCartWindow.INSTANCE.clearMessages();
-					ShoppingCartWindow.INSTANCE.setTableAccessByRow();
-					ShoppingCartWindow.INSTANCE.hide();
+			/* check that cart is not empty before going to next screen */
+
+			try {
+				boolean isLoggedin = CacheReader.readLoggedIn();
+				if (!isLoggedin) {
 					
-	
-	            } catch(RuleException e) {
-	                
-	            	ShoppingCartWindow.INSTANCE.displayError(e.getMessage());
-	            	rulesOk=false;
-	            } catch(BusinessException e) {
-	            	ShoppingCartWindow.INSTANCE.displayError(ErrorMessages.DATABASE_ERROR);
-	            	rulesOk=false;
-	            }
-	        
-			 if(rulesOk)
+					// redirect to login
+					
+					//stay in shopping cart window after logged in
+					LoginUIControl loginControl = new LoginUIControl(ShoppingCartWindow.INSTANCE,
+							ShoppingCartWindow.INSTANCE.getPrimaryStage());
+					
+					//jump to shippingBillingWindow after logged in
+			    	//LoginUIControl loginControl = new LoginUIControl(shippingBillingWindow,
+			   		//		ShoppingCartWindow.INSTANCE,this);
+					loginControl.startLogin();	
+				}
+			
+					//already logged in
+					controller.runShoppingCartRules(CacheReader.readCustomer().getShoppingCart());
+				
+			} catch (RuleException e) {
+				ShoppingCartWindow.INSTANCE.displayError(e.getMessage());
+				rulesOk = false;
+			} catch (BusinessException e) {
+				ShoppingCartWindow.INSTANCE.displayError(ErrorMessages.DATABASE_ERROR);
+				rulesOk = false;
+			}
 
-      		{
-      			boolean isLoggedIn = CacheReader.readLoggedIn();
-      			// do not create instance of ShippingBillingWindow here
-      			if (!isLoggedIn) {
-      				LoginUIControl loginControl = new LoginUIControl(shippingBillingWindow, ShoppingCartWindow.INSTANCE,
-      						this);
-      				loginControl.startLogin();
-      			} else {
-      				//creat ShipppingBillingWindow and load the data
-      				doUpdate();
-      			}
-      		}
+			if (rulesOk) {
+				
+				    ShoppingCartWindow.INSTANCE.hide();
+					doUpdate();
+			}
 
+		}
 
+		@Override
+		public Text getMessageBar() {
+			return ShoppingCartWindow.INSTANCE.getMessageBar();
+		}
 	}
 
-	@Override
-	public Text getMessageBar() {
-		return ShoppingCartWindow.INSTANCE.getMessageBar();
-	}
-}
+	public class SetShippingInSelect implements Consumer<CustomerPres> {
 
-public class SetShippingInSelect implements Consumer<CustomerPres> {
+		@Override
+		public void accept(CustomerPres cust) {
+			shippingBillingWindow.setShippingAddress(cust.fullNameProperty().get(), cust.streetProperty().get(),
+					cust.cityProperty().get(), cust.stateProperty().get(), cust.zipProperty().get());
 
-	@Override
-	public void accept(CustomerPres cust) {
-		shippingBillingWindow.setShippingAddress(cust.fullNameProperty().get(), cust.streetProperty().get(),
-				cust.cityProperty().get(), cust.stateProperty().get(), cust.zipProperty().get());
-
-	}
+		}
 
 	}
 
