@@ -2,7 +2,6 @@ package business.usecasecontrol;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,8 +15,6 @@ import business.externalinterfaces.*;
 import business.rulesbeans.FinalOrderBean;
 import business.rulesbeans.PaymentBean;
 import business.rulesbeans.ShopCartBean;
-import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
-import presentation.data.SessionCache;
 import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
 import rulesengine.ValidationException;

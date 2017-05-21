@@ -57,6 +57,7 @@ public class ShoppingCartWindow extends Stage implements DefaultShoppingCartWind
 	
 	//buttons :name ,location and acton 
 	public HBox setUpButtons() {
+		// check out button
 		Button proceedButton = new Button("Proceed to Checkout");
 		Button continueButton = new Button("Continue Shopping");
 		Button saveButton = new Button("Save Cart");
@@ -71,6 +72,7 @@ public class ShoppingCartWindow extends Stage implements DefaultShoppingCartWind
 		deleteButton.setOnAction(new DeleteCartItemHandler(this));
 		continueButton.setOnAction(BrowseSelectUIControl.INSTANCE.getCartContinueHandler());
 		saveButton.setOnAction(BrowseSelectUIControl.INSTANCE.getSaveCartHandler());
+		// event handler of check out button
 		proceedButton.setOnAction(CheckoutUIControl.INSTANCE.getProceedFromCartToShipBill());
 		return btnBox;
 	}

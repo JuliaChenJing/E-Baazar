@@ -32,10 +32,7 @@ import business.exceptions.BusinessException;
 import business.exceptions.RuleException;
 import business.exceptions.UnauthorizedException;
 import business.externalinterfaces.Product;
-import business.externalinterfaces.ShoppingCartSubsystem;
-import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import business.usecasecontrol.BrowseAndSelectController;
-import business.util.DataUtil;
 
 
 
@@ -252,6 +249,7 @@ public enum BrowseSelectUIControl {
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
 			shoppingCartWindow.setData(BrowseSelectData.INSTANCE.getCartData());
 			shoppingCartWindow.setPrimaryStage(primaryStage);
+			ShoppingCartWindow.INSTANCE.clearMessages();
 			shoppingCartWindow.show();
 			productDetailsWindow.hide();
 		}
