@@ -15,24 +15,9 @@ import business.externalinterfaces.*;
 import business.rulesbeans.FinalOrderBean;
 import business.rulesbeans.PaymentBean;
 import business.rulesbeans.ShopCartBean;
-<<<<<<< HEAD
-import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
-import middleware.externalinterfaces.CreditVerificationProfile;
-import presentation.data.SessionCache;
-=======
->>>>>>> ac614de5ad1eba18ddb764535c2254fbac59f43d
 import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
 import rulesengine.ValidationException;
-import presentation.util.CacheReader.*;
-<<<<<<< HEAD
-import   business.externalinterfaces.OrderItem ;
-import  business.externalinterfaces.OrderSubsystem;
-=======
-import business.externalinterfaces.OrderItem ;
->>>>>>> ac614de5ad1eba18ddb764535c2254fbac59f43d
-
-import static presentation.util.CacheReader.readCustomer;
 import static presentation.util.UtilForUIClasses.pathToRules;
 
 
