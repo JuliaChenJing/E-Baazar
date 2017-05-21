@@ -77,18 +77,47 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	}
 
 	void loadDefaultShipAddress() throws BackendException {
-		// implement
-		LOG.warning("Method CustomerSubsystemFacade.loadDefaultShipAddress has not been implemented.");
+		try {
+			//LOG.info(" CustomerId ="+customerProfile.getCustId());
+			DbClassAddress dbClass = new DbClassAddress();
+			defaultShipAddress =  dbClass.readDefaultShipAddress(customerProfile);
+			//LOG.info("-------"+defaultShipAddress.getCity()+"---------");
+		} catch (DatabaseException e) {
+			LOG.warning("SQL Exception: "+e.getMessage());
+			e.printStackTrace();
+			throw new BackendException(e);
+			
+		}
+		LOG.warning("Method CustomerSubsystemFacade.loadDefaultShipAddress has been implemented.");
+		//LOG.warning("Method CustomerSubsystemFacade.loadDefaultShipAddress has not been implemented.");
 	}
 
 	void loadDefaultBillAddress() throws BackendException {
 		// implement
-		LOG.warning("Method CustomerSubsystemFacade.loadDefaultBillAddress has not been implemented.");
+		try {
+			DbClassAddress dbClass = new DbClassAddress();
+			defaultBillAddress =  dbClass.readDefaultBillAddress(customerProfile);
+		} catch (DatabaseException e) {
+			throw new BackendException(e);
+		}
+		// implement
+		LOG.warning("Method CustomerSubsystemFacade.loadDefaultBillAddress has been implemented.");
+		//LOG.warning("Method CustomerSubsystemFacade.loadDefaultBillAddress has not been implemented.");
 	}
 
 	void loadDefaultPaymentInfo() throws BackendException {
 		// implement
-		LOG.warning("Method CustomerSubsystemFacade.loadDefaultPaymentInfo has not been implemented.");
+		try {
+			DbClassCreditCard dbClass = new DbClassCreditCard();
+			defaultPaymentInfo =  dbClass.readDefaultPaymentInfo(customerProfile);
+			//LOG.info("-------"+defaultPaymentInfo.getNameOnCard() +defaultPaymentInfo.getCardNum() +"---------");
+		} catch (DatabaseException e) {
+			throw new BackendException(e);
+		}
+		
+		// implement
+		LOG.warning("Method CustomerSubsystemFacade.loadDefaultPaymentInfo has  been implemented.");
+		//LOG.warning("Method CustomerSubsystemFacade.loadDefaultPaymentInfo has not been implemented.");
 	}
 
 	void loadOrderData() throws BackendException {
@@ -102,7 +131,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	/**
 	 * Customer Subsystem is responsible for obtaining all the data needed by
-	 * Credit Verif system -- it does not (and should not) rely on the
+	 * Credit Verification system -- it does not (and should not) rely on the
 	 * controller for this data.
 	 */
 	@Override

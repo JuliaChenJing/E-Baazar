@@ -32,6 +32,7 @@ import business.exceptions.BusinessException;
 import business.exceptions.RuleException;
 import business.exceptions.UnauthorizedException;
 import business.externalinterfaces.Product;
+import business.externalinterfaces.ShoppingCartSubsystem;
 import business.usecasecontrol.BrowseAndSelectController;
 
 
@@ -295,29 +296,25 @@ public enum BrowseSelectUIControl {
 		
 		@Override
 		public void handle(ActionEvent evt){
-			
-			shoppingCartWindow.displayError("You need to successfully implement this handler.");
-			
-			//something wrong needs to fix down there 
-			/*
-			BrowseSelectData.INSTANCE.updateShoppingCart();
-			ShoppingCartSubsystem shopCartSs = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
-
-			controller.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
 
 			try {
 				shoppingCartWindow.clearMessages();
-				shopCartSs.saveLiveCart();
-				int numbItems = shoppingCartWindow.getCartItems().size();
-				//save successfully
-				shoppingCartWindow.displayInfo(numbItems + " Items successfully saved");	
-				shoppingCartWindow.getMessageBar().setText(numbItems + " Items successfully saved");
+				
+					/** Sets the latest version of cartData to the ShoppingCartSubsystem */
+					BrowseSelectData.INSTANCE.updateShoppingCart();
+					ShoppingCartSubsystem shopCartSs = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
+
+					controller.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
+					
+					shopCartSs.saveLiveCart();
+					int numbItems = shoppingCartWindow.getCartItems().size();
+					//save successfully
+					shoppingCartWindow.displayInfo(numbItems + " Items successfully saved");	
 			} catch (BackendException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				shoppingCartWindow.displayError("You need to successfully implement this handler.");	//save not successfully
+				shoppingCartWindow.displayError("You need to successfully implement this handler.");
 			}
-			*/
 			
 			
 		}
