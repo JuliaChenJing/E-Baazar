@@ -22,7 +22,7 @@ import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
 import rulesengine.ValidationException;
 import presentation.util.CacheReader.*;
-import   business.externalinterfaces.OrderItem ;
+import business.externalinterfaces.OrderItem ;
 
 import static presentation.util.CacheReader.readCustomer;
 import static presentation.util.UtilForUIClasses.pathToRules;

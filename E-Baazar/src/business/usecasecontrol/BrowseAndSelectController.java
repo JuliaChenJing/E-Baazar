@@ -1,6 +1,9 @@
 package business.usecasecontrol;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import business.RulesQuantity;
@@ -16,8 +19,14 @@ import business.externalinterfaces.ProductSubsystem;
 import business.externalinterfaces.Rules;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import business.productsubsystem.ProductSubsystemFacade;
+import business.rulesbeans.QuantityBean;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import business.util.DataUtil;
+import static presentation.util.UtilForUIClasses.pathToRules;
+
+import rulesengine.OperatingException;
+import rulesengine.ReteWrapper;
+import rulesengine.ValidationException;
 
 public class BrowseAndSelectController {
 	
@@ -52,15 +61,49 @@ public class BrowseAndSelectController {
 
 	public void runQuantityRules(Product product, String quantityRequested)
 			throws RuleException, BusinessException {
-
-		ProductSubsystem prodSS = new ProductSubsystemFacade();
+	
 		
-		//find current quant avail since quantity may have changed
+		
 		//since product was first loaded into UI
+		ProductSubsystem prodSS = new ProductSubsystemFacade();
+		//find current quant avail since quantity may have changed
 		int currentQuantityAvail = prodSS.readQuantityAvailable(product);
-		Rules transferObject = new RulesQuantity(currentQuantityAvail, quantityRequested);//
-		transferObject.runRules();
+		
+		//method one, it works
+	    //Rules transferObject = new RulesQuantity(currentQuantityAvail, quantityRequested);
+		//transferObject.runRules();
+		
+		
+		//method two, it works as wll
+        try {
+        	
+            // set up
+            String moduleName = "rules-quantity";
+            BufferedReader rulesReader =pathToRules(getClass().getClassLoader(), "quantity-rules.clp");
 
+            String deftemplateName = "quantity-template";
+            QuantityBean quanbean = new QuantityBean(quantityRequested,currentQuantityAvail);
+            HashMap<String, QuantityBean> h = new HashMap<>();
+            h.put(deftemplateName, quanbean);
+
+            // start up the rules engine
+            ReteWrapper engine = new ReteWrapper();
+            engine.setRulesAsString(rulesReader);
+            engine.setCurrentModule(moduleName);
+            engine.setTable(h);
+            engine.runRules();
+            System.out.println(engine.getUpdates());
+            //return engine.getUpdates();
+        } catch (ValidationException ex) {
+            throw new RuleException(ex.getMessage());
+        } catch (IOException ex) {
+            throw new RuleException(ex.getMessage());
+        } catch (OperatingException ex) {
+            throw new RuleException(ex.getMessage());
+        } catch (Exception ex) {
+            throw new RuleException(ex.getMessage());
+        }
+        
 	}
 	
 	public List<Catalog> getCatalogs() throws BackendException {
