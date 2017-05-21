@@ -1,0 +1,11 @@
+/address-rules.clp
+/alltests/
+/daotests/
+/dbsetup/
+/finalorder-rules.clp
+/payment-rules.clp
+/performancetests/
+/quantity-rules.clp
+/shopcart-rules.clp
+/subsystemtests/
+/unittests/

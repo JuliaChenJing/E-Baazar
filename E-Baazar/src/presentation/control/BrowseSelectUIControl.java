@@ -107,7 +107,7 @@ public enum BrowseSelectUIControl {
 		@Override
 		// interface EventHandler requires to implement this method
 		public void handle(ActionEvent evt) {
-			// a shoppingCartWindow object is needed for a new window for customer to do brwose and select
+			// a shoppingCartWindow object is needed for a new window for customer to do browse and select
 			// there will only be one ShoppingCartWindow at one time so the ShoppingCartWindow class is a singleton
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
 			boolean isLoggedIn = CacheReader.readLoggedIn();
