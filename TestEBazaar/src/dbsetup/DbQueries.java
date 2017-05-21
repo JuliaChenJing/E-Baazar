@@ -51,6 +51,7 @@ public class DbQueries {
 			e.printStackTrace();
 		}
 	}
+	
 	// just to test this class
 	public static void testing() {
 		try {
