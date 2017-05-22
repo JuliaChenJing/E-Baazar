@@ -52,4 +52,8 @@ public interface ShoppingCartSubsystem {
 	public CartItem getEmptyCartItemForTest();
 
 	void saveLiveCart() throws BackendException;
+
+	public DbClassCartItemForTest getGenericDbClassCartItems();
+
+	public CustomerProfile getGenericCustomerProfile();
 }

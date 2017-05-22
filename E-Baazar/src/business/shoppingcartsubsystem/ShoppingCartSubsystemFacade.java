@@ -11,11 +11,10 @@ import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
+import business.externalinterfaces.DbClassCartItemForTest;
 import business.externalinterfaces.ShoppingCart;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import middleware.exceptions.DatabaseException;
-import presentation.data.CartItemPres;
-import presentation.data.DefaultData;
 import presentation.util.CacheReader;
 
 public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
@@ -137,6 +136,18 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 			e.printStackTrace();
 			throw new BackendException(e);
 		}
+	}
+
+	@Override
+	public DbClassCartItemForTest getGenericDbClassCartItems() {
+		// TODO Auto-generated method stub
+		return new  DbClassShoppingCart();
+	}
+
+	@Override
+	public CustomerProfile getGenericCustomerProfile() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
