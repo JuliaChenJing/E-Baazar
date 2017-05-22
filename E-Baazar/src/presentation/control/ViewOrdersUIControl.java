@@ -52,6 +52,7 @@ public enum ViewOrdersUIControl {
 		public void doUpdate() {
 			// TODO Auto-generated method stub
 			primaryStage.hide();
+			//get orders
 			ordersWindow.setData(FXCollections.observableList(ViewOrdersData.INSTANCE.getOrders()));
 			ordersWindow.show();
 			
