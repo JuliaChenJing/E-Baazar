@@ -16,6 +16,5 @@ public interface OrderItem {
     public void setQuantity(int id);
     public void setUnitPrice(double u);
     public void setProductId(int id);
-
-
+    public void setTaxAmount(double v);
 }

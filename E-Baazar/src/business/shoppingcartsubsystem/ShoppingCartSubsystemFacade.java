@@ -6,14 +6,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import business.exceptions.BackendException;
-import business.externalinterfaces.Address;
-import business.externalinterfaces.CartItem;
-import business.externalinterfaces.CreditCard;
-import business.externalinterfaces.CustomerProfile;
-import business.externalinterfaces.CustomerSubsystem;
-import business.externalinterfaces.DbClassCartItemForTest;
-import business.externalinterfaces.ShoppingCart;
-import business.externalinterfaces.ShoppingCartSubsystem;
+import business.exceptions.BusinessException;
+import business.exceptions.RuleException;
+import business.externalinterfaces.*;
 import middleware.exceptions.DatabaseException;
 import presentation.util.CacheReader;
 
@@ -149,5 +144,6 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

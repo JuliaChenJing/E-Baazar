@@ -155,7 +155,7 @@ public class CheckoutController  {
 	public void submitFinalOrder() throws BackendException {
 		//implement
 
-		//CacheReader.readCustomer().submitOrder();
+		CacheReader.readCustomer().submitOrder();
 
 
 	}

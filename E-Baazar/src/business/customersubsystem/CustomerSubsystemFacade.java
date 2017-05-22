@@ -269,6 +269,11 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		return orderHistory;
 	}
 
+	@Override
+	public void submitOrder() throws BackendException {
+		orderSubsystem.submitOrder(shoppingCartSubsystem.getLiveCart());
+	}
+
 	/////////////////// For unit testing only ////////////////
 
 	public DbClassAddressForTest getGenericDbClassAddress() {
