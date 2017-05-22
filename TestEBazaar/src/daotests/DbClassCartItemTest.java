@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import alltests.AllTests;
 import business.customersubsystem.CustomerSubsystemFacade;
 import business.externalinterfaces.Address;
+import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.DbClassAddressForTest;
@@ -14,6 +15,7 @@ import junit.framework.TestCase;
 
 public class DbClassCartItemTest extends TestCase {
 	public static final int DEFAULT_CUST_ID = 1;
+	public static final int DEFAULT_Cart_ID = 4;
 	static String name = "Browse and Select Test";
 	static Logger log = Logger.getLogger(DbClassAddressTest.class.getName());
 	
@@ -24,12 +26,12 @@ public class DbClassCartItemTest extends TestCase {
 	
 	public void testReadCartItems() {
 		
-		List<Address> expectedAddressList = DbQueries.readCustAddresses();
+		List<CartItem> expectedList = DbQueries.readCartItems();
 
-		System.out.println("1 expectedAddressList----------------------------------");
-		System.out.println(expectedAddressList.size());
-		for (int i = 0; i < expectedAddressList.size(); i++)
-			System.out.println(expectedAddressList.get(i));
+		System.out.println("1 expected List----------------------------------");
+		System.out.println(expectedList.size());
+		for (int i = 0; i < expectedList.size(); i++)
+			System.out.println(expectedList.get(i));
 
 		//test real dbclass address
 		CustomerSubsystem css =new CustomerSubsystemFacade();
@@ -46,27 +48,15 @@ public class DbClassCartItemTest extends TestCase {
 				System.out.println(foundAddressList.get(i));
 			
 			
-			System.out.println(foundAddressList.toString().equals(expectedAddressList.toString()));
-			System.out.println("1"+expectedAddressList);
+			System.out.println(foundAddressList.toString().equals(expectedList.toString()));
+			System.out.println("1"+expectedList);
 			System.out.println("2"+foundAddressList);
 			
-			assertTrue(expectedAddressList.size() == foundAddressList.size());
+			assertTrue(expectedList.size() == foundAddressList.size());
 			
-			assertEquals(foundAddressList.toString(), expectedAddressList.toString());
+			assertEquals(foundAddressList.toString(), expectedList.toString());
 			
-			
-			boolean valfound = true;
-			for (int i = 0; i < expectedAddressList.size(); i++) {
-				if (!expectedAddressList.get(i).getCity().equals(foundAddressList.get(i).getCity()))
-					valfound = false;
-				else if (!expectedAddressList.get(i).getState().equals(foundAddressList.get(i).getState()))
-					valfound = false;
-				else if (!expectedAddressList.get(i).getStreet().equals(foundAddressList.get(i).getStreet()))
-					valfound = false;
-				else if (!expectedAddressList.get(i).getZip().equals(foundAddressList.get(i).getZip()))
-					valfound = false;
-			}
-			assertTrue(valfound);
+	
 			
 			
 		} catch(Exception e) {

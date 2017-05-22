@@ -45,27 +45,24 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	}
 
 	public void retrieveSavedCart() throws BackendException {
-		
 
 		try {
 			DbClassShoppingCart dbClass = new DbClassShoppingCart();
 			ShoppingCartImpl cartFound = dbClass.retrieveSavedCart(customerProfile);
 			if (cartFound == null) {
-				
+
 				// set savedCart to an instance of ShoppingCartImpl
 				// need to create a cartitems list (with at least one element)
 				// and insert into shop cart impl
 				savedCart = new ShoppingCartImpl(new ArrayList<CartItem>());
 			} else {
-				
+
 				// popluate this list
 				savedCart = cartFound;
 			}
 		} catch (DatabaseException e) {
 			throw new BackendException(e);
 		}
-
-		
 
 	}
 
@@ -104,6 +101,15 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		}
 	}
 
+	public static CartItem createCartItem(Integer cartid, Integer productid, Integer lineitemid, String quantity,
+			String totalprice, boolean alreadySaved) {
+		try {
+			return new CartItemImpl(cartid, productid, lineitemid, quantity, totalprice, alreadySaved);
+		} catch (BackendException e) {
+			throw new RuntimeException("Can't create a cartitem because of productid lookup: " + e.getMessage());
+		}
+	}
+
 	// interface methods for testing
 
 	public ShoppingCart getEmptyCartForTest() {
@@ -117,8 +123,8 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	@Override
 	public void saveLiveCart() throws BackendException {
 		// TODO Auto-generated method stub
-		//implement
-		//System.out.println("testing..."+customerProfile.getCustId());
+		// implement
+		// System.out.println("testing..."+customerProfile.getCustId());
 		customerProfile = CacheReader.readCustomer().getCustomerProfile();
 		CustomerSubsystem cust = CacheReader.readCustomer();
 		liveCart.setBillAddress(cust.getDefaultBillingAddress());
@@ -132,4 +138,5 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 			throw new BackendException(e);
 		}
 	}
+
 }
