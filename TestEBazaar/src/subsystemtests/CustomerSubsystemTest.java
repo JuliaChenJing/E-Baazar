@@ -29,10 +29,8 @@ public class CustomerSubsystemTest extends TestCase {
 	public void testGetGenericCustomerProfile() {
 		// setup
 		/**
-		 * Returns a String[] with values: 0 - query
-		 *  1 - customer id 
-		 *  2 - cust fname 
-		 *  3 - cust lname
+		 * Returns a String[] with values: 0 - query 1 - customer id 2 - cust
+		 * fname 3 - cust lname
 		 */
 		String[] insertResult = DbQueries.insertCustomerRow();// testly insert a
 																// new customer
@@ -60,37 +58,51 @@ public class CustomerSubsystemTest extends TestCase {
 
 	}
 
-	
-	
-	
-	// test the public method getGenericCustomerProfile() in CustomerSubsystemInterface
+	// test the public method getGenericCustomerProfile() in
+	// CustomerSubsystemInterface
 	public void testGetGenericDbClassAddress() {
 		// setup
-		
+
 		/**
 		 * Returns a list of Addresses
 		 */
-		 List<Address> addressList = DbQueries.readCustAddresses();
-		
-		 for (int i=0;i<addressList.size();i++)
-		  System.out.println(addressList.get(i));
-		
+		List<Address> addressList = DbQueries.readCustAddresses();
+
+		System.out.println("1  addressList----------------------------------");
+		System.out.println(addressList.size());
+		for (int i = 0; i < addressList.size(); i++)
+			System.out.println(addressList.get(i));
+
 		// create an object for CustomerSubysystem
 		CustomerSubsystem pss = new CustomerSubsystemFacade();
 		try {
-			DbClassAddressForTest address = pss.getGenericDbClassAddress();
-			boolean valfound = false;
-			for(Address a : addressList) {			
-				if(a.equals(address)) 
-					valfound = true;
-			
-		}
-		assertTrue(valfound);
-			
-			
+
+			CustomerProfile custProfile = pss.getGenericCustomerProfile();
+			List<Address> addressListFromSubsystem = pss.getGenericDbClassAddress().readAllAddresses(custProfile);
+			for (int i = 0; i < addressList.size(); i++)
+				System.out.println(addressList.get(i));
+
+			System.out.println("2 addressListFromSubsystem----------------------------------");
+			System.out.println(addressListFromSubsystem.size());
+			for (int i = 0; i < addressListFromSubsystem.size(); i++)
+				System.out.println(addressListFromSubsystem.get(i));
+
+			boolean valfound = true;
+			for (int i = 0; i < addressListFromSubsystem.size(); i++) {
+				if (!addressListFromSubsystem.get(i).getCity().equals(addressList.get(i).getCity()))
+					valfound = false;
+				else if (!addressListFromSubsystem.get(i).getState().equals(addressList.get(i).getState()))
+					valfound = false;
+				else if (!addressListFromSubsystem.get(i).getStreet().equals(addressList.get(i).getStreet()))
+					valfound = false;
+				else if (!addressListFromSubsystem.get(i).getZip().equals(addressList.get(i).getZip()))
+					valfound = false;
+			}
+			assertTrue(valfound);
+
 		} catch (Exception e) {
 			fail("addres not found");
-		} 
+		}
 
 	}
 
