@@ -33,6 +33,7 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
 import business.usecasecontrol.CheckoutController;
+
 public enum CheckoutUIControl {
 	INSTANCE;
 	private CheckoutController controller = new CheckoutController();
@@ -76,22 +77,23 @@ public enum CheckoutUIControl {
 			try {
 				boolean isLoggedin = CacheReader.readLoggedIn();
 				if (!isLoggedin) {
-					
+
 					// redirect to login
-					
-					//stay in shopping cart window after logged in
+
+					// stay in shopping cart window after logged in
 					LoginUIControl loginControl = new LoginUIControl(ShoppingCartWindow.INSTANCE,
-							ShoppingCartWindow.INSTANCE.getPrimaryStage());
-					
-					//jump to shippingBillingWindow after logged in
-			    	//LoginUIControl loginControl = new LoginUIControl(shippingBillingWindow,
-			   		//		ShoppingCartWindow.INSTANCE,this);
-					loginControl.startLogin();	
+							ShoppingCartWindow.INSTANCE);
+
+					// jump to shippingBillingWindow after logged in
+					// LoginUIControl loginControl = new
+					// LoginUIControl(shippingBillingWindow,
+					// ShoppingCartWindow.INSTANCE,this);
+					loginControl.startLogin();
 				}
-			
-					//already logged in
-					controller.runShoppingCartRules(CacheReader.readCustomer().getShoppingCart());
-				
+
+				// already logged in
+				controller.runShoppingCartRules(CacheReader.readCustomer().getShoppingCart());
+
 			} catch (RuleException e) {
 				ShoppingCartWindow.INSTANCE.displayError(e.getMessage());
 				rulesOk = false;
@@ -101,9 +103,9 @@ public enum CheckoutUIControl {
 			}
 
 			if (rulesOk) {
-				
-				    ShoppingCartWindow.INSTANCE.hide();
-					doUpdate();
+
+				ShoppingCartWindow.INSTANCE.hide();
+				doUpdate();
 			}
 
 		}

@@ -35,15 +35,15 @@ class CartItemImpl implements CartItem {
     }
     
     /** This version of constructor used when reading from database */
-    public CartItemImpl(Integer cartid, 
+	public CartItemImpl(Integer cartid, 
                     Integer productid, 
-                    Integer lineitemid, 
+                    Integer cartitemid, 
                     String quantity, 
                     String totalprice,
                     boolean alreadySaved) throws BackendException {
         this.cartid = cartid;
         this.productid= productid;
-        this.cartItemId = lineitemid;
+        this.cartItemId = cartitemid;
         this.quantity = quantity;
         this.totalprice =totalprice;
         this.alreadySaved = alreadySaved;
