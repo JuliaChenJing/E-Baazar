@@ -82,7 +82,7 @@ public enum CheckoutUIControl {
 
 					// stay in shopping cart window after logged in
 					LoginUIControl loginControl = new LoginUIControl(ShoppingCartWindow.INSTANCE,
-							ShoppingCartWindow.INSTANCE.getPrimaryStage());
+							ShoppingCartWindow.INSTANCE);
 
 					// jump to shippingBillingWindow after logged in
 					// LoginUIControl loginControl = new
