@@ -107,10 +107,12 @@ public class DbQueries {
                     String city = rs.getString("city");
                     String state = rs.getString("state");
                     String zip = rs.getString("zip");
+                    boolean isShippingAddress=rs.getBoolean("isship");
+                    boolean isBillingAddress=rs.getBoolean("isbill");
                     
              
                     Address addr 
-                      = CustomerSubsystemFacade.createAddress(street,city,state,zip,true,true);
+                      = CustomerSubsystemFacade.createAddress(street,city,state,zip,isShippingAddress,isBillingAddress);
                    
                     addressList.add(addr);
                 }  
@@ -126,7 +128,6 @@ public class DbQueries {
 		return addressList;
 		
 	}
-	
 	
 	
 	/**
@@ -201,6 +202,7 @@ public class DbQueries {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void deleteCustomerRow(Integer custId) {
 		try {
 			stmt = acctCon.createStatement();

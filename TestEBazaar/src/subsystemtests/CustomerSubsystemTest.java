@@ -94,6 +94,7 @@ public class CustomerSubsystemTest extends TestCase {
 					valfound = false;
 			}
 			assertTrue(valfound);
+			assertEquals(addressListFromSubsystem.toString(), addressList.toString());
 
 		} catch (Exception e) {
 			fail("adddres not found");

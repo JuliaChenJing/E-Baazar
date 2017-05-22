@@ -55,7 +55,8 @@ public class DbClassAddressTest extends TestCase {
 			
 			assertTrue(expectedAddressList.size() == foundAddressList.size());
 			
-			//assertEquals(foundAddressList.toString(), expectedAddressList.toString());
+			assertEquals(foundAddressList.toString(), expectedAddressList.toString());
+			
 			
 			boolean valfound = true;
 			for (int i = 0; i < expectedAddressList.size(); i++) {
