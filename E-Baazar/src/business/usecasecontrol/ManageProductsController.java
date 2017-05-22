@@ -15,34 +15,44 @@ import business.productsubsystem.ProductSubsystemFacade;
 
 
 public class ManageProductsController   {
-
-    private static final Logger LOG =
+    
+    private static final Logger LOG = 
     	Logger.getLogger(ManageProductsController.class.getName());
-
+    
     public List<Product> getProductsList(Catalog catalog) throws BackendException {
-    	ProductSubsystem pss = new ProductSubsystemFacade();
-    	//LOG.warning("ManageProductsController method getProductsList has not been implemented");
+    	ProductSubsystem pss = new ProductSubsystemFacade();    
+    //	LOG.warning("ManageProductsController method getProductsList has not been implemented");
     	return pss.getProductList(catalog);
     	//return new ArrayList<Product>();
     }
-
+    
     public List<Catalog> getCatalogs() throws BackendException {
     	ProductSubsystem pss = new ProductSubsystemFacade();
     	return pss.getCatalogList();
     }
-//===============================================================================
+    
     public int saveNewCatalog(String catName) throws BackendException {
-    	ProductSubsystem pss = new ProductSubsystemFacade();
+    	ProductSubsystem pss = new ProductSubsystemFacade(); 
     	return pss.saveNewCatalog(catName);
     }
-    public void deleteCatalog(Catalog catName) throws BackendException {
+    
+    public void saveNewProduct(Product product, Catalog catalog) throws BackendException {
+    	ProductSubsystem pss = new ProductSubsystemFacade(); 
+    	 pss.saveNewProduct(product,catalog);
+    }
+    
+    
+    public void deleteProduct(Product product)  throws BackendException{
+    	//implement
     	ProductSubsystem pss = new ProductSubsystemFacade();
-    	pss.deleteCatalog(catName);
+    	pss.deleteProduct(product);
     }
-
-    public void deleteProduct(Product product) throws BackendException {
-    	//implemented
-    }
-
-
+    
+    public void deleteCatalog(Catalog catalog) throws BackendException  {
+    	ProductSubsystem pss = new ProductSubsystemFacade(); 
+    	pss.deleteCatalog(catalog);
+    	
+    } 
+    
+    
 }

@@ -3,6 +3,7 @@ package business.productsubsystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,7 @@ import business.util.Convert;
 import business.util.TwoKeyHashMap;
 
 class DbClassProduct implements DbClass {
-	enum Type {LOAD_PROD_TABLE, READ_PRODUCT, READ_PROD_LIST, SAVE_NEW_PROD};
+	enum Type {LOAD_PROD_TABLE, READ_PRODUCT, READ_PROD_LIST, SAVE_NEW_PROD,DELETE_PROD};
 
 	private static final Logger LOG = Logger.getLogger(DbClassProduct.class
 			.getPackage().getName());
@@ -30,11 +31,15 @@ class DbClassProduct implements DbClass {
 	private String loadProdTableQuery = "SELECT * FROM product";
 	private String readProductQuery = "SELECT * FROM Product WHERE productid = ?";
 	private String readProdListQuery = "SELECT * FROM Product WHERE catalogid = ?";
-	private String saveNewProdQuery = ""; //implement
+	private String saveNewProdQuery = "INSERT into Product "
+			+ "(catalogid,productname,totalquantity,priceperunit,mfgdate,description)"
+			+ " VALUES(?,?,?,?,?,?)"; //implement
+	private String deleteQuery = "DELETE From Product Where productid = ?";
+
 	private Object[] loadProdTableParams, readProductParams, 
-		readProdListParams, saveNewProdParams;
+		readProdListParams, saveNewProdParams,deleteParam;
 	private int[] loadProdTableTypes, readProductTypes, readProdListTypes, 
-	    saveNewProdTypes;
+	    saveNewProdTypes, deleteParamType;
 	
 	/**
 	 * The productTable matches product ID and product name with
@@ -43,6 +48,17 @@ class DbClassProduct implements DbClass {
 	 * without extra db hits. Useful for customer use cases, but not
 	 * for manage products use case
 	 */
+	
+	public void deleteProduct(int productId)throws DatabaseException {
+		queryType = Type.DELETE_PROD;
+		deleteParamType = new int[]{Types.SMALLINT};
+		deleteParam = new Object[]{productId};
+	    dataAccessSS.deleteWithinTransaction(this);
+				
+	}
+	
+	
+	
 	private static TwoKeyHashMap<Integer, String, Product> productTable;
 	private Product product;
 	private List<Product> productList;
@@ -106,10 +122,16 @@ class DbClassProduct implements DbClass {
 	 */
 	public int saveNewProduct(Product product, Catalog catalog) 
 			throws DatabaseException {
-		//implement
-		
-		LOG.warning("Method saveNewProduct in DbClassProduct has not been impemented");
-		return 0;
+		//implement//////////////////////////////////////////////////////////
+		queryType =Type.SAVE_NEW_PROD;
+		saveNewProdParams = new Object[]{catalog.getId(),product.getProductName(),product.getQuantityAvail(),
+				                 product.getUnitPrice(),Convert.localDateAsString(product.getMfgDate()),
+				                 product.getDescription()};
+		saveNewProdTypes = 
+				new int[]{Types.SMALLINT,Types.VARCHAR,Types.SMALLINT,Types.DOUBLE,Types.VARCHAR,Types.VARCHAR};
+		int NumofRows = dataAccessSS.insertWithinTransaction(this);	
+		//LOG.warning("Method saveNewProduct in DbClassProduct has not been impemented");
+		return NumofRows;
 	}
 	
 	/// DbClass implemented methods
@@ -130,6 +152,8 @@ class DbClassProduct implements DbClass {
 				return readProdListQuery;
 			case SAVE_NEW_PROD :
 				return saveNewProdQuery;
+			case DELETE_PROD:
+				return deleteQuery;
 			default:
 				return null;
 		}
@@ -146,6 +170,8 @@ class DbClassProduct implements DbClass {
 				return readProdListParams;
 			case SAVE_NEW_PROD :
 				return saveNewProdParams;
+			case DELETE_PROD:
+				return deleteParam;
 			default:
 				return null;
 		}
@@ -162,6 +188,8 @@ class DbClassProduct implements DbClass {
 			return readProdListTypes;
 		case SAVE_NEW_PROD :
 			return saveNewProdTypes;
+		case DELETE_PROD:
+			return deleteParamType;
 		default:
 			return null;
 	}
