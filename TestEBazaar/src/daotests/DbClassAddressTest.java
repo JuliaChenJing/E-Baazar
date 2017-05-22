@@ -26,8 +26,14 @@ public class DbClassAddressTest extends TestCase {
 	
 	
 	public void testReadAllAddresses() {
-		List<Address> expected = DbQueries.readCustAddresses();
 		
+		List<Address> expectedAddressList = DbQueries.readCustAddresses();
+
+		System.out.println("1 expectedAddressList----------------------------------");
+		System.out.println(expectedAddressList.size());
+		for (int i = 0; i < expectedAddressList.size(); i++)
+			System.out.println(expectedAddressList.get(i));
+
 		//test real dbclass address
 		CustomerSubsystem css =new CustomerSubsystemFacade();
 		DbClassAddressForTest dbclass = css.getGenericDbClassAddress();
@@ -35,11 +41,35 @@ public class DbClassAddressTest extends TestCase {
 		custProfile.setCustId(DEFAULT_CUST_ID);
 		
 		try {
-			List<Address> found = dbclass.readAllAddresses(custProfile);
-			System.out.println(found);
-			System.out.println(expected);
-			assertTrue(expected.size() == found.size());
-			assertEquals(found.toString(), expected.toString());
+			List<Address> foundAddressList = dbclass.readAllAddresses(custProfile);
+			
+			System.out.println("2 foundAddressList----------------------------------");
+			System.out.println(foundAddressList.size());
+			for (int i = 0; i < foundAddressList.size(); i++)
+				System.out.println(foundAddressList.get(i));
+			
+			
+			System.out.println(foundAddressList.toString().equals(expectedAddressList.toString()));
+			System.out.println("1"+expectedAddressList);
+			System.out.println("2"+foundAddressList);
+			
+			assertTrue(expectedAddressList.size() == foundAddressList.size());
+			
+			//assertEquals(foundAddressList.toString(), expectedAddressList.toString());
+			
+			boolean valfound = true;
+			for (int i = 0; i < expectedAddressList.size(); i++) {
+				if (!expectedAddressList.get(i).getCity().equals(foundAddressList.get(i).getCity()))
+					valfound = false;
+				else if (!expectedAddressList.get(i).getState().equals(foundAddressList.get(i).getState()))
+					valfound = false;
+				else if (!expectedAddressList.get(i).getStreet().equals(foundAddressList.get(i).getStreet()))
+					valfound = false;
+				else if (!expectedAddressList.get(i).getZip().equals(foundAddressList.get(i).getZip()))
+					valfound = false;
+			}
+			assertTrue(valfound);
+			
 			
 		} catch(Exception e) {
 			fail("Address Lists don't match");
