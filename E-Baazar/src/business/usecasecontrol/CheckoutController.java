@@ -15,6 +15,7 @@ import business.externalinterfaces.*;
 import business.rulesbeans.FinalOrderBean;
 import business.rulesbeans.PaymentBean;
 import business.rulesbeans.ShopCartBean;
+import presentation.util.CacheReader;
 import rulesengine.OperatingException;
 import rulesengine.ReteWrapper;
 import rulesengine.ValidationException;
@@ -68,9 +69,9 @@ public class CheckoutController  {
 			BufferedReader rulesReader =pathToRules(getClass().getClassLoader(), "payment-rules.clp");
 
 			String deftemplateName = "payment-template";
-			PaymentBean addrbean = new PaymentBean(addr,cc);
+			PaymentBean Paybean = new PaymentBean(addr,cc);
 			HashMap<String, PaymentBean> h = new HashMap<>();
-			h.put(deftemplateName, addrbean);
+			h.put(deftemplateName, Paybean);
 
 			// start up the rules engine
 			ReteWrapper engine = new ReteWrapper();
@@ -154,7 +155,7 @@ public class CheckoutController  {
 	public void submitFinalOrder() throws BackendException {
 		//implement
 
-       // TO DO
+		//CacheReader.readCustomer().submitOrder();
 
 
 	}

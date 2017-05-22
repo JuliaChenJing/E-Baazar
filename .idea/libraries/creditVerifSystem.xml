@@ -7,6 +7,12 @@
       <root url="jar://$PROJECT_DIR$/../e-baazar jars/mysql-connector-java-5.1.20-bin.jar!/" />
       <root url="jar://$PROJECT_DIR$/../e-baazar jars/rulesencoding.jar!/" />
       <root url="jar://$PROJECT_DIR$/../e-baazar jars/rulesengine.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/creditVerifSystem.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/jess.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/junit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/mysql-connector-java-5.1.20-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/rulesencoding.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jars_basic/rulesengine.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
