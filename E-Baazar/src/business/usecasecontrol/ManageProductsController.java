@@ -20,8 +20,8 @@ public class ManageProductsController   {
     	Logger.getLogger(ManageProductsController.class.getName());
     
     public List<Product> getProductsList(Catalog catalog) throws BackendException {
-    	ProductSubsystem pss = new ProductSubsystemFacade();    
     //	LOG.warning("ManageProductsController method getProductsList has not been implemented");
+    	ProductSubsystem pss = new ProductSubsystemFacade();    
     	return pss.getProductList(catalog);
     	//return new ArrayList<Product>();
     }
@@ -43,7 +43,6 @@ public class ManageProductsController   {
     
     
     public void deleteProduct(Product product)  throws BackendException{
-    	//implement
     	ProductSubsystem pss = new ProductSubsystemFacade();
     	pss.deleteProduct(product);
     }

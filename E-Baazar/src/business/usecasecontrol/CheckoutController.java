@@ -106,7 +106,7 @@ public class CheckoutController  {
 	
 	/** Asks the ShoppingCart Subsystem to run final order rules */
 	public void runFinalOrderRules(ShoppingCartSubsystem scss) throws RuleException, BusinessException {
-		//implement
+		//implemented
 		try {
 			// set up
 			ShoppingCart ssc = scss.getLiveCart();
