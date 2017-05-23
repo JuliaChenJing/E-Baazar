@@ -93,6 +93,7 @@ public class DataAccessSubsystemFacade implements DataAccessSubsystem, DataAcces
 	 * Precondition: A Connection has been obtained via establishConnection
 	 */
 	public void rollback() throws DatabaseException {
+		
 		action.rollback();
 	}
 	
@@ -105,7 +106,10 @@ public class DataAccessSubsystemFacade implements DataAccessSubsystem, DataAcces
 	 * if no other data access code is bundled with the read.
 	 */
     public void read() throws DatabaseException {
-        action.performRead();
+    	
+    
+        action.performRead();//with problem
+       
     }
 	
     /**

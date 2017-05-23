@@ -47,7 +47,9 @@ class DbAction {
     }
     
     void performRead() throws DatabaseException {
+    
     	extractQueryData();
+    
     	stmt = StatementPrep.createGeneralPreparedStatement(
     			con, query, params, paramTypes);
     	try {

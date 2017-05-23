@@ -7,7 +7,7 @@ import middleware.externalinterfaces.DbClass;
 
 /* Used only for testing DbClassAddress */
 public interface DbClassCartItemForTest extends DbClass {
-	public List<CartItem> readCartItems(CustomerProfile custProfile) throws DatabaseException;
+	public List<CartItem> readCartItems(CustomerProfile custProfile) ;
 
 
 }

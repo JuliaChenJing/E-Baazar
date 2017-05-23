@@ -68,8 +68,8 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     List<CartItem> cartItemsList;
     Integer cartId;  //used once when read, but don't use other times
 	private List<CartItem> cartItemList;
-	private Object[] readAllParams;
 	private int[] readAllTypes;
+	private Object[] readAllParams;
     
     DbClassShoppingCart() {}
     
@@ -209,7 +209,10 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         queryType = Type.GET_SAVED_ITEMS;
         getSavedItemsParams = new Object[]{cartId};
         getSavedItemsTypes = new int[]{Types.INTEGER};
-        dataAccessSS.read();
+      
+		dataAccessSS.establishConnection(this);//added by Julia, still returns an empty List
+        dataAccessSS.read();//with problem
+        System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
         return cartItemsList;      
     }
     
@@ -395,17 +398,18 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     }
 
 	@Override
-	public List<CartItem> readCartItems(CustomerProfile custProfile) throws DatabaseException {
+	public List<CartItem> readCartItems(CustomerProfile custProfile) {
 		
-		
-    	queryType = Type.GET_SAVED_ITEMS;
-    	readAllParams = new Object[]
-            	{custProfile.getCustId()};
-            readAllTypes = new int[]
-            	{Types.INTEGER};
-    	dataAccessSS.atomicRead(this);	
-    	
-    	
+          try {
+        	  System.out.println(custProfile.getCustId());
+        	  //cartItemList= getSavedCartItems(custProfile.getCustId());
+        	  cartItemList= getSavedCartItems(1);//something wrong
+        	  System.out.println("in readCartItems meothod:  cartItemList /n "+cartItemList);
+        	  
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return cartItemList;
 	}
     

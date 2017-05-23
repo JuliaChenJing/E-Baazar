@@ -42,17 +42,13 @@ public class DbClassCartItemTest extends TestCase {
 		custProfile.setCustId(DEFAULT_SHOPPINGCART_ID);//Check the database to see which shopping cart id you want to test
 		
 		try {
-			List<CartItem> foundList = dbclass.readCartItems(custProfile);
-			
+			List<CartItem> foundList = dbclass.readCartItems(custProfile);//with problem
 			System.out.println("2 foundAddressList----------------------------------");
 			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)
 				System.out.println(foundList.get(i));
 			
-			
-			System.out.println(foundList.toString().equals(expectedList.toString()));
-			System.out.println("1"+expectedList);
-			System.out.println("2"+foundList);
+		
 			
 			assertTrue(expectedList.size() == foundList.size());
 			
@@ -60,7 +56,7 @@ public class DbClassCartItemTest extends TestCase {
 			
 			
 		} catch(Exception e) {
-			fail("Address Lists don't match");
+			fail("Cart Items Lists don't match");
 			System.out.println("something wrong happened");
 		}
 		

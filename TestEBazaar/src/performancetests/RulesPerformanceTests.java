@@ -39,7 +39,7 @@ public class RulesPerformanceTests extends TestCase {
 	int i = 0;
 	public void testAddressRulesRepeatedly(){
 		final int NUM_TRIALS = 10;
-		final int EXPECTED_RUNNING_TIME = 50;
+		final int EXPECTED_RUNNING_TIME =200;
 		long[] results = new long[NUM_TRIALS];
 		long start = 0L;
 		long finish = 0L;
