@@ -13,11 +13,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CheckoutController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckoutController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/usecasecontrol/CheckoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="136" column="53" lean-forward="false" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
+            <state relative-caret-position="332">
+              <caret line="157" column="37" lean-forward="false" selection-start-line="157" selection-start-column="37" selection-end-line="157" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,6 +30,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="427">
               <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerSubsystemFacade.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/customersubsystem/CustomerSubsystemFacade.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="273" column="30" lean-forward="false" selection-start-line="273" selection-start-column="30" selection-end-line="273" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -48,8 +58,18 @@
       <file leaf-file-name="CustomerSubsystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/CustomerSubsystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="116" column="55" lean-forward="false" selection-start-line="116" selection-start-column="55" selection-end-line="116" selection-end-column="55" />
+            <state relative-caret-position="295">
+              <caret line="122" column="3" lean-forward="false" selection-start-line="122" selection-start-column="3" selection-end-line="122" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckoutUIControl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/E-Baazar/src/presentation/control/CheckoutUIControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="391" column="0" lean-forward="false" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,34 +85,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/Order.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShoppingCartSubsystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/ShoppingCartSubsystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="OrderSubsystemFacade.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/ordersubsystem/OrderSubsystemFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-865">
-              <caret line="35" column="16" lean-forward="false" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+            <state relative-caret-position="87">
+              <caret line="86" column="5" lean-forward="false" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageableWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/E-Baazar/src/presentation/gui/MessageableWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Overview" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/E-Baazar/docs/Overview">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -213,15 +233,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="E-Baazar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="E-Baazar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jars_basic/rulesengine.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MainProjectSpringMVC" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="checkoutCo&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/usecasecontrol/CheckoutController.java&#10;sh&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/ShoppingCartSubsystem.java&#10;shoppingcart&#9;PSI&#9;JAVA://business.shoppingcartsubsystem.ShoppingCartSubsystemFacade&#10;Order&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/OrderSubsystem.java&#10;setTaxAmount&#9;ACTION&#9;null&#10;OrderI&#9;PSI&#9;JAVA://business.ordersubsystem.OrderImpl&#10;runfin&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runFinalOrderRules&#10;checkout&#9;PSI&#9;JAVA://presentation.control.CheckoutUIControl&#10;customerProfile&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerProfile.java&#10;chec&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/usecasecontrol/CheckoutController.java&#10;rules&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/RulesSubsystem.java&#10;shoppingcartru&#9;PSI&#9;JAVA://presentation.control.BrowseSelectUIControl#runShoppingCartRules&#10;getLiveCart&#9;PSI&#9;JAVA://business.externalinterfaces.ShoppingCartSubsystem#getLiveCart&#10;implement&#9;PSI&#9;JAVA://jess.Implement&#10;submit&#9;PSI&#9;JAVA://business.externalinterfaces.OrderSubsystem#submitOrder&#10;custom&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerSubsystem.java&#10;CreditVerificationProfile&#9;PSI&#9;JAVA://middleware.creditverifcation.CreditVerificationProfileImpl&#10;checkcre&#9;PSI&#9;JAVA://middleware.externalinterfaces.CreditVerification#checkCreditCard&#10;customer&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerProfile.java&#10;order&#9;PSI&#9;JAVA://business.externalinterfaces.Order&#10;getOrder&#9;PSI&#9;JAVA://presentation.data.OrderPres#getOrder&#10;submitOrd&#9;PSI&#9;JAVA://business.externalinterfaces.OrderSubsystem#submitOrder&#10;getqu&#9;PSI&#9;JAVA://business.externalinterfaces.OrderItem#getQuantity&#10;getquan&#9;PSI&#9;JAVA://business.externalinterfaces.OrderItem#getQuantity&#10;getqua&#9;PSI&#9;JAVA://business.externalinterfaces.CartItem#getQuantity&#10;quantity&#9;PSI&#9;JAVA://business.ordersubsystem.OrderItemImpl#quantity&#10;runq&#9;PSI&#9;JAVA://business.usecasecontrol.BrowseAndSelectController#runQuantityRules&#10;getdefa&#9;PSI&#9;JAVA://business.externalinterfaces.CustomerSubsystem#getDefaultBillingAddress&#10;customersub&#9;PSI&#9;JAVA://business.customersubsystem.CustomerSubsystemFacade&#10;runfina&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runFinalOrderRules&#10;runsh&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runShoppingCartRules&#10;rulefi&#9;PSI&#9;JAVA://business.externalinterfaces.Rules#getRulesFile&#10;pathToRules&#9;PSI&#9;JAVA://presentation.util.UtilForUIClasses#pathToRules&#10;runpay&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runPaymentRules" />
+    <property name="SearchEverywhereHistoryKey" value="displayError&#9;PSI&#9;JAVA://presentation.gui.MessageableWindow#displayError&#10;displayErr&#9;PSI&#9;JAVA://presentation.gui.MessageableWindow#displayError&#10;checkoutUI&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/presentation/control/CheckoutUIControl.java&#10;runfin&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runFinalOrderRules&#10;checkoutCo&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/usecasecontrol/CheckoutController.java&#10;sh&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/ShoppingCartSubsystem.java&#10;shoppingcart&#9;PSI&#9;JAVA://business.shoppingcartsubsystem.ShoppingCartSubsystemFacade&#10;Order&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/OrderSubsystem.java&#10;setTaxAmount&#9;ACTION&#9;null&#10;OrderI&#9;PSI&#9;JAVA://business.ordersubsystem.OrderImpl&#10;checkout&#9;PSI&#9;JAVA://presentation.control.CheckoutUIControl&#10;customerProfile&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerProfile.java&#10;chec&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/usecasecontrol/CheckoutController.java&#10;rules&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/RulesSubsystem.java&#10;shoppingcartru&#9;PSI&#9;JAVA://presentation.control.BrowseSelectUIControl#runShoppingCartRules&#10;getLiveCart&#9;PSI&#9;JAVA://business.externalinterfaces.ShoppingCartSubsystem#getLiveCart&#10;implement&#9;PSI&#9;JAVA://jess.Implement&#10;submit&#9;PSI&#9;JAVA://business.externalinterfaces.OrderSubsystem#submitOrder&#10;custom&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerSubsystem.java&#10;CreditVerificationProfile&#9;PSI&#9;JAVA://middleware.creditverifcation.CreditVerificationProfileImpl&#10;checkcre&#9;PSI&#9;JAVA://middleware.externalinterfaces.CreditVerification#checkCreditCard&#10;customer&#9;FILE&#9;file://C:/Users/zaid/Desktop/E-Baazar/E-Baazar/src/business/externalinterfaces/CustomerProfile.java&#10;order&#9;PSI&#9;JAVA://business.externalinterfaces.Order&#10;getOrder&#9;PSI&#9;JAVA://presentation.data.OrderPres#getOrder&#10;submitOrd&#9;PSI&#9;JAVA://business.externalinterfaces.OrderSubsystem#submitOrder&#10;getqu&#9;PSI&#9;JAVA://business.externalinterfaces.OrderItem#getQuantity&#10;getquan&#9;PSI&#9;JAVA://business.externalinterfaces.OrderItem#getQuantity&#10;getqua&#9;PSI&#9;JAVA://business.externalinterfaces.CartItem#getQuantity&#10;quantity&#9;PSI&#9;JAVA://business.ordersubsystem.OrderItemImpl#quantity&#10;runq&#9;PSI&#9;JAVA://business.usecasecontrol.BrowseAndSelectController#runQuantityRules&#10;getdefa&#9;PSI&#9;JAVA://business.externalinterfaces.CustomerSubsystem#getDefaultBillingAddress&#10;customersub&#9;PSI&#9;JAVA://business.customersubsystem.CustomerSubsystemFacade&#10;runfina&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runFinalOrderRules&#10;runsh&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runShoppingCartRules&#10;rulefi&#9;PSI&#9;JAVA://business.externalinterfaces.Rules#getRulesFile&#10;pathToRules&#9;PSI&#9;JAVA://presentation.util.UtilForUIClasses#pathToRules&#10;runpay&#9;PSI&#9;JAVA://business.usecasecontrol.CheckoutController#runPaymentRules" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -679,12 +713,12 @@
       <workItem from="1495396851798" duration="7022000" />
       <workItem from="1495472911620" duration="61000" />
       <workItem from="1495478892904" duration="3461000" />
-      <workItem from="1495482796253" duration="4314000" />
+      <workItem from="1495482796253" duration="17490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38564000" />
+    <option name="totallyTimeSpent" value="51740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -705,6 +739,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -717,7 +752,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,25 +769,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/customersubsystem/RulesPayment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="e#816#817#0" expanded="false" />
-            <element signature="e#866#867#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/customersubsystem/RulesAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/BusinessConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -905,6 +920,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="12" column="57" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -997,24 +1013,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/customersubsystem/CustomerSubsystemFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="273" column="29" lean-forward="true" selection-start-line="273" selection-start-column="29" selection-end-line="273" selection-end-column="29" />
-          <folding>
-            <element signature="e#8827#8828#0" expanded="true" />
-            <element signature="e#8862#8863#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/exceptions/BusinessException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
           <folding>
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#329#330#0" expanded="false" />
+            <element signature="e#353#354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1059,46 +1064,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/presentation/control/CheckoutUIControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="391" column="0" lean-forward="false" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/ShoppingCartSubsystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/OrderSubsystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/ordersubsystem/OrderSubsystemFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-865">
-          <caret line="35" column="16" lean-forward="false" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/CustomerSubsystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="116" column="55" lean-forward="false" selection-start-line="116" selection-start-column="55" selection-end-line="116" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1119,13 +1088,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/presentation/control/CheckoutUIControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="391" column="0" lean-forward="false" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/usecasecontrol/CheckoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="136" column="53" lean-forward="false" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
+        <state relative-caret-position="332">
+          <caret line="157" column="37" lean-forward="false" selection-start-line="157" selection-start-column="37" selection-end-line="157" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/CustomerSubsystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="122" column="3" lean-forward="false" selection-start-line="122" selection-start-column="3" selection-end-line="122" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/customersubsystem/CustomerSubsystemFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="273" column="30" lean-forward="false" selection-start-line="273" selection-start-column="30" selection-end-line="273" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/externalinterfaces/OrderSubsystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/business/ordersubsystem/OrderSubsystemFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="86" column="5" lean-forward="false" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/src/presentation/gui/MessageableWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E-Baazar/docs/Overview">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
