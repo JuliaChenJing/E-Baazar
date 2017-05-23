@@ -95,10 +95,10 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		}
 	}
 
-	public static CartItem createCartItem(Integer cartid, Integer productid, Integer lineitemid, String quantity,
+	public static CartItem createCartItem(Integer shoppingcartid, Integer productid, Integer cartitemid, String quantity,
 			String totalprice, boolean alreadySaved) {
 		try {
-			return new CartItemImpl(cartid, productid, lineitemid, quantity, totalprice, alreadySaved);
+			return new CartItemImpl(shoppingcartid, productid, cartitemid, quantity, totalprice, alreadySaved);
 		} catch (BackendException e) {
 			throw new RuntimeException("Can't create a cartitem because of productid lookup: " + e.getMessage());
 		}
@@ -139,11 +139,7 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		return new  DbClassShoppingCart();
 	}
 
-	@Override
-	public CustomerProfile getGenericCustomerProfile() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 }

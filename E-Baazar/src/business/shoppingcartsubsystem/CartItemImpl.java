@@ -11,7 +11,7 @@ import business.productsubsystem.ProductSubsystemFacade;
 
 class CartItemImpl implements CartItem {
 	private static final Logger log = Logger.getLogger(CartItem.class.getPackage().getName());
-    Integer cartid;
+    Integer shoppingcartid;
     Integer productid;
     Integer cartItemId;
     String quantity;
@@ -35,13 +35,13 @@ class CartItemImpl implements CartItem {
     }
     
     /** This version of constructor used when reading from database */
-	public CartItemImpl(Integer cartid, 
+	public CartItemImpl(Integer shoppingcartid, 
                     Integer productid, 
                     Integer cartitemid, 
                     String quantity, 
                     String totalprice,
                     boolean alreadySaved) throws BackendException {
-        this.cartid = cartid;
+        this.shoppingcartid = shoppingcartid;
         this.productid= productid;
         this.cartItemId = cartitemid;
         this.quantity = quantity;
@@ -56,7 +56,7 @@ class CartItemImpl implements CartItem {
 
     public String toString(){
         StringBuffer buf = new StringBuffer();
-        buf.append("cartid = <"+cartid+">,");
+        buf.append("shoppingcartid = <"+shoppingcartid+">,");
         buf.append("productid = <"+productid+">,");
         buf.append("lineitemid = <"+cartItemId+">,");
         buf.append("quantity = <"+quantity+">,");
@@ -68,7 +68,7 @@ class CartItemImpl implements CartItem {
 		return alreadySaved;
 	}
 	public Integer getCartid() {
-		return cartid;
+		return shoppingcartid;
 	}
 	public Integer getLineitemid() {
 		return cartItemId;
@@ -86,6 +86,6 @@ class CartItemImpl implements CartItem {
 		return totalprice;
 	}
 	public void setCartId(int id) {
-		this.cartid = id;
+		this.shoppingcartid = id;
 	}
 }

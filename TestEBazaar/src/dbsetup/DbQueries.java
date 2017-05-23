@@ -269,13 +269,13 @@ public class DbQueries {
 
 			while (rs.next()) {
 
-				int cartid = rs.getInt("cartitemid");
+				int shoppingcartid = rs.getInt("shopcartid");
 				int productid = rs.getInt("productid");
 				int cartitemid = rs.getInt("cartitemid");
 				String quantity = rs.getString("quantity");
 				String totalprice = rs.getString("totalprice");
 
-				CartItem item = ShoppingCartSubsystemFacade.createCartItem(cartid, productid, cartitemid, quantity,
+				CartItem item = ShoppingCartSubsystemFacade.createCartItem(shoppingcartid, productid, cartitemid, quantity,
 						totalprice, false);
 
 				cartItemList.add(item);
@@ -291,6 +291,6 @@ public class DbQueries {
 
 	private static String readCartItemSql() {
 		// TODO Auto-generated method stub
-		return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_Cart_ID;
+		return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_SHOPPINGCART_ID;//Check the database to see which shopping cart id you want to test
 	}
 }

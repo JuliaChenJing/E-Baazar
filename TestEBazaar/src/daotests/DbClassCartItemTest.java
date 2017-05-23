@@ -16,8 +16,7 @@ import dbsetup.DbQueries;
 import junit.framework.TestCase;
 
 public class DbClassCartItemTest extends TestCase {
-	public static final int DEFAULT_CUST_ID = 1;
-	public static final int DEFAULT_Cart_ID = 4;
+	public static final int DEFAULT_SHOPPINGCART_ID = 13;
 	static String name = "Browse and Select Test";
 	static Logger log = Logger.getLogger(DbClassAddressTest.class.getName());
 	
@@ -36,10 +35,11 @@ public class DbClassCartItemTest extends TestCase {
 			System.out.println(expectedList.get(i));
 
 		//test real dbclass cartitems
-		ShoppingCartSubsystem css =new ShoppingCartSubsystemFacade();
-		DbClassCartItemForTest dbclass = css.getGenericDbClassCartItems();
-		CustomerProfile custProfile = css.getGenericCustomerProfile();
-		custProfile.setCustId(DEFAULT_CUST_ID);
+		ShoppingCartSubsystem shoppingcartss =new ShoppingCartSubsystemFacade();
+		DbClassCartItemForTest dbclass = shoppingcartss.getGenericDbClassCartItems();
+		CustomerSubsystem customerss=new CustomerSubsystemFacade();
+		CustomerProfile custProfile = customerss.getGenericCustomerProfile();
+		custProfile.setCustId(DEFAULT_SHOPPINGCART_ID);//Check the database to see which shopping cart id you want to test
 		
 		try {
 			List<CartItem> foundList = dbclass.readCartItems(custProfile);
@@ -57,8 +57,6 @@ public class DbClassCartItemTest extends TestCase {
 			assertTrue(expectedList.size() == foundList.size());
 			
 			assertEquals(foundList.toString(), expectedList.toString());
-			
-	
 			
 			
 		} catch(Exception e) {

@@ -55,5 +55,4 @@ public interface ShoppingCartSubsystem {
 
 	public DbClassCartItemForTest getGenericDbClassCartItems();
 
-	public CustomerProfile getGenericCustomerProfile();
 }

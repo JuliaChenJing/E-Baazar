@@ -283,18 +283,12 @@ public enum BrowseSelectUIControl {
 		@Override
 		public void handle(ActionEvent arg0) {
 			try {
-				System.out.println("```````````````1``````````````````");
 				CatalogListWindow catalogwindow = CatalogListWindow.getInstance(primaryStage,
 						FXCollections.observableList(BrowseSelectData.INSTANCE.getCatalogList()));
-				System.out.println("```````````````2``````````````````");
 				catalogwindow.clearMessages();
-				System.out.println("```````````````2.5``````````````````");
-				ShoppingCartWindow.INSTANCE.hide();//the one with problem
-				System.out.println("```````````````3``````````````````");
+				ShoppingCartWindow.INSTANCE.hide();
 				catalogwindow.setTableAccessByRow();
-				System.out.println("````````````````4`````````````````");
 				catalogwindow.show();
-				System.out.println("````````````````5`````````````````");
 				
 			} catch (BackendException e) {
 				shoppingCartWindow.displayError("Database is unavailable. Please try again later.");
