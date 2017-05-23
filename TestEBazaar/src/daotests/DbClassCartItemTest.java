@@ -30,7 +30,7 @@ public class DbClassCartItemTest extends TestCase {
 		List<CartItem> expectedList = DbQueries.readCartItems();
 
 		System.out.println("1 expected List----------------------------------");
-		System.out.println(expectedList.size());
+		System.out.println("size:"+expectedList.size());
 		for (int i = 0; i < expectedList.size(); i++)
 			System.out.println(expectedList.get(i));
 
@@ -45,7 +45,7 @@ public class DbClassCartItemTest extends TestCase {
 			List<CartItem> foundList = dbclass.readCartItems(custProfile);
 			
 			System.out.println("2 foundAddressList----------------------------------");
-			System.out.println(foundList.size());
+			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)
 				System.out.println(foundList.get(i));
 			

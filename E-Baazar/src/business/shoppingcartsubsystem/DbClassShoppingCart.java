@@ -67,6 +67,9 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     CartItem cartItem;//this is inserted to support a save operation
     List<CartItem> cartItemsList;
     Integer cartId;  //used once when read, but don't use other times
+	private List<CartItem> cartItemList;
+	private Object[] readAllParams;
+	private int[] readAllTypes;
     
     DbClassShoppingCart() {}
     
@@ -393,15 +396,15 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 
 	@Override
 	public List<CartItem> readCartItems(CustomerProfile custProfile) throws DatabaseException {
-		List<CartItem> cartItemList=new  ArrayList<CartItem>();
-		/*
-    	queryType = Type.READ_ALL;
+		
+		
+    	queryType = Type.GET_SAVED_ITEMS;
     	readAllParams = new Object[]
             	{custProfile.getCustId()};
             readAllTypes = new int[]
             	{Types.INTEGER};
     	dataAccessSS.atomicRead(this);	
-    	*/
+    	
     	
 		return cartItemList;
 	}
