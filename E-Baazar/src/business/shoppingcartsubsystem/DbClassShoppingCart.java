@@ -210,8 +210,8 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         getSavedItemsParams = new Object[]{cartId};
         getSavedItemsTypes = new int[]{Types.INTEGER};
       
-		dataAccessSS.establishConnection(this);//added by Julia, still returns an empty List
-        dataAccessSS.read();//with problem
+		
+        dataAccessSS.read();
         System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
         return cartItemsList;      
     }
