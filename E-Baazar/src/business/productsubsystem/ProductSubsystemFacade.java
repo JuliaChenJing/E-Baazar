@@ -1,12 +1,14 @@
 package business.productsubsystem;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
 import java.util.logging.Logger;
 
 import business.exceptions.BackendException;
 import business.externalinterfaces.Catalog;
 import business.externalinterfaces.CatalogTypes;
+import business.externalinterfaces.CustomerProfile;
+import business.externalinterfaces.DbClassProductForTest;
 import business.externalinterfaces.Product;
 import business.externalinterfaces.ProductSubsystem;
 import business.util.TwoKeyHashMap;
@@ -177,9 +179,15 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 		
 			
 	}
+
+	@Override
+	public DbClassProductForTest getGenericDbClassProduct() {
+		return new DbClassProduct();
+	}
+	public Catalog getGenericCatalog() {
+		return new CatalogImpl(1, "Books");
+
+	}
 	
 	
-	
-	
-	
-}
+	}

@@ -3,25 +3,24 @@ package business.productsubsystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-
+import business.externalinterfaces.Catalog;
+import business.externalinterfaces.DbClassProductForTest;
+import business.externalinterfaces.Product;
+import business.util.Convert;
+import business.util.TwoKeyHashMap;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
 import middleware.exceptions.DatabaseException;
 import middleware.externalinterfaces.DataAccessSubsystem;
 import middleware.externalinterfaces.DbClass;
 import middleware.externalinterfaces.DbConfigKey;
-import business.externalinterfaces.Catalog;
-import business.externalinterfaces.Product;
-import business.util.Convert;
-import business.util.TwoKeyHashMap;
 
-class DbClassProduct implements DbClass {
-	enum Type {LOAD_PROD_TABLE, READ_PRODUCT, READ_PROD_LIST, SAVE_NEW_PROD,DELETE_PROD};
+class DbClassProduct implements DbClass,DbClassProductForTest {
+	enum Type {LOAD_PROD_TABLE, READ_PRODUCT, READ_PROD_LIST, SAVE_NEW_PROD,DELETE_PROD,READ_ALL};
 
 	private static final Logger LOG = Logger.getLogger(DbClassProduct.class
 			.getPackage().getName());
@@ -36,9 +35,9 @@ class DbClassProduct implements DbClass {
 			+ " VALUES(?,?,?,?,?,?)"; //implement
 	private String deleteQuery = "DELETE From Product Where productid = ?";
 
-	private Object[] loadProdTableParams, readProductParams, 
+	private Object[] loadProdTableParams, readAllParams,readProductParams, 
 		readProdListParams, saveNewProdParams,deleteParam;
-	private int[] loadProdTableTypes, readProductTypes, readProdListTypes, 
+	private int[] loadProdTableTypes,readAllTypes, readProductTypes, readProdListTypes, 
 	    saveNewProdTypes, deleteParamType;
 	
 	/**
@@ -85,7 +84,7 @@ class DbClassProduct implements DbClass {
 		// Return a clone since productTable must not be corrupted
 		return productTable.clone();
 	}
-
+// I used this for testing
 	public List<Product> readProductList(Catalog cat)
 			throws DatabaseException {
 		if (productList == null) {
@@ -290,5 +289,5 @@ class DbClassProduct implements DbClass {
 			throw new DatabaseException(e);
 		}
 	}
-	
+
 }

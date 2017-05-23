@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,9 +14,14 @@ import alltests.AllTests;
 import business.customersubsystem.CustomerSubsystemFacade;
 import business.externalinterfaces.Address;
 import business.externalinterfaces.CartItem;
+import business.externalinterfaces.Catalog;
+import business.externalinterfaces.Product;
+import business.productsubsystem.ProductSubsystemFacade;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
+import business.util.Convert;
 import daotests.DbClassAddressTest;
 import daotests.DbClassCartItemTest;
+import daotests.DbClassProductTest;
 import middleware.DbConfigProperties;
 //import middleware.dataaccess.DataAccessUtil;
 import middleware.externalinterfaces.DbConfigKey;
@@ -290,7 +297,42 @@ public class DbQueries {
 	}
 
 	private static String readCartItemSql() {
+
+	//return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_Cart_ID;
+
 		// TODO Auto-generated method stub
 		return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_SHOPPINGCART_ID;//Check the database to see which shopping cart id you want to test
+
+	}
+	public static String readProductSql(){
+		return "SELECT * FROM product WHERE catalogid ="+ DbClassProductTest.DEFAULT_CATALOG_ID;
+	}
+	
+	public static List<Product> readAllProducts(){
+		String query = readProductSql();
+		List<Product> productList = new LinkedList<Product>();
+		try {
+			stmt = prodCon.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				Catalog catalog = ProductSubsystemFacade.createCatalog(DbClassProductTest.DEFAULT_CATALOG_ID, "Books");
+				Integer pi = rs.getInt("productid");
+				String productName = rs.getString("productName");
+				String mfgDate = rs.getString("mfgDate");
+				double unitPrice = rs.getDouble("priceperunit");
+				int quantity = rs.getInt("totalquantity");
+				String description = rs.getString("description");
+				Product prod = ProductSubsystemFacade.createProduct(catalog,pi, productName, quantity,unitPrice,Convert.localDateForString(mfgDate),
+						description);
+				productList.add(prod);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return productList;
 	}
 }

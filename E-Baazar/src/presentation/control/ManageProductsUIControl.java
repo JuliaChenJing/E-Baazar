@@ -51,7 +51,7 @@ public enum ManageProductsUIControl {
 	MaintainProductsWindow maintainProductsWindow;
 	AddCatalogPopup addCatalogPopup;
 	AddProductPopup addProductPopup;
-
+//=========================================================================================
 	// Manage catalogs
 	private class MaintainCatalogsHandler implements EventHandler<ActionEvent> ,Callback{
 		@Override
@@ -99,21 +99,7 @@ public enum ManageProductsUIControl {
 	private class MaintainProductsHandler implements EventHandler<ActionEvent>, Callback{
 		@Override
 		public void handle(ActionEvent e) {
-			
-						
 		
-		/*	LOG.warning("Login is not being checked in MaintainProductsHandler.");
-			maintainProductsWindow = new MaintainProductsWindow(primaryStage);
-			CatalogPres selectedCatalog = ManageProductsData.INSTANCE.getSelectedCatalog();
-			if(selectedCatalog != null) {
-				ObservableList<ProductPres> list = ManageProductsData.INSTANCE.getProductsList(selectedCatalog);
-				maintainProductsWindow.setData(ManageProductsData.INSTANCE.getCatalogList(), list);
-			}
-			maintainProductsWindow.show();  
-	        primaryStage.hide();
-	        LOG.warning("Authorization has not been implemented for Maintain Products");*/
-			
-			
 			boolean isLoggedIn = CacheReader.readLoggedIn();
 			if (!isLoggedIn) {
 				LoginUIControl loginControl 
@@ -143,8 +129,6 @@ public enum ManageProductsUIControl {
 	            	primaryStage.show();
 				}
 				
-				
-			
 		}
 		@Override
 		public Text getMessageBar() {
@@ -250,9 +234,6 @@ public enum ManageProductsUIControl {
 				
 					int newCatId = controller.saveNewCatalog(catName);
 			
-					/*CatalogPres catPres = ManageProductsData.INSTANCE.catalogPresFromData(newCatId, catName);
-					ManageProductsData.INSTANCE.addToCatalogList(catPres);
-					maintainCatalogsWindow.setData(ManageProductsData.INSTANCE.getCatalogList());*/
 					ObservableList<CatalogPres> list = ManageProductsData.INSTANCE.getCatalogList();
 					maintainCatalogsWindow.setData(list);
 					TableUtil.refreshTable(maintainCatalogsWindow.getTable(), 
@@ -366,8 +347,6 @@ public enum ManageProductsUIControl {
 				} catch (BackendException e) {
 					addProductPopup.displayError("A database error has occurred. Check logs and try again later.");
 				}
-				
-				
 				//code this as in AddNewCatalogHandler (above)
 				//addProductPopup.displayInfo("You need to implement this!");
 			}	

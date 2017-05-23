@@ -20,7 +20,7 @@ import business.usecasecontrol.ManageProductsController;
 public enum ManageProductsData {
 	INSTANCE;
 	
-	ManageProductsController manProdCont; 
+	ManageProductsController manageProductContontroller; 
 	
 	private ManageProductsController controller = new ManageProductsController();
 
@@ -62,22 +62,19 @@ public enum ManageProductsData {
 	
 	/** Delivers the requested products list to the UI */
 	public ObservableList<ProductPres> getProductsList(CatalogPres catPres) {
-		manProdCont = new ManageProductsController();
+		manageProductContontroller = new ManageProductsController();
 		Catalog cat = catPres.getCatalog();
 		
 		List<ProductPres> productList  = null;
 		try {
-			 productList = manProdCont.getProductsList(cat)
+			 productList = manageProductContontroller.getProductsList(cat)
 				    .stream()
 				    .map(product -> UtilForUIClasses.productToProductPres(product))
 				    .collect(Collectors.toList());
 	} catch (BackendException e) {
-		// TODO Auto-generated catch block//////////////////////////////////do something abt exception//\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		
 		e.printStackTrace();
 	}	
 	
-		//return FXCollections.observableList(productsMap.get(catPres));
 		return FXCollections.observableList(productList);
 	}
 	
@@ -118,11 +115,11 @@ public enum ManageProductsData {
 
 	/** Initializes the catalogList */
 	public ObservableList<CatalogPres> readCatalogsFromDataSource() {
-		
-		 manProdCont = new ManageProductsController();
+		//return FXCollections.observableList(DefaultData.CATALOG_LIST_DATA);
+		manageProductContontroller = new ManageProductsController();
 		List<CatalogPres> catalogList  = null;
 		try {
-		catalogList = manProdCont.getCatalogs()
+		catalogList = manageProductContontroller.getCatalogs()
 				    .stream()
 				    .map(catalog -> catalogToCatalogPres(catalog))
 				    .collect(Collectors.toList());
@@ -133,7 +130,6 @@ public enum ManageProductsData {
 		
 		return FXCollections.observableList(catalogList);	
 		
-		//return FXCollections.observableList(DefaultData.CATALOG_LIST_DATA);
 	}
 
 	/** Delivers the already-populated catalogList to the UI */
@@ -176,30 +172,13 @@ public enum ManageProductsData {
 	public boolean removeFromCatalogList(ObservableList<CatalogPres> toBeRemoved) 
 	{
 		
-		/*boolean result = false;
-		CatalogPres item = toBeRemoved.get(0);
-		
-		if (toBeRemoved != null && !toBeRemoved.isEmpty()) {
-			result = catalogList.remove(item);
-		}
-		if(item.equals(selectedCatalog)) {
-			if(!catalogList.isEmpty()) {
-				selectedCatalog = catalogList.get(0);
-			} else {
-				selectedCatalog = null;
-			}
-		}
-		if(result) {//update productsMap
-			productsMap.remove(item);
-		}
-		return result;*/
 		boolean result = false;
-		ManageProductsController mpCont = new ManageProductsController();
+		ManageProductsController mangeprodCont = new ManageProductsController();
 		CatalogPres item = toBeRemoved.get(0);
 		Catalog cat = item.getCatalog() ;
 		if (toBeRemoved != null && !toBeRemoved.isEmpty()) {
 			try {
-				mpCont.deleteCatalog(cat);
+				mangeprodCont.deleteCatalog(cat);
 				result = true;
 				
 			} catch (BackendException e) {
