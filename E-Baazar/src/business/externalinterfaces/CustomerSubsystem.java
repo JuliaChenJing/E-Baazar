@@ -86,10 +86,7 @@ public interface CustomerSubsystem {
      */
     public List<Order> getOrderHistory();  
 //    
-//    
-//    
-//    
-//    
+
 //    
 //    /** 
 //     *  Stores address as shipping address in this customer's shopping cart.

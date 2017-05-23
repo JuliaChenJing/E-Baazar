@@ -40,7 +40,7 @@ public class AllTests extends TestSuite {
 		TestSuite suite = new TestSuite();
 		//$JUnit-BEGIN$ -- put fully qualified classnames of all tests here
 		suite.addTest(new TestSuite(daotests.DbClassAddressTest.class));
-		suite.addTest(new TestSuite(daotests.DbClassCartItemTest.class));
+		//suite.addTest(new TestSuite(daotests.DbClassCartItemTest.class));
 		suite.addTest(new TestSuite(subsystemtests.ProductSubsystemTest.class));
 		suite.addTest(new TestSuite(subsystemtests.CustomerSubsystemTest.class));
 		suite.addTest(new TestSuite(performancetests.RulesPerformanceTests.class));

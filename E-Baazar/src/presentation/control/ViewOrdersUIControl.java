@@ -1,6 +1,9 @@
 package presentation.control;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableView;
@@ -53,7 +56,16 @@ public enum ViewOrdersUIControl {
 			// TODO Auto-generated method stub
 			primaryStage.hide();
 			//get orders
-			ordersWindow.setData(FXCollections.observableList(ViewOrdersData.INSTANCE.getOrders()));
+			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();//return null;
+			System.out.println("ViewOrdersUIontrol       doupdate() /n  orders: "+orders); 
+			try {
+				ObservableList<OrderPres> data = FXCollections.observableList(orders);  //throws java.lang.NullPointerException
+				ordersWindow.setData(data);//
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			ordersWindow.show();
 			
 		}
