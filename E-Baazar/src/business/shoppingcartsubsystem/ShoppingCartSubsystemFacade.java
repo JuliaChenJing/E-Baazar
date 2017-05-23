@@ -6,14 +6,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import business.exceptions.BackendException;
-import business.externalinterfaces.Address;
-import business.externalinterfaces.CartItem;
-import business.externalinterfaces.CreditCard;
-import business.externalinterfaces.CustomerProfile;
-import business.externalinterfaces.CustomerSubsystem;
-import business.externalinterfaces.DbClassCartItemForTest;
-import business.externalinterfaces.ShoppingCart;
-import business.externalinterfaces.ShoppingCartSubsystem;
+import business.exceptions.BusinessException;
+import business.exceptions.RuleException;
+import business.externalinterfaces.*;
 import middleware.exceptions.DatabaseException;
 import presentation.util.CacheReader;
 
@@ -100,10 +95,10 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		}
 	}
 
-	public static CartItem createCartItem(Integer cartid, Integer productid, Integer lineitemid, String quantity,
+	public static CartItem createCartItem(Integer shoppingcartid, Integer productid, Integer cartitemid, String quantity,
 			String totalprice, boolean alreadySaved) {
 		try {
-			return new CartItemImpl(cartid, productid, lineitemid, quantity, totalprice, alreadySaved);
+			return new CartItemImpl(shoppingcartid, productid, cartitemid, quantity, totalprice, alreadySaved);
 		} catch (BackendException e) {
 			throw new RuntimeException("Can't create a cartitem because of productid lookup: " + e.getMessage());
 		}
@@ -144,10 +139,7 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		return new  DbClassShoppingCart();
 	}
 
-	@Override
-	public CustomerProfile getGenericCustomerProfile() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 }

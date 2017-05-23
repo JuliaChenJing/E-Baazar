@@ -16,8 +16,7 @@ import dbsetup.DbQueries;
 import junit.framework.TestCase;
 
 public class DbClassCartItemTest extends TestCase {
-	public static final int DEFAULT_CUST_ID = 1;
-	public static final int DEFAULT_Cart_ID = 4;
+	public static final int DEFAULT_SHOPPINGCART_ID = 13;
 	static String name = "Browse and Select Test";
 	static Logger log = Logger.getLogger(DbClassAddressTest.class.getName());
 	
@@ -31,38 +30,33 @@ public class DbClassCartItemTest extends TestCase {
 		List<CartItem> expectedList = DbQueries.readCartItems();
 
 		System.out.println("1 expected List----------------------------------");
-		System.out.println(expectedList.size());
+		System.out.println("size:"+expectedList.size());
 		for (int i = 0; i < expectedList.size(); i++)
 			System.out.println(expectedList.get(i));
 
 		//test real dbclass cartitems
-		ShoppingCartSubsystem css =new ShoppingCartSubsystemFacade();
-		DbClassCartItemForTest dbclass = css.getGenericDbClassCartItems();
-		CustomerProfile custProfile = css.getGenericCustomerProfile();
-		custProfile.setCustId(DEFAULT_CUST_ID);
+		ShoppingCartSubsystem shoppingcartss =new ShoppingCartSubsystemFacade();
+		DbClassCartItemForTest dbclass = shoppingcartss.getGenericDbClassCartItems();
+		CustomerSubsystem customerss=new CustomerSubsystemFacade();
+		CustomerProfile custProfile = customerss.getGenericCustomerProfile();
+		custProfile.setCustId(DEFAULT_SHOPPINGCART_ID);//Check the database to see which shopping cart id you want to test
 		
 		try {
-			List<CartItem> foundList = dbclass.readCartItems(custProfile);
-			
+			List<CartItem> foundList = dbclass.readCartItems(custProfile);//with problem
 			System.out.println("2 foundAddressList----------------------------------");
-			System.out.println(foundList.size());
+			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)
 				System.out.println(foundList.get(i));
 			
-			
-			System.out.println(foundList.toString().equals(expectedList.toString()));
-			System.out.println("1"+expectedList);
-			System.out.println("2"+foundList);
+		
 			
 			assertTrue(expectedList.size() == foundList.size());
 			
 			assertEquals(foundList.toString(), expectedList.toString());
 			
-	
-			
 			
 		} catch(Exception e) {
-			fail("Address Lists don't match");
+			fail("Cart Items Lists don't match");
 			System.out.println("something wrong happened");
 		}
 		

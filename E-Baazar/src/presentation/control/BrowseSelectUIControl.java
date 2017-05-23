@@ -47,7 +47,6 @@ public enum BrowseSelectUIControl {
 	private ProductListWindow productListWindow;
 	private ProductDetailsWindow productDetailsWindow;
 	private ShoppingCartWindow shoppingCartWindow;
-	private OrdersWindow ordersWindow;
 	private Stage primaryStage;
 	private Callback startScreenCallback;
 
@@ -284,12 +283,13 @@ public enum BrowseSelectUIControl {
 		@Override
 		public void handle(ActionEvent arg0) {
 			try {
-				CatalogListWindow window = CatalogListWindow.getInstance(primaryStage,
+				CatalogListWindow catalogwindow = CatalogListWindow.getInstance(primaryStage,
 						FXCollections.observableList(BrowseSelectData.INSTANCE.getCatalogList()));
-				window.clearMessages();
-				shoppingCartWindow.hide();
-				window.setTableAccessByRow();
-				window.show();
+				catalogwindow.clearMessages();
+				ShoppingCartWindow.INSTANCE.hide();
+				catalogwindow.setTableAccessByRow();
+				catalogwindow.show();
+				
 			} catch (BackendException e) {
 				shoppingCartWindow.displayError("Database is unavailable. Please try again later.");
 			}

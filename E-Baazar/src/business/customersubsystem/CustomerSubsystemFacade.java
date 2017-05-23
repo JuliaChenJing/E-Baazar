@@ -266,7 +266,13 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	@Override
 	public List<Order> getOrderHistory() {
+		
 		return orderHistory;
+	}
+
+	@Override
+	public void submitOrder() throws BackendException {
+		orderSubsystem.submitOrder(shoppingCartSubsystem.getLiveCart());
 	}
 
 	/////////////////// For unit testing only ////////////////
@@ -276,7 +282,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	}
 
 	public CustomerProfile getGenericCustomerProfile() {
-		return new CustomerProfileImpl(1, "testf", "testl");
+		return new CustomerProfileImpl(1, "testf", "testl");//customer id=1
 
 	}
 }

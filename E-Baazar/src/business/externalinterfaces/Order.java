@@ -21,12 +21,11 @@ public interface Order {
 	
 	//implement
 	
-//  public void setDate(LocalDate date);    
-//	public void setShipAddress(Address add);
-//	public void setBillAddress(Address add);
-//	public void setPaymentInfo(CreditCard cc);
-	
-	
+	public void setDate(LocalDate date);
+	public void setShipAddress(Address add);
+    public void setBillAddress(Address add);
+	public void setPaymentInfo(CreditCard cc);
+	public void setTotalPrice(double totalPrice);
 }
 
     

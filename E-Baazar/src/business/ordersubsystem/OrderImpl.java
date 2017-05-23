@@ -57,9 +57,26 @@ public class OrderImpl implements Order {
 		this.date = date;
 	}
 
-	
+	@Override
+	public void setShipAddress(Address add) {
 
-	
+	}
+
+	@Override
+	public void setBillAddress(Address add) {
+
+	}
+
+	@Override
+	public void setPaymentInfo(CreditCard cc) {
+
+	}
+
+	@Override
+	public void setTotalPrice(double totalPrice) {
+
+	}
+
 
 	@Override
 	public Address getShipAddress() {
@@ -80,7 +97,7 @@ public class OrderImpl implements Order {
 	}
 
 //	@Override
-//	public void setShipAddress(Address add) {
+//  public void setShipAddress(Address add) {
 //		// TODO Auto-generated method stub
 //		
 //	}

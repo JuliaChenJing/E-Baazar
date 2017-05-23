@@ -15,7 +15,7 @@ public class OrderItemImpl implements OrderItem {
 		this.quantity = quantity;
 		this.unitPrice = price;
 	}
-	
+
 	public int getOrderItemId() {
 		return orderItemId;
 	}
@@ -69,6 +69,10 @@ public class OrderItemImpl implements OrderItem {
 		
 	}
 
-	
+	@Override
+	public void setTaxAmount(double v) {
+
+	}
+
 
 }

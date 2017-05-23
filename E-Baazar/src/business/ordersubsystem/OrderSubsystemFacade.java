@@ -1,16 +1,14 @@
 package business.ordersubsystem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import business.externalinterfaces.*;
 import middleware.exceptions.DatabaseException;
 import business.exceptions.BackendException;
-import business.externalinterfaces.CustomerProfile;
-import business.externalinterfaces.Order;
-import business.externalinterfaces.OrderItem;
-import business.externalinterfaces.OrderSubsystem;
-import business.externalinterfaces.ShoppingCart;
+import presentation.util.CacheReader;
 
 public class OrderSubsystemFacade implements OrderSubsystem {
 	private static final Logger LOG = 
@@ -34,11 +32,51 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     	LOG.warning("Method getOrderHistory() still needs to be implemented");
     	return new ArrayList<Order>();
     }
-    
+
     public void submitOrder(ShoppingCart cart) throws BackendException {
-    	//implement
-    	LOG.warning("The method submitOrder(ShoppingCart cart) in OrderSubsystemFacade has not been implemented");
+        //implemented
+        //LOG.warning("The method submitOrder(ShoppingCart cart) in OrderSubsystemFacade has not been implemented");
+
+
+        DbClassOrder dbClass = new DbClassOrder();
+        List<OrderItem> orderItems = new ArrayList<>();
+        OrderItem oItem = null;
+
+        CustomerSubsystem csf = CacheReader.readCustomer();
+
+        Order order = new OrderImpl();
+        order.setDate(LocalDate.now());
+
+        for (CartItem cartItem : cart.getCartItems()){
+            //calculate unit price by dividing total price by qty, since no helper method exists in cartItem for that purpose.
+            String name= cartItem.getProductName();
+            int quantity= Integer.valueOf(cartItem.getQuantity());
+            double price = Double.valueOf(cartItem.getTotalprice())/Double.valueOf(cartItem.getQuantity());
+            oItem = new OrderItemImpl(name,quantity,price);
+
+            oItem.setProductId(cartItem.getProductid());
+            oItem.setTaxAmount(1.5);//fixed tax amount
+            orderItems.add(oItem);
+        }
+        order.setOrderItems(orderItems);
+
+
+        order.setBillAddress(csf.getDefaultBillingAddress());
+        order.setShipAddress(csf.getDefaultShippingAddress());
+        order.setPaymentInfo(csf.getDefaultPaymentInfo());
+        order.setTotalPrice(order.getTotalPrice());
+
+
+        try {
+            dbClass.submitOrder(custProfile, order);
+        } catch (DatabaseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
+
+
+
 	
 	/** Used whenever an order item needs to be created from outside the order subsystem */
     public static OrderItem createOrderItem(
