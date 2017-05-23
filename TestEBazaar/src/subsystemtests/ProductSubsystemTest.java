@@ -20,7 +20,7 @@ public class ProductSubsystemTest extends TestCase {
 	}
 	
 	//test the public method getCatalogList() in ProductSubsystemInterface
-	public void testGetCatalogNames() {
+	public void testGetCatalogList() {
 		//setup
 		/*
 		 * Returns a String[] with values:
