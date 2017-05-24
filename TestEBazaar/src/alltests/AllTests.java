@@ -42,12 +42,12 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(daotests.DbClassAddressTest.class));
 
 
-		//suite.addTest(new TestSuite(daotests.DbClassCartItemTest.class));
+		//suite.addTest(new TestSuite(daotests.DbClassCartItemTest.class));//red
 		suite.addTest(new TestSuite(subsystemtests.ProductSubsystemTest.class));
 		suite.addTest(new TestSuite(subsystemtests.CustomerSubsystemTest.class));
-		//suite.addTest(new TestSuite(performancetests.RulesPerformanceTests.class));
-		//suite.addTest(new TestSuite(unittests.business.StringParseTest.class));		
-		//suite.addTest(new TestSuite(daotests.DbClassProductTest.class));
+		suite.addTest(new TestSuite(performancetests.RulesPerformanceTests.class));
+		suite.addTest(new TestSuite(unittests.business.StringParseTest.class));		
+		suite.addTest(new TestSuite(daotests.DbClassProductTest.class));
 		suite.addTest(new TestSuite(subsystemtests.ProductSubsystemTest.class));
 
 

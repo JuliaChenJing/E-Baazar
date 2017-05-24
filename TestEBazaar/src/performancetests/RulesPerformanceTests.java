@@ -40,7 +40,7 @@ public class RulesPerformanceTests extends TestCase {
 	public void testAddressRulesRepeatedly(){
 		final int NUM_TRIALS = 10;
 		//rules must be able to run and return and return within 140 milisecondes
-		final int EXPECTED_RUNNING_TIME =140;
+		final int EXPECTED_RUNNING_TIME =200;
 		long[] results = new long[NUM_TRIALS];
 		long start = 0L;
 		long finish = 0L;

@@ -16,7 +16,7 @@ import dbsetup.DbQueries;
 import junit.framework.TestCase;
 
 public class DbClassCartItemTest extends TestCase {
-	public static final int DEFAULT_SHOPPINGCART_ID = 13;
+	public static final int DEFAULT_SHOPPINGCART_ID = 18;
 	static String name = "Browse and Select Test";
 	static Logger log = Logger.getLogger(DbClassAddressTest.class.getName());
 	
@@ -29,7 +29,7 @@ public class DbClassCartItemTest extends TestCase {
 		
 		List<CartItem> expectedList = DbQueries.readCartItems();
 
-		System.out.println("1 expected List----------------------------------");
+		System.out.println("1 expected List from DbQueries---------------------------------");
 		System.out.println("size:"+expectedList.size());
 		for (int i = 0; i < expectedList.size(); i++)
 			System.out.println(expectedList.get(i));
@@ -43,7 +43,7 @@ public class DbClassCartItemTest extends TestCase {
 		
 		try {
 			List<CartItem> foundList = dbclass.readCartItems(custProfile);//with problem
-			System.out.println("2 foundAddressList----------------------------------");
+			System.out.println("2 found List in database----------------------------------");
 			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)
 				System.out.println(foundList.get(i));
