@@ -209,9 +209,8 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         queryType = Type.GET_SAVED_ITEMS;
         getSavedItemsParams = new Object[]{cartId};
         getSavedItemsTypes = new int[]{Types.INTEGER};
-      
-		
-        dataAccessSS.read();
+        System.out.println("in getSavedCartItems method   1  ");
+        dataAccessSS.atomicRead(this);
         System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
         return cartItemsList;      
     }
@@ -401,10 +400,9 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 	public List<CartItem> readCartItems(CustomerProfile custProfile) {
 		
           try {
-        	  System.out.println(custProfile.getCustId());
-        	  //cartItemList= getSavedCartItems(custProfile.getCustId());
-        	  cartItemList= getSavedCartItems(1);//something wrong
-        	  System.out.println("in readCartItems meothod:  cartItemList /n "+cartItemList);
+        	 
+        	  cartItemList= getSavedCartItems(custProfile.getCustId());//something wrong
+        	 
         	  
 		} catch (DatabaseException e) {
 			// TODO Auto-generated catch block

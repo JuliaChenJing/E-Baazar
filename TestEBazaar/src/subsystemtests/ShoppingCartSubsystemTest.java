@@ -25,7 +25,6 @@ public class ShoppingCartSubsystemTest extends TestCase{
 		AllTests.initializeProperties();
 	}
 
-
 	// test the public method getCartItems() in  ShoppingCartSubsystemInterface
 	public void testGetCartItems() {
 		// setup
@@ -46,14 +45,12 @@ public class ShoppingCartSubsystemTest extends TestCase{
 			e.printStackTrace();
 		}
 		List<CartItem> listFromSubsystem=shoppingcartss.getCartItems();
-		
 		System.out.println("2 listFromSubsystem---------------------------------");
 		System.out.println("size:"+listFromSubsystem.size());
 		for (int i = 0; i < listFromSubsystem.size(); i++)
 			System.out.println(listFromSubsystem.get(i));
 		
 		assertTrue(expectedList.size() == listFromSubsystem.size());
-		
 		assertEquals(listFromSubsystem.toString(), expectedList.toString());
 	}
 }
