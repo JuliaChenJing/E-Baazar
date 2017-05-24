@@ -38,25 +38,22 @@ public class AllTests extends TestSuite {
 	
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
-		//$JUnit-BEGIN$ -- put fully qualified classnames of all tests here
+		//$JUnit-BEGIN$ -- put fully qualified class names of all tests here
 		suite.addTest(new TestSuite(daotests.DbClassAddressTest.class));
 
 
-		
-		
 		suite.addTest(new TestSuite(performancetests.RulesPerformanceTests.class));
 		suite.addTest(new TestSuite(unittests.business.StringParseTest.class));	
 		
 		suite.addTest(new TestSuite(daotests.DbClassProductTest.class));
 		suite.addTest(new TestSuite(daotests.DbClassCartItemTest.class));
 		suite.addTest(new TestSuite(daotests.DbClassProductTest.class));
-		suite.addTest(new TestSuite(daotests.DbClassOrderTest.class));
 
 		
 		suite.addTest(new TestSuite(subsystemtests.ProductSubsystemTest.class));
 		suite.addTest(new TestSuite(subsystemtests.ShoppingCartSubsystemTest.class));
 		suite.addTest(new TestSuite(subsystemtests.CustomerSubsystemTest.class));
-		suite.addTest(new TestSuite(subsystemtests.OrderSubsystemTest.class));
+
 
 
 		//$JUnit-END$

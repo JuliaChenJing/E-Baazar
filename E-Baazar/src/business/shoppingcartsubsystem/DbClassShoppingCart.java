@@ -210,7 +210,19 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         getSavedItemsParams = new Object[]{cartId};
         getSavedItemsTypes = new int[]{Types.INTEGER};
         System.out.println("in getSavedCartItems method   1  ");
-        dataAccessSS.atomicRead(this);
+       // dataAccessSS.atomicRead(this);//this one works when testing shoppingcart
+        dataAccessSS.read();//this one works when retrieve shopping cart
+        System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
+        return cartItemsList;      
+    }
+    
+    private List<CartItem> getSavedCartItemsForTest(Integer cartId) throws DatabaseException {
+        queryType = Type.GET_SAVED_ITEMS;
+        getSavedItemsParams = new Object[]{cartId};
+        getSavedItemsTypes = new int[]{Types.INTEGER};
+        System.out.println("in getSavedCartItems method   1  ");
+        dataAccessSS.atomicRead(this);//this one works when testing shoppingcart
+        // dataAccessSS.read();//this one works when retrieve shopping cart
         System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
         return cartItemsList;      
     }
@@ -401,7 +413,7 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 		
           try {
         	 
-        	  cartItemList= getSavedCartItems(custProfile.getCustId());//something wrong
+        	  cartItemList= getSavedCartItemsForTest(custProfile.getCustId());//something wrong
         	 
         	  
 		} catch (DatabaseException e) {

@@ -5,12 +5,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import alltests.AllTests;
-import business.customersubsystem.CustomerSubsystemFacade;
 import business.exceptions.BackendException;
 import business.externalinterfaces.CartItem;
-import business.externalinterfaces.CustomerProfile;
-import business.externalinterfaces.CustomerSubsystem;
-import business.externalinterfaces.DbClassCartItemForTest;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import dbsetup.DbQueries;
