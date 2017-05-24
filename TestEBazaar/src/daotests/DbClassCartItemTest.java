@@ -11,12 +11,13 @@ import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.DbClassAddressForTest;
 import business.externalinterfaces.DbClassCartItemForTest;
 import business.externalinterfaces.ShoppingCartSubsystem;
+import business.productsubsystem.ProductSubsystemFacade;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import dbsetup.DbQueries;
 import junit.framework.TestCase;
 
 public class DbClassCartItemTest extends TestCase {
-	public static final int DEFAULT_SHOPPINGCART_ID = 13;
+	public static final int DEFAULT_SHOPPINGCART_ID = 18;
 	static String name = "Browse and Select Test";
 	static Logger log = Logger.getLogger(DbClassAddressTest.class.getName());
 	
@@ -27,23 +28,22 @@ public class DbClassCartItemTest extends TestCase {
 	
 	public void testReadCartItems() {
 		
-		List<CartItem> expectedList = DbQueries.readCartItems();
+		//from DbQueries
+		List<CartItem> expectedList = DbQueries.readCartItems();//DEFAULT_SHOPPINGCART_ID = 18;
 
-		System.out.println("1 expected List----------------------------------");
+		System.out.println("1 expected List from DbQueries---------------------------------");
 		System.out.println("size:"+expectedList.size());
 		for (int i = 0; i < expectedList.size(); i++)
 			System.out.println(expectedList.get(i));
 
-		//test real dbclass cartitems
+		//from DbClass
 		ShoppingCartSubsystem shoppingcartss =new ShoppingCartSubsystemFacade();
 		DbClassCartItemForTest dbclass = shoppingcartss.getGenericDbClassCartItems();
-		CustomerSubsystem customerss=new CustomerSubsystemFacade();
-		CustomerProfile custProfile = customerss.getGenericCustomerProfile();
-		custProfile.setCustId(DEFAULT_SHOPPINGCART_ID);//Check the database to see which shopping cart id you want to test
-		
+		CustomerProfile custProfile = CustomerSubsystemFacade.createCustProfile(18, "testf", "testl", false);
+	    
 		try {
 			List<CartItem> foundList = dbclass.readCartItems(custProfile);//with problem
-			System.out.println("2 foundAddressList----------------------------------");
+			System.out.println("2 found List in database----------------------------------");
 			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)
 				System.out.println(foundList.get(i));
@@ -52,7 +52,23 @@ public class DbClassCartItemTest extends TestCase {
 			
 			assertTrue(expectedList.size() == foundList.size());
 			
-			assertEquals(foundList.toString(), expectedList.toString());
+			
+			boolean valfound = true;
+			for (int i = 0; i < expectedList.size(); i++) {
+				if (!expectedList.get(i).getCartid().equals(foundList.get(i).getCartid()))
+					valfound = false;
+				else if (!expectedList.get(i).getProductid().equals(foundList.get(i).getProductid()))
+					valfound = false;
+				else if (!expectedList.get(i).getLineitemid().equals(foundList.get(i).getLineitemid()))
+					valfound = false;
+				else if (!expectedList.get(i).getProductName().equals(foundList.get(i).getProductName()))
+					valfound = false;
+				else if (!expectedList.get(i).getQuantity().equals(foundList.get(i).getQuantity()))
+					valfound = false;
+				else if (!expectedList.get(i).getQuantity().equals(foundList.get(i).getQuantity()))
+					valfound = false;
+			}
+			assertTrue(valfound);
 			
 			
 		} catch(Exception e) {

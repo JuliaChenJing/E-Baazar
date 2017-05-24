@@ -283,7 +283,7 @@ public class DbQueries {
 				String totalprice = rs.getString("totalprice");
 
 				CartItem item = ShoppingCartSubsystemFacade.createCartItem(shoppingcartid, productid, cartitemid, quantity,
-						totalprice, false);
+						totalprice, true);
 
 				cartItemList.add(item);
 			}
@@ -297,8 +297,6 @@ public class DbQueries {
 	}
 
 	private static String readCartItemSql() {
-
-	//return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_Cart_ID;
 
 		// TODO Auto-generated method stub
 		return "SELECT * from shopcartitem WHERE shopcartid = " + DbClassCartItemTest.DEFAULT_SHOPPINGCART_ID;//Check the database to see which shopping cart id you want to test

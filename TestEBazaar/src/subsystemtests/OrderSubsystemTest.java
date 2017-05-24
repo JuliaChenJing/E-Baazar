@@ -14,9 +14,7 @@ public class OrderSubsystemTest extends TestCase{
 
 	// test the public method GetOrderHistory() in OrderSubsystemInterface
 	public void testGetOrderHistory() {
-		// setup
+		
 		
 	}
-
-
 }

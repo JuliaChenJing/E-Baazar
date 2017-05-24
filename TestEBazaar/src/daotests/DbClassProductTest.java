@@ -28,43 +28,36 @@ public class DbClassProductTest extends TestCase {
 	
 	
 	public void testReadAllProducts() {
-		List<Product> expected = DbQueries.readAllProducts();
-		System.out.println("expected: " + expected.size());
+		//---------------from DbQueries
+		List<Product> expected = DbQueries.readAllProducts();//DEFAULT_CATALOG_ID = 1
+		System.out.println("1 expected----------------------------------");
+		System.out.println("size:"+expected.size());
+		for (int i = 0; i < expected.size(); i++)
+			System.out.println(expected.get(i).getProductId());
 		
+		//-----------------from dbclass
 		ProductSubsystem pss =new ProductSubsystemFacade();
 		DbClassProductForTest dbclass = pss.getGenericDbClassProduct();
-		Catalog catalog = ProductSubsystemFacade.createCatalog(DEFAULT_CATALOG_ID, "Books");
+		Catalog catalog = ProductSubsystemFacade.createCatalog(DEFAULT_CATALOG_ID, "Books");//DEFAULT_CATALOG_ID = 1
 		
 		boolean valfound = true;
 			try {
 				List<Product> found = dbclass.readProductList(catalog);
 				
-				System.out.println("found: " + found.size());
-				System.out.println("expected: " + expected.size());
+				System.out.println("1 found---------------------------------");
+				System.out.println("size:"+found.size());
+				for (int i = 0; i < found.size(); i++)
+					System.out.println(found.get(i).getProductId());
+				
+				
 				assertTrue(expected.size() == found.size());
-				System.out.println(expected.toString());
-			
-//				assertEquals(found.toString(), expected.toString());
-//				assertEquals(found.toString(),(expected.toString()));
+
 				for(int i = 0;i<expected.size();i++ ){
 					if(expected.get(i).getProductId() != found.get(i).getProductId()){
 						valfound = false;
-				}//else if(expected.get(i).getProductName() != found.get(i).getProductName()){
-//					valfound = false;
-//			   }else if(expected.get(i).getQuantityAvail() != found.get(i).getQuantityAvail()){
-//				valfound = false;
-//		
-//				}else if(expected.get(i).getUnitPrice() != found.get(i).getUnitPrice()){
-//					valfound = false;
-//		
-//				}else if(expected.get(i).getDescription() != found.get(i).getDescription()){
-//					valfound = false;
-//			}
-//				}
+				}
+
 				assertTrue(valfound);
-//			} catch(Exception e) {
-//				fail("Product Lists don't match");
-//			}
 
 				}
 			} catch (DatabaseException e) {
