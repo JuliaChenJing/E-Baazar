@@ -43,7 +43,9 @@
           <root url="file://D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/junit.jar" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/jess.jar" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -73,6 +75,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="creditVerifSystem" level="project" />
   </component>
 </module>
