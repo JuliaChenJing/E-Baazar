@@ -6,6 +6,7 @@ import business.customersubsystem.CustomerSubsystemFacade;
 import business.externalinterfaces.Address;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
+import business.externalinterfaces.DbClassAddressForTest;
 import dbsetup.DbQueries;
 import junit.framework.TestCase;
 import alltests.AllTests;
@@ -35,9 +36,9 @@ public class CustomerSubsystemTest extends TestCase {
 															
 		System.out.println(customerFirstNameInserted);
 		// create an object for CustomerSubysystem
-		CustomerSubsystem pss = new CustomerSubsystemFacade();
+		CustomerSubsystem customerss = new CustomerSubsystemFacade();
 		try {
-			CustomerProfile profile = pss.getGenericCustomerProfile();
+			CustomerProfile profile = customerss.getGenericCustomerProfile();
 			boolean valfound = false;
 
 			System.out.println(profile.getFirstName());
@@ -69,11 +70,12 @@ public class CustomerSubsystemTest extends TestCase {
 			System.out.println(addressList.get(i));
 
 		// create an object for CustomerSubysystem
-		CustomerSubsystem pss = new CustomerSubsystemFacade();
+		CustomerSubsystem customerss = new CustomerSubsystemFacade();
 		try {
 
-			CustomerProfile custProfile = pss.getGenericCustomerProfile();
-			List<Address> addressListFromSubsystem = pss.getGenericDbClassAddress().readAllAddresses(custProfile);
+			CustomerProfile custProfile = customerss.getGenericCustomerProfile();
+			DbClassAddressForTest dbclassaddress=customerss.getGenericDbClassAddress();
+			List<Address> addressListFromSubsystem =dbclassaddress.readAllAddresses(custProfile);
 			for (int i = 0; i < addressList.size(); i++)
 				System.out.println(addressList.get(i));
 

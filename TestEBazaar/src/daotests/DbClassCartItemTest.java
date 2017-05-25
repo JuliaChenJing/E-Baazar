@@ -42,7 +42,7 @@ public class DbClassCartItemTest extends TestCase {
 		CustomerProfile custProfile = CustomerSubsystemFacade.createCustProfile(18, "testf", "testl", false);
 	    
 		try {
-			List<CartItem> foundList = dbclass.readCartItems(custProfile);//with problem
+			List<CartItem> foundList = dbclass.readCartItems(custProfile);  
 			System.out.println("2 found List in database----------------------------------");
 			System.out.println("size:"+foundList.size());
 			for (int i = 0; i < foundList.size(); i++)

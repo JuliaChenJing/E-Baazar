@@ -29,6 +29,21 @@ import business.shoppingcartsubsystem.DbClassShoppingCart.Type;
 
 
 class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
+	
+	@Override
+	public List<CartItem> readCartItems(CustomerProfile custProfile) {
+		
+          try {
+        	 
+        	  cartItemList= getSavedCartItemsForTest(custProfile.getCustId());
+        	  
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cartItemList;
+	}
+    
 	enum Type {GET_ID, GET_SAVED_ITEMS, GET_TOP_LEVEL_SAVED_CART,
 		SAVE_CART, SAVE_CART_ITEM, DELETE_CART, DELETE_ALL_CART_ITEMS};
 	
@@ -408,21 +423,7 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         }
     }
 
-	@Override
-	public List<CartItem> readCartItems(CustomerProfile custProfile) {
-		
-          try {
-        	 
-        	  cartItemList= getSavedCartItemsForTest(custProfile.getCustId());//something wrong
-        	 
-        	  
-		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return cartItemList;
-	}
-    
+
 	
 
 }
