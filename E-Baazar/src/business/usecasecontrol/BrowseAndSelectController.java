@@ -36,7 +36,7 @@ public class BrowseAndSelectController {
 
 	
 	/** Response to user request to see saved shopping cart items
-	 *  This is accomplished by making the saved cart, which was retrived at login,
+	 *  This is accomplished by making the saved cart, which was retrieved at login,
 	 *  the new live cart. It should not be possible to make this call
 	 *  if customer has not logged in. 
 	 */

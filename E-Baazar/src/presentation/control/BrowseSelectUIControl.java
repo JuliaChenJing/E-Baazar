@@ -312,8 +312,7 @@ public enum BrowseSelectUIControl {
 				if (!isLoggedin) {
 
 					// redirect to login
-
-					// stay in shopping cart window after logged in
+					// callback: stay in shopping cart window after logged in
 					LoginUIControl loginControl = new LoginUIControl(ShoppingCartWindow.INSTANCE,
 							ShoppingCartWindow.INSTANCE.getPrimaryStage());
 

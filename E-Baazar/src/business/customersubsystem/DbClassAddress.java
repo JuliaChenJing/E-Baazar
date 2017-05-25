@@ -220,7 +220,7 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
 		if (rs != null) {
 			try {
 				
-					address = defaultShipAddress;
+					address = defaultBillAddress;
 					String str = rs.getString(STREET);
 					address.setStreet(str);
 					address.setCity(rs.getString(CITY));
