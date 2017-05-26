@@ -29,7 +29,23 @@ public enum ViewOrdersUIControl {
 	}
 
 	private class ViewOrdersHandler implements EventHandler<ActionEvent>, Callback  {
-
+		@Override
+		public void doUpdate() {
+		
+			primaryStage.hide();
+			//get orders
+			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();
+			try {
+				ObservableList<OrderPres> data = FXCollections.observableList(orders);  
+				ordersWindow.setData(data);//
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			ordersWindow.show();
+			
+		}
 		@Override
 		public void handle(ActionEvent evt) {
 
@@ -49,25 +65,8 @@ public enum ViewOrdersUIControl {
 			else
 				doUpdate();
 		}
-		
-		
-		@Override
-		public void doUpdate() {
-		
-			primaryStage.hide();
-			//get orders
-			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();
-			try {
-				ObservableList<OrderPres> data = FXCollections.observableList(orders);  
-				ordersWindow.setData(data);//
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			ordersWindow.show();
-			
-		}
+		
 
 
 		@Override

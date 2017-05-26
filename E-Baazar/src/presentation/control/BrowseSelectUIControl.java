@@ -76,8 +76,6 @@ public enum BrowseSelectUIControl {
 		}
 	}
 
-	// this is an event handler , after clicking the "Retrieve Saved Cart"
-	// button
 	private class RetrieveSavedCartHandler implements EventHandler<ActionEvent>, Callback {
 
 		// interface Callback requires to implement this method
@@ -90,20 +88,19 @@ public enum BrowseSelectUIControl {
 				displayError(e.getMessage());
 				return;
 			}
-			// make saved cart the live cart
-			controller.retrieveSavedCart(BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem(),
-					CacheReader.readLoggedIn());
+			//obtain the current shopping cart
+			ShoppingCartSubsystem currentShoppingcartss = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
+			//check if logged in
+			boolean isLoggedin = CacheReader.readLoggedIn();
+			//makeSavedCartLive
+			controller.retrieveSavedCart(currentShoppingcartss ,isLoggedin);
 
 			BrowseSelectData.INSTANCE.updateCartData();
 			primaryStage.hide();
 			shoppingCartWindow.clearMessages();
 			shoppingCartWindow.show();
 		}
-
-		public Text getMessageBar() {
-			return startScreenCallback.getMessageBar();
-		}
-
+		
 		@Override
 		// interface EventHandler requires to implement this method
 		public void handle(ActionEvent evt) {
@@ -118,6 +115,10 @@ public enum BrowseSelectUIControl {
 			else {
 				doUpdate();
 			}
+		}
+		
+		public Text getMessageBar() {
+			return startScreenCallback.getMessageBar();
 		}
 
 	}

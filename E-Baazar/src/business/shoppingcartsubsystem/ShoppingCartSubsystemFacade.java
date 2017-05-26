@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import business.exceptions.BackendException;
-import business.exceptions.BusinessException;
-import business.exceptions.RuleException;
 import business.externalinterfaces.*;
 import middleware.exceptions.DatabaseException;
 import presentation.util.CacheReader;

@@ -67,7 +67,7 @@ public class BrowseAndSelectController {
 		
 		//since product was first loaded into UI
 		ProductSubsystem prodSS = new ProductSubsystemFacade();
-		//find current quant avail since quantity may have changed
+		//find current quantity available since quantity may have changed
 		int currentQuantityAvail = prodSS.readQuantityAvailable(product);
 		
 		//method one, it works
@@ -75,7 +75,7 @@ public class BrowseAndSelectController {
 		//transferObject.runRules();
 		
 		
-		//method two, it works as wll
+		//method two, it works as well
         try {
         	
             // set up

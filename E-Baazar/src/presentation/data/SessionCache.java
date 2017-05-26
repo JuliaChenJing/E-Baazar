@@ -21,17 +21,27 @@ import java.util.logging.Logger;
  * Shopping Cart should be removed from the cache.
  */
 public class SessionCache {
+	
 	private static final Logger LOG 
 	   = Logger.getLogger(SessionCache.class.getName());
 	public static final String CUSTOMER = "Customer";
 	public static final String SHOP_CART = "Shopping Cart";
     public static final String LOGGED_IN = "LoggedIn";
     
+    // private
+ 	private static SessionCache instance = new SessionCache();// singleton
+ 	private HashMap<Object, Object> context;
+
+ 	private SessionCache() {
+ 		context = new HashMap<Object,Object>();
+         context.put(LOGGED_IN, Boolean.FALSE);      
+     }
+    
     //public interface
     public static SessionCache getInstance() {
         return instance;   
     }  
-   
+   //session cache
     public void add(Object name, Object value){
         if(context != null) {
             context.put(name,value);
@@ -60,11 +70,4 @@ public class SessionCache {
     
     }
     
-    //private 
-    private static SessionCache instance = new SessionCache();//singleton
-    private HashMap<Object,Object> context;
-    private SessionCache() {
-        context = new HashMap<Object,Object>();
-        context.put(LOGGED_IN, Boolean.FALSE);      
-    }
 }
