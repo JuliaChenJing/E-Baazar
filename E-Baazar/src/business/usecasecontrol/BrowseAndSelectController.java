@@ -42,7 +42,8 @@ public class BrowseAndSelectController {
 	 */
 	public void retrieveSavedCart(ShoppingCartSubsystem shopCartSS, boolean custIsLoggedIn) {
 		// Saved cart was retrieved during login
-		if(custIsLoggedIn) shopCartSS.makeSavedCartLive();	
+		if(custIsLoggedIn)
+			shopCartSS.makeSavedCartLive();	
 	}
 	
 	
@@ -92,8 +93,7 @@ public class BrowseAndSelectController {
             engine.setCurrentModule(moduleName);
             engine.setTable(h);
             engine.runRules();
-            System.out.println(engine.getUpdates());
-            //return engine.getUpdates();
+            engine.getUpdates();
         } catch (ValidationException ex) {
             throw new RuleException(ex.getMessage());
         } catch (IOException ex) {

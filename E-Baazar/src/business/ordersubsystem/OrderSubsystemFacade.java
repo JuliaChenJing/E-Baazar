@@ -30,7 +30,17 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     public List<Order> getOrderHistory() throws BackendException {
     	//implement
     	LOG.warning("Method getOrderHistory() still needs to be implemented");
-    	return new ArrayList<Order>();
+    	DbClassOrder dbClass = new DbClassOrder();
+    	List <Order>orderList=new ArrayList<Order>();
+    	try {
+			List<Integer> orderIds = dbClass.getAllOrderIds(custProfile);
+			System.out.println(orderIds);
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return  orderList;
     }
 
     public void submitOrder(ShoppingCart cart) throws BackendException {
@@ -74,7 +84,6 @@ public class OrderSubsystemFacade implements OrderSubsystem {
             e.printStackTrace();
         }
     }
-
 
 
 	

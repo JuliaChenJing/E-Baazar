@@ -107,10 +107,6 @@ public enum BrowseSelectUIControl {
 		@Override
 		// interface EventHandler requires to implement this method
 		public void handle(ActionEvent evt) {
-			// a shoppingCartWindow object is needed for a new window for
-			// customer to do browse and select
-			// there will only be one ShoppingCartWindow at one time so the
-			// ShoppingCartWindow class is a singleton
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
 			boolean isLoggedIn = CacheReader.readLoggedIn();
 			// if not logged in
@@ -319,13 +315,11 @@ public enum BrowseSelectUIControl {
 					loginControl.startLogin();
 				}
 
-				/**
-				 * Sets the latest version of cartData to the
-				 * ShoppingCartSubsystem
-				 */
+				//Sets the latest version of cartData to the ShoppingCartSubsystem
+				
 				BrowseSelectData.INSTANCE.updateShoppingCart();
 				ShoppingCartSubsystem shopCartSs = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
-
+				//set cartItems to ShoppingCartSubsystem
 				controller.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
 
 				shopCartSs.saveLiveCart();

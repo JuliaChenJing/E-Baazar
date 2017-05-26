@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import business.exceptions.BackendException;
 import business.externalinterfaces.*;
-import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import business.usecasecontrol.BrowseAndSelectController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,8 +120,8 @@ public enum BrowseSelectData  {
 	/** Returns number of units of this product available according to the database */
 	public int quantityAvailable(Product product) {
 		LOG.warning("BrowseSelectData method quantityAvailable has not been implemented");
-		//implement
 		return DefaultData.DEFAULT_QUANTITY_AVAILABLE;
+		//implement
 		
 	}
 	
@@ -136,7 +135,7 @@ public enum BrowseSelectData  {
 	        //Return value is not null
 	        ShoppingCartSubsystem retVal =
 	                controller.obtainCurrentShoppingCartSubsystem(cust, cachedCart);
-	        if (cachedCart == null) { //this can happen only if cust==null && extShopCart == null
+	        if (cachedCart == null) { 
 	            session.add(SessionCache.SHOP_CART, retVal);
 	        }
 	        return retVal;

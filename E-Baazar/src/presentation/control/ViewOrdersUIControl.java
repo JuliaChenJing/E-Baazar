@@ -53,13 +53,12 @@ public enum ViewOrdersUIControl {
 		
 		@Override
 		public void doUpdate() {
-			// TODO Auto-generated method stub
+		
 			primaryStage.hide();
 			//get orders
-			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();//return null;
-			System.out.println("ViewOrdersUIontrol       doupdate() /n  orders: "+orders); 
+			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();
 			try {
-				ObservableList<OrderPres> data = FXCollections.observableList(orders);  //throws java.lang.NullPointerException
+				ObservableList<OrderPres> data = FXCollections.observableList(orders);  
 				ordersWindow.setData(data);//
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
