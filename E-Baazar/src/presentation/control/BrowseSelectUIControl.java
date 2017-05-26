@@ -39,7 +39,7 @@ public enum BrowseSelectUIControl {
 	// Singleton
 	INSTANCE;
 
-	private BrowseAndSelectController controller = new BrowseAndSelectController();
+	private BrowseAndSelectController browseAndSelectController = new BrowseAndSelectController();
 	// Windows that this controller manages
 	// It's difficult to manage CatalogListWindow, so instead
 	// we access CatalogListWindow statically
@@ -88,12 +88,16 @@ public enum BrowseSelectUIControl {
 				displayError(e.getMessage());
 				return;
 			}
+			
 			//obtain the current shopping cart
+			//from 2 UIController to 4 UIData
 			ShoppingCartSubsystem currentShoppingcartss = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
 			//check if logged in
 			boolean isLoggedin = CacheReader.readLoggedIn();
+			
 			//makeSavedCartLive
-			controller.retrieveSavedCart(currentShoppingcartss ,isLoggedin);
+			//from 2 UIController to 3 UseCaseController
+			browseAndSelectController.retrieveSavedCart(currentShoppingcartss ,isLoggedin);
 
 			BrowseSelectData.INSTANCE.updateCartData();
 			primaryStage.hide();
@@ -262,7 +266,7 @@ public enum BrowseSelectUIControl {
 	}
 
 	public void runQuantityRules(Product product, String quantityRequested) throws RuleException, BusinessException {
-		controller.runQuantityRules(product, quantityRequested);
+		browseAndSelectController.runQuantityRules(product, quantityRequested);
 	}
 
 	public BackToProductListHandler getBackToProductListHandler() {
@@ -321,7 +325,7 @@ public enum BrowseSelectUIControl {
 				BrowseSelectData.INSTANCE.updateShoppingCart();
 				ShoppingCartSubsystem shopCartSs = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
 				//set cartItems to ShoppingCartSubsystem
-				controller.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
+				browseAndSelectController.updateShoppingCartItems(shopCartSs, shopCartSs.getCartItems());
 
 				shopCartSs.saveLiveCart();
 				int numbItems = shoppingCartWindow.getCartItems().size();

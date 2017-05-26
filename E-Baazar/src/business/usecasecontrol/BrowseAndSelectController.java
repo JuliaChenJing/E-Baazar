@@ -40,6 +40,7 @@ public class BrowseAndSelectController {
 	 *  the new live cart. It should not be possible to make this call
 	 *  if customer has not logged in. 
 	 */
+	//from 3 UIController to  5 Subsystem
 	public void retrieveSavedCart(ShoppingCartSubsystem shopCartSS, boolean custIsLoggedIn) {
 		// Saved cart was retrieved during login
 		if(custIsLoggedIn)
@@ -59,6 +60,7 @@ public class BrowseAndSelectController {
             return cust.getShoppingCart();
         }
     }
+    
 
 	public void runQuantityRules(Product product, String quantityRequested)
 			throws RuleException, BusinessException {

@@ -41,7 +41,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	/**
 	 * Loads order history, default addresses, default payment info,
-	 * saved shopping cart,cust profile after login
+	 * saved shopping cart,customer profile after login
 	 */
 	public void initializeCustomer(Integer id, List<CartItem> cartItems, int authorizationLevel) 
 			throws BackendException {

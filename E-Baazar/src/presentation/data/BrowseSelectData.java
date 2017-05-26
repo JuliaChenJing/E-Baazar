@@ -24,7 +24,7 @@ public enum BrowseSelectData {
 	private ProductPres selectedProduct;
 	private CartItemPres selectedCartItem;
 
-	private BrowseAndSelectController controller = new BrowseAndSelectController();
+	private BrowseAndSelectController browseAndSelectController = new BrowseAndSelectController();
 
 	public CatalogPres getSelectedCatalog() {
 		return selectedCatalog;
@@ -39,7 +39,7 @@ public enum BrowseSelectData {
 	}
 
 	public Product getProductForProductName(String name) throws BackendException {
-		return controller.getProductForProductName(name);
+		return browseAndSelectController.getProductForProductName(name);
 	}
 
 	public void setSelectedProduct(ProductPres selectedProduct) {
@@ -102,7 +102,7 @@ public enum BrowseSelectData {
 	/** Sets the latest version of cartData to the ShoppingCartSubsystem */
 	public void updateShoppingCart() {
 		List<CartItem> theCartItems = cartItemPresToCartItemList(cartData);
-		controller.updateShoppingCartItems(obtainCurrentShoppingCartSubsystem(), theCartItems);
+		browseAndSelectController.updateShoppingCartItems(obtainCurrentShoppingCartSubsystem(), theCartItems);
 	}
 
 	/**
@@ -125,7 +125,6 @@ public enum BrowseSelectData {
 	public int quantityAvailable(Product product) {
 		LOG.warning("BrowseSelectData method quantityAvailable has not been implemented");
 		return DefaultData.DEFAULT_QUANTITY_AVAILABLE;
-		// implement
 
 	}
 
@@ -135,8 +134,8 @@ public enum BrowseSelectData {
 		ShoppingCartSubsystem cachedCart = (ShoppingCartSubsystem) session.get(SessionCache.SHOP_CART);
 		CustomerSubsystem cust = (CustomerSubsystem) session.get(SessionCache.CUSTOMER);
 
-		// Return value is not null
-		ShoppingCartSubsystem retVal = controller.obtainCurrentShoppingCartSubsystem(cust, cachedCart);
+		//from UIData to 
+		ShoppingCartSubsystem retVal = browseAndSelectController.obtainCurrentShoppingCartSubsystem(cust, cachedCart);
 		if (cachedCart == null) {
 			session.add(SessionCache.SHOP_CART, retVal);
 		}
@@ -145,18 +144,17 @@ public enum BrowseSelectData {
 
 	// CatalogList data
 	public List<CatalogPres> getCatalogList() throws BackendException {
-		return controller.getCatalogs().stream().map(catalog -> catalogToCatalogPres(catalog))
+		return browseAndSelectController.getCatalogs().stream().map(catalog -> catalogToCatalogPres(catalog))
 				.collect(Collectors.toList());
 	}
 
 	// ProductList data
 	public List<ProductPres> getProductList(CatalogPres selectedCatalog) throws BackendException {
-		return controller.getProducts(selectedCatalog.getCatalog()).stream().map(prod -> productToProductPres(prod))
+		return browseAndSelectController.getProducts(selectedCatalog.getCatalog()).stream().map(prod -> productToProductPres(prod))
 				.collect(Collectors.toList());
 	}
 
 	// ProductDetails data
-	// List<String> displayValues =
 	public List<String> getProductDisplayValues(ProductPres productPres) {
 		return Arrays.asList(productPres.nameProperty().get(), productPres.unitPriceProperty().get(),
 				productPres.quantityAvailProperty().get(), productPres.descriptionProperty().get());

@@ -17,7 +17,7 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	ShoppingCartImpl savedCart;
 
 	Integer shopCartId;
-	// why is here a customer profile?
+	// why is here a customer profile? because one shopping cart will definitely have a customerProfile
 	CustomerProfile customerProfile;
 
 	Logger log = Logger.getLogger(this.getClass().getPackage().getName());
@@ -39,6 +39,7 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 
 		try {
 			DbClassShoppingCart dbClass = new DbClassShoppingCart();
+			//from Subsystem to DBClass
 			ShoppingCartImpl cartFound = dbClass.retrieveSavedCart(customerProfile);
 			if (cartFound == null) {
 
