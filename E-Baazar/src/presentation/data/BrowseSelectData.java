@@ -132,14 +132,14 @@ public enum BrowseSelectData {
 	public ShoppingCartSubsystem obtainCurrentShoppingCartSubsystem() {
 		SessionCache session = SessionCache.getInstance();
 		ShoppingCartSubsystem cachedCart = (ShoppingCartSubsystem) session.get(SessionCache.SHOP_CART);
-		CustomerSubsystem cust = (CustomerSubsystem) session.get(SessionCache.CUSTOMER);
+		CustomerSubsystem custInSession = (CustomerSubsystem) session.get(SessionCache.CUSTOMER);
 
-		//from UIData to 
-		ShoppingCartSubsystem retVal = browseAndSelectController.obtainCurrentShoppingCartSubsystem(cust, cachedCart);
+		//from 1.3 UIData to 1.4 Controller to 1.5 Subsystem
+		ShoppingCartSubsystem returnedShoppingCartSS = browseAndSelectController.obtainCurrentShoppingCartSubsystem(custInSession, cachedCart);
 		if (cachedCart == null) {
-			session.add(SessionCache.SHOP_CART, retVal);
+			session.add(SessionCache.SHOP_CART, returnedShoppingCartSS);
 		}
-		return retVal;
+		return returnedShoppingCartSS;
 	}
 
 	// CatalogList data

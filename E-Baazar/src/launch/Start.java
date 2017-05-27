@@ -127,6 +127,7 @@ public class Start extends Application {
 	private MenuItem retrieveCart() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Retrieve Saved Cart");//set the menu name
+		//from 1.1 UI to 1.2 UIController
 		retval.setOnAction(BrowseSelectUIControl.INSTANCE.getRetrieveSavedCartHandler());
 		return retval;//return type is a MenuItem 
 	}

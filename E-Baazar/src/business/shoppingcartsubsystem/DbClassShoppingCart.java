@@ -196,13 +196,14 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 	    	//First, get cartId
 			Integer cartId = getShoppingCartId(custProfile);
 	    	
-			//Second, if saved cart found, get top level cart data
 			if(cartId != null) {
+				
+				//Second, if saved cart found, get top level cart data
 				cart = getTopLevelSavedCart(cartId);
 				
 				//Last, get cart items associated with this cart id, and insert into cart
 			    List<CartItem> items = getSavedCartItems(cartId);
-			    cart.setCartItems(items);
+			    cart.setCartItems(items);//set shopping cart items to cart
 			}
 		     
 		    dataAccessSS.commit();
@@ -248,8 +249,8 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
         queryType = Type.GET_TOP_LEVEL_SAVED_CART;
         getTopLevelSavedCartParams = new Object[]{cartId};
         getTopLevelSavedCartTypes = new int[]{Types.INTEGER};
-        dataAccessSS.read(); //stores value in cartImpl
-        return cartImpl;
+        dataAccessSS.read(); 
+        return cartImpl;// value stored in cartImpl
     }
      
     

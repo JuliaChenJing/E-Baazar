@@ -35,11 +35,12 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 		return liveCart;
 	}
 
+	
 	public void retrieveSavedCart() throws BackendException {
 
 		try {
 			DbClassShoppingCart dbClass = new DbClassShoppingCart();
-			//from Subsystem to DBClass
+			//from 2.5 UseCaseSubsystem to 3.6 DbClass
 			ShoppingCartImpl cartFound = dbClass.retrieveSavedCart(customerProfile);
 			if (cartFound == null) {
 

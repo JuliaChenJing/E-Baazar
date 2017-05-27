@@ -90,13 +90,13 @@ public enum BrowseSelectUIControl {
 			}
 			
 			//obtain the current shopping cart
-			//from 2 UIController to 4 UIData
+			//from 1.2 UIController to 1.3 UIData
 			ShoppingCartSubsystem currentShoppingcartss = BrowseSelectData.INSTANCE.obtainCurrentShoppingCartSubsystem();
 			//check if logged in
 			boolean isLoggedin = CacheReader.readLoggedIn();
 			
 			//makeSavedCartLive
-			//from 2 UIController to 3 UseCaseController
+			//from 1.2 UIController to 2.4 UseCaseController
 			browseAndSelectController.retrieveSavedCart(currentShoppingcartss ,isLoggedin);
 
 			BrowseSelectData.INSTANCE.updateCartData();

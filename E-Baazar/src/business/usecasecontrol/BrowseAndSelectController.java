@@ -40,24 +40,24 @@ public class BrowseAndSelectController {
 	 *  the new live cart. It should not be possible to make this call
 	 *  if customer has not logged in. 
 	 */
-	//from 3 UIController to  5 Subsystem
+	//from 1.4 UseCaseController to  1.5 Subsystem
 	public void retrieveSavedCart(ShoppingCartSubsystem shopCartSS, boolean custIsLoggedIn) {
 		// Saved cart was retrieved during login
 		if(custIsLoggedIn)
 			shopCartSS.makeSavedCartLive();	
 	}
 	
-	
-	 public ShoppingCartSubsystem obtainCurrentShoppingCartSubsystem(CustomerSubsystem cust, 
+	//from 1.4 UseCaseController to  1.5 Subsystem
+	 public ShoppingCartSubsystem obtainCurrentShoppingCartSubsystem(CustomerSubsystem customerSS, 
              ShoppingCartSubsystem cachedCartSS) {
-        if (cust == null) {
+        if (customerSS == null) {
         	if(cachedCartSS == null) {
-        		return new ShoppingCartSubsystemFacade();
+        		return new ShoppingCartSubsystemFacade();//customerSS==null && cachedCartSS==null
         	} else {
-        		return cachedCartSS;
+        		return cachedCartSS;//customerSS==null && cachedCartSS!=null
         	}
         } else { 
-            return cust.getShoppingCart();
+            return customerSS.getShoppingCart();//customerSS!=null
         }
     }
     
