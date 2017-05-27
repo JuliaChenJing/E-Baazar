@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import business.exceptions.BackendException;
-import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.Order;
@@ -45,9 +44,8 @@ public enum ViewOrdersData {
 		OrderSubsystem orderSS = new OrderSubsystemFacade(customerprofile);
 		List<Order> orderHistory = null;
 		try {
-			//from 1.3 Dat to 1.5 Subsystem
+			//from 1.3 Data to 1.5 Subsystem
 			orderHistory = orderSS.getOrderHistory();
-			System.out.println("ViewOrdersData  getOrders()   orderHistory from orderSS:" + orderHistory);
 		} catch (BackendException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
