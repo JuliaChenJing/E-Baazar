@@ -30,6 +30,50 @@ import business.shoppingcartsubsystem.DbClassShoppingCart.Type;
 
 class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 	
+	 ShoppingCartImpl cartImpl;
+	    ShoppingCart cart;//this is inserted to support a save operation
+	    CartItem cartItem;//this is inserted to support a save operation
+	    List<CartItem> cartItemsList;
+	    Integer cartId;  //used once when read, but don't use other times
+		private List<CartItem> cartItemList;
+		private int[] readAllTypes;
+		private Object[] readAllParams;
+	    
+	    DbClassShoppingCart() {}
+	    
+		enum Type {GET_ID, GET_SAVED_ITEMS, GET_TOP_LEVEL_SAVED_CART,
+			SAVE_CART, SAVE_CART_ITEM, DELETE_CART, DELETE_ALL_CART_ITEMS};
+		
+		private static final Logger LOG = Logger.getLogger(DbClassShoppingCart.class
+				.getPackage().getName());
+		private DataAccessSubsystem dataAccessSS = new DataAccessSubsystemFacade();
+		Type queryType;
+		
+		///////queries and params
+		private String getIdQuery = "SELECT shopcartid FROM ShopCartTbl WHERE custid = ?";
+		   //param is custProfile.getCustId()
+		private String saveCartQuery = "INSERT INTO shopcarttbl (custid,shipaddress1, " + 
+	    		"shipaddress2, shipcity, shipstate, shipzipcode, billaddress1, " + 
+	    		"billaddress2, billcity, billstate, billzipcode, nameoncard, " +
+	    		"expdate,cardtype, cardnum, totalpriceamount, totalshipmentcost, "+ 
+	    		"totaltaxamount, totalamountcharged) " +
+	    		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?)";
+		private String getTopLevelSavedCartQuery = "SELECT * FROM shopcarttbl WHERE shopcartid = ?";
+				//param is cartId 
+		private String getSavedItemsQuery  = "SELECT * FROM shopcartitem WHERE shopcartid = ?";
+				//param is cartId 
+		private String saveCartItemQuery = "INSERT INTO shopcartitem (shopcartid, productid, quantity, totalprice, shipmentcost, taxamount) " +
+	    		"VALUES (?,?,?,?,?,?)";
+		private String deleteCartQuery = "DELETE FROM shopcarttbl WHERE shopcartid = ?";
+				//param is cartId.intValue()
+		private String deleteAllCartItemsQuery = "DELETE FROM shopcartitem WHERE shopcartid = ?";
+			    //param is cartId.intValue()
+		
+		private Object[] getIdParams, saveCartParams, getTopLevelSavedCartParams, getSavedItemsParams,
+		                 saveCartItemParams, deleteCartParams, deleteAllCartItemsParams;
+		private int[] getIdTypes, saveCartTypes, getTopLevelSavedCartTypes, getSavedItemsTypes,
+		                 saveCartItemTypes, deleteCartTypes, deleteAllCartItemsTypes;
+	    
 	@Override
 	public List<CartItem> readCartItems(CustomerProfile custProfile) {
 		
@@ -44,49 +88,9 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
 		return cartItemList;
 	}
     
-	enum Type {GET_ID, GET_SAVED_ITEMS, GET_TOP_LEVEL_SAVED_CART,
-		SAVE_CART, SAVE_CART_ITEM, DELETE_CART, DELETE_ALL_CART_ITEMS};
+
 	
-	private static final Logger LOG = Logger.getLogger(DbClassShoppingCart.class
-			.getPackage().getName());
-	private DataAccessSubsystem dataAccessSS = new DataAccessSubsystemFacade();
-	Type queryType;
-	
-	///////queries and params
-	private String getIdQuery = "SELECT shopcartid FROM ShopCartTbl WHERE custid = ?";
-	   //param is custProfile.getCustId()
-	private String saveCartQuery = "INSERT INTO shopcarttbl (custid,shipaddress1, " + 
-    		"shipaddress2, shipcity, shipstate, shipzipcode, billaddress1, " + 
-    		"billaddress2, billcity, billstate, billzipcode, nameoncard, " +
-    		"expdate,cardtype, cardnum, totalpriceamount, totalshipmentcost, "+ 
-    		"totaltaxamount, totalamountcharged) " +
-    		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?)";
-	private String getTopLevelSavedCartQuery = "SELECT * FROM shopcarttbl WHERE shopcartid = ?";
-			//param is cartId 
-	private String getSavedItemsQuery  = "SELECT * FROM shopcartitem WHERE shopcartid = ?";
-			//param is cartId 
-	private String saveCartItemQuery = "INSERT INTO shopcartitem (shopcartid, productid, quantity, totalprice, shipmentcost, taxamount) " +
-    		"VALUES (?,?,?,?,?,?)";
-	private String deleteCartQuery = "DELETE FROM shopcarttbl WHERE shopcartid = ?";
-			//param is cartId.intValue()
-	private String deleteAllCartItemsQuery = "DELETE FROM shopcartitem WHERE shopcartid = ?";
-		    //param is cartId.intValue()
-	
-	private Object[] getIdParams, saveCartParams, getTopLevelSavedCartParams, getSavedItemsParams,
-	                 saveCartItemParams, deleteCartParams, deleteAllCartItemsParams;
-	private int[] getIdTypes, saveCartTypes, getTopLevelSavedCartTypes, getSavedItemsTypes,
-	                 saveCartItemTypes, deleteCartTypes, deleteAllCartItemsTypes;
-	
-    ShoppingCartImpl cartImpl;
-    ShoppingCart cart;//this is inserted to support a save operation
-    CartItem cartItem;//this is inserted to support a save operation
-    List<CartItem> cartItemsList;
-    Integer cartId;  //used once when read, but don't use other times
-	private List<CartItem> cartItemList;
-	private int[] readAllTypes;
-	private Object[] readAllParams;
-    
-    DbClassShoppingCart() {}
+   
     
     public void saveCart(CustomerProfile custProfile, ShoppingCart cart) 
     		throws DatabaseException {
@@ -317,7 +321,7 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     			  = CustomerSubsystemFacade.createCreditCard(name, exp, num, type);
     				
     			
-    			//load cart
+    			//load cart: set all the things needed
     			cartImpl.setCartId((new Integer(rs.getInt("shopcartid")).toString()));
     			cartImpl.setShipAddress(shippingAddress);
     			cartImpl.setBillAddress(billingAddress);

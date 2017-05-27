@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import business.externalinterfaces.Address;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
@@ -134,9 +133,22 @@ class DbClassOrder implements DbClass {
         return Collections.unmodifiableList(orderItems);        
     }
    
-    private void populateOrderItems(ResultSet rs) throws DatabaseException {
-    	LOG.warning("Method populateOrderItems(ResultSet) still needs to be implemented");
+    private void populateOrderItems(ResultSet resultSet) throws DatabaseException {
+    	//LOG.warning("Method populateOrderItems(ResultSet) still needs to be implemented");
        //implement
+    	 orderItems = new  ArrayList<OrderItem>();
+         try {
+             while(resultSet.next()){
+            	 String name=resultSet.getString("name");
+            	 int quantity=resultSet.getInt("quantity");
+            	 double price=resultSet.getDouble("price");
+            	 OrderItem orderItem=new OrderItemImpl(name, quantity, price);
+            	 orderItems.add(orderItem);
+             }
+         }
+         catch(SQLException e){
+             throw new DatabaseException(e);
+         }
     }
     
     private void populateOrderIds(ResultSet resultSet) throws DatabaseException {
@@ -153,7 +165,9 @@ class DbClassOrder implements DbClass {
     
     private void populateOrderData(ResultSet resultSet) throws DatabaseException { 
     	//implement
-    	LOG.warning("Method populateOrderData(ResultSet resultSet) still needs to be implemented");
+    	//LOG.warning("Method populateOrderData(ResultSet resultSet) still needs to be implemented");
+    	orderData = new OrderImpl();
+
     }    
  
     public void populateEntity(ResultSet resultSet) throws DatabaseException {

@@ -2,6 +2,7 @@ package presentation.control;
 
 import java.util.List;
 
+import business.exceptions.BackendException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,9 +34,10 @@ public enum ViewOrdersUIControl {
 		public void doUpdate() {
 		
 			primaryStage.hide();
-			//get orders
+			//from 1.2 UIController to 1.3 UIData
 			List<OrderPres> orders = ViewOrdersData.INSTANCE.getOrders();
 			try {
+				//do something to the data so it could be shown like a table
 				ObservableList<OrderPres> data = FXCollections.observableList(orders);  
 				ordersWindow.setData(data);//
 			} catch (Exception e) {

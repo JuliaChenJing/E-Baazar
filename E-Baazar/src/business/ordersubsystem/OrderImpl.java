@@ -17,7 +17,9 @@ public class OrderImpl implements Order {
 	private Address shipAddress;
 	private Address billAddress;
 	private CreditCard creditCard;  
+	private double totalPrice;
 	public OrderImpl() {
+		
 	}
 
 	public List<OrderItem> getOrderItems() {
@@ -60,58 +62,45 @@ public class OrderImpl implements Order {
 	@Override
 	public void setShipAddress(Address add) {
 
+		shipAddress=add;
 	}
 
 	@Override
 	public void setBillAddress(Address add) {
+		billAddress=add;
 
 	}
 
 	@Override
 	public void setPaymentInfo(CreditCard cc) {
+		creditCard=cc;
 
 	}
 
 	@Override
 	public void setTotalPrice(double totalPrice) {
 
+		this.totalPrice=totalPrice;//may be it needs to be calculated
 	}
 
 
 	@Override
 	public Address getShipAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return shipAddress;
 	}
 
 	@Override
 	public Address getBillAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return billAddress;
 	}
 
 	@Override
 	public CreditCard getPaymentInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return creditCard;
 	}
 
-//	@Override
-//  public void setShipAddress(Address add) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void setBillAddress(Address add) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void setPaymentInfo(CreditCard cc) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	
+
 }

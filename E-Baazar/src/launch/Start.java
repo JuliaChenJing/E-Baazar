@@ -135,6 +135,7 @@ public class Start extends Application {
 	private MenuItem reviewOrders() {
 		messageBar.setText("");
 		MenuItem retval = new MenuItem("Review Orders");
+		//from 1.1 UI to 1.2 UIController
 		retval.setOnAction(ViewOrdersUIControl.INSTANCE.getViewOrdersHandler());	
 		return retval;
 	}
