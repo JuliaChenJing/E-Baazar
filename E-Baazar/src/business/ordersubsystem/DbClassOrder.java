@@ -4,6 +4,7 @@ package business.ordersubsystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -35,7 +36,7 @@ class DbClassOrder implements DbClass {
     
     private String orderItemsQuery = "SELECT * FROM OrderItem WHERE orderid = ?";
     private String orderIdsQuery = "SELECT orderid FROM Ord WHERE custid = ?";
-    private String orderDataQuery = "SELECT orderdate, totalpriceamount FROM Ord WHERE orderid = ?";
+    private String orderDataQuery = "SELECT orderdate, totalpriceamount , orderid FROM Ord WHERE orderid = ?";
     private String submitOrderQuery = "INSERT into Ord "+
         "(custid, shipaddress1, shipcity, shipstate, shipzipcode, billaddress1, billcity, billstate,"+
            "billzipcode, nameoncard,  cardnum,cardtype, expdate, orderdate, totalpriceamount) " +
@@ -130,11 +131,12 @@ class DbClassOrder implements DbClass {
     	//implement 
     	LOG.warning("Method getOrderItems(Integer orderId) has not been implmeented");
         orderItems = new ArrayList<>();
+        
         return Collections.unmodifiableList(orderItems);        
     }
    
     private void populateOrderItems(ResultSet resultSet) throws DatabaseException {
-    	//LOG.warning("Method populateOrderItems(ResultSet) still needs to be implemented");
+    	LOG.warning("Method populateOrderItems(ResultSet) still needs to be implemented");
        //implement
     	 orderItems = new  ArrayList<OrderItem>();
          try {
@@ -152,6 +154,7 @@ class DbClassOrder implements DbClass {
     }
     
     private void populateOrderIds(ResultSet resultSet) throws DatabaseException {
+    	LOG.warning("populateOrderIds(ResultSet resultSet) still needs to be implemented");
         orderIds = new LinkedList<Integer>();
         try {
             while(resultSet.next()){
@@ -163,11 +166,27 @@ class DbClassOrder implements DbClass {
         }
     }
     
-    private void populateOrderData(ResultSet resultSet) throws DatabaseException { 
+    private void populateOrderData(ResultSet resultSet) throws DatabaseException{ 
     	//implement
-    	//LOG.warning("Method populateOrderData(ResultSet resultSet) still needs to be implemented");
+    	LOG.warning("Method populateOrderData(ResultSet resultSet) still needs to be implemented");
     	orderData = new OrderImpl();
-
+    	
+    	 try {
+			while(resultSet.next()){
+				 int orderId=resultSet.getInt("orderid");
+				 orderData.setOrderId(orderId);
+				 
+				 LocalDate date=Convert.localDateForString(resultSet.getString("orderdate"));
+				 orderData.setDate(date);
+				 
+				 double price=resultSet.getDouble("totalpriceamount");
+				 orderData.setTotalPrice(price);
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
     }    
  
     public void populateEntity(ResultSet resultSet) throws DatabaseException {

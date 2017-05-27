@@ -20,7 +20,6 @@ public interface Order {
 
 	
 	//implement
-	
 	public void setDate(LocalDate date);
 	public void setShipAddress(Address add);
     public void setBillAddress(Address add);

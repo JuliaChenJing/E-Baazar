@@ -80,7 +80,7 @@ public class OrderImpl implements Order {
 	@Override
 	public void setTotalPrice(double totalPrice) {
 
-		this.totalPrice=totalPrice;//may be it needs to be calculated
+		this.totalPrice=totalPrice;
 	}
 
 
