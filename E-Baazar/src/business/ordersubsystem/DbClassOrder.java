@@ -66,11 +66,11 @@ class DbClassOrder implements DbClass {
 	
 	public List<OrderItem> getOrderItems(Integer orderId) throws DatabaseException {
 		// implement
-		LOG.warning("Method getOrderItems(Integer orderId) has not been implmeented");
+		LOG.warning("Method getOrderItems(Integer orderId) has not been implemented");
 		orderItems = new ArrayList<>();
 		queryType = Type.GET_ORDER_ITEMS;
-		orderDataParams = new Object[] { orderId  };
-		orderDataTypes = new int[] { Types.INTEGER };
+		orderItemsParams = new Object[] { orderId  };
+		orderItemsTypes = new int[] { Types.INTEGER };
 		dataAccessSS.atomicRead(this);
 		return Collections.unmodifiableList(orderItems);
 	}
@@ -124,7 +124,7 @@ class DbClassOrder implements DbClass {
 		// submitOrderItemTypes = new int[];
 
 		// creation and release of connection handled by submitOrder
-		// this should be part of a transaction started in submitOrder
+		 //this should be part of a transaction started in submitOrder
 		// dataAccessSS.insert();
 	}
 
@@ -136,10 +136,10 @@ class DbClassOrder implements DbClass {
 		orderItems = new ArrayList<OrderItem>();
 		try {
 			while (resultSet.next()) {
-				String name = resultSet.getString("name");
+				String name = resultSet.getString("productid");
 				int quantity = resultSet.getInt("quantity");
-				double price = resultSet.getDouble("price");
-				OrderItem orderItem = new OrderItemImpl(name, quantity, price);
+				double price = resultSet.getDouble("totalprice");
+				OrderItem orderItem = new OrderItemImpl(name, quantity, price/quantity);
 				orderItems.add(orderItem);
 			}
 		} catch (SQLException e) {

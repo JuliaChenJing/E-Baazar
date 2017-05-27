@@ -29,6 +29,7 @@ public class StatementPrep {
 			int[] paramTypes) throws DatabaseException {
 		PreparedStatement stmt = null;
 		try {
+			System.out.println("StatementPrepare createGeneralPreparedStatement   paramTypes:"+paramTypes);
 			stmt = con.prepareStatement(query);
 			setValues(stmt, params, paramTypes);
 			return stmt;
@@ -39,6 +40,7 @@ public class StatementPrep {
 	}
 	private static void setValues(PreparedStatement stmt, Object[] params, int[] paramTypes) throws SQLException {
 		int count = 0;
+		System.out.println("StatementPre  setValues()   paramTypes:"+params);
 		for (int i = 0; i < paramTypes.length; ++i) {
 			++count;
 			int type = paramTypes[i];

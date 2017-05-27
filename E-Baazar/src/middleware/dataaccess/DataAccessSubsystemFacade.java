@@ -107,8 +107,8 @@ public class DataAccessSubsystemFacade implements DataAccessSubsystem, DataAcces
 	 */
     public void read() throws DatabaseException {
     	
-    
-        action.performRead();//with problem
+ 
+        action.performRead();
        
     }
 	

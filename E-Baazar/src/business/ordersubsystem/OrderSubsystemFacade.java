@@ -36,7 +36,8 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 			for (int i = 0; i < orderIds.size(); i++) {
 
 				OrderImpl orderData = dbClass.getOrderData(orderIds.get(i));
-				orderData.setOrderItems(dbClass.getOrderItems(orderIds.get(i)));
+				List<OrderItem> orderItems = dbClass.getOrderItems(orderIds.get(i));//with problem
+				orderData.setOrderItems(orderItems);
 				orderList.add(orderData);
 			}
 
