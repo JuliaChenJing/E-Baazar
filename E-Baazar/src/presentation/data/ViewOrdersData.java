@@ -33,14 +33,12 @@ public enum ViewOrdersData {
 	public List<OrderPres> getOrders()  {
 		// LOG.warning("ViewOrdersData method getOrders() has not been
 		// implemented.");
-		// return DefaultData.ALL_ORDERS;
+		//return DefaultData.ALL_ORDERS;
 
 		// data from database : only return null,needs to be fixed
 
 		SessionCache session = SessionCache.getInstance();
 		CustomerSubsystem customerSSInCache = (CustomerSubsystem) session.get(SessionCache.CUSTOMER);
-
-		ViewOrdersController viewOrderController = new ViewOrdersController();
 
 		CustomerProfile customerprofile = customerSSInCache.getCustomerProfile();
 

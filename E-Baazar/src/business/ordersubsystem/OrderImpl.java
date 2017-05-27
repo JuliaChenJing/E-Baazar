@@ -39,6 +39,10 @@ public class OrderImpl implements Order {
 	}
 	
 	public double getTotalPrice() {
+		return totalPrice;
+	}
+	
+	public double calculateTotalPrice() {
 		if(orderItems == null) {
 			return 0.0;
 		} else {

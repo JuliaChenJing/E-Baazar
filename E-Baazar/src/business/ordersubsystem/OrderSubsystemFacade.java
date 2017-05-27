@@ -33,14 +33,12 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 		List<Order> orderList = new ArrayList<Order>();
 		try {
 			List<Integer> orderIds = dbClass.getAllOrderIds(custProfile);
-
-			System.out.println("OrderSS   getOrderHistory   orderIds: " + orderIds);
 			for (int i = 0; i < orderIds.size(); i++) {
 
 				OrderImpl orderData = dbClass.getOrderData(orderIds.get(i));
+				orderData.setOrderItems(dbClass.getOrderItems(orderIds.get(i)));
 				orderList.add(orderData);
 			}
-			System.out.println("OrderSS   getOrderHistory   orderList: " + orderList);
 
 		} catch (DatabaseException e) {
 			// TODO Auto-generated catch block

@@ -228,22 +228,19 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     private List<CartItem> getSavedCartItems(Integer cartId) throws DatabaseException {
         queryType = Type.GET_SAVED_ITEMS;
         getSavedItemsParams = new Object[]{cartId};
-        getSavedItemsTypes = new int[]{Types.INTEGER};
-        System.out.println("in getSavedCartItems method   1  ");
+        getSavedItemsTypes = new int[]{Types.INTEGER};   
        // dataAccessSS.atomicRead(this);//this one works when testing shoppingcart
-        dataAccessSS.read();//this one works when retrieve shopping cart
-        System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
+        dataAccessSS.read();//this one works when retrieve shopping cart 
         return cartItemsList;      
     }
     
+  //this one works when testing shoppingcart
     private List<CartItem> getSavedCartItemsForTest(Integer cartId) throws DatabaseException {
         queryType = Type.GET_SAVED_ITEMS;
         getSavedItemsParams = new Object[]{cartId};
         getSavedItemsTypes = new int[]{Types.INTEGER};
-        System.out.println("in getSavedCartItems method   1  ");
         dataAccessSS.atomicRead(this);//this one works when testing shoppingcart
         // dataAccessSS.read();//this one works when retrieve shopping cart
-        System.out.println("in getSavedCartItems method:  cartItemsList /n"+cartItemsList);
         return cartItemsList;      
     }
     
@@ -326,6 +323,7 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest{
     			cartImpl.setShipAddress(shippingAddress);
     			cartImpl.setBillAddress(billingAddress);
     			cartImpl.setPaymentInfo(creditCard);
+    			
     			
     			
     		}

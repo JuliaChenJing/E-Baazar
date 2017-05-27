@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import presentation.data.OrderItemPres;
 import presentation.data.OrderPres;
 import presentation.data.ViewOrdersData;
 import presentation.gui.OrderDetailWindow;
@@ -93,7 +94,8 @@ public enum ViewOrdersUIControl {
 			} else {
 				ordersWindow.clearMessages();
 				orderDetailWindow = new OrderDetailWindow();
-				orderDetailWindow.setData(FXCollections.observableList(selectedOrder.getOrderItemsPres()));
+				ObservableList<OrderItemPres> orderItems = selectedOrder.getOrderItemsPres();
+				orderDetailWindow.setData(FXCollections.observableList(orderItems));
 				ordersWindow.hide();
 				orderDetailWindow.show();
 			}
