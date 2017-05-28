@@ -5,9 +5,11 @@ import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import presentation.data.BrowseSelectData;
 import presentation.data.CheckoutData;
 import presentation.data.CustomerPres;
@@ -36,6 +38,7 @@ import business.usecasecontrol.CheckoutController;
 
 public enum CheckoutUIControl {
 	INSTANCE;
+	private Stage primaryStage;
 	private CheckoutController controller = new CheckoutController();
 	private static final Logger LOG = Logger.getLogger(CheckoutUIControl.class.getPackage().getName());
 	// Windows managed by CheckoutUIControl
@@ -44,9 +47,15 @@ public enum CheckoutUIControl {
 	TermsWindow termsWindow;
 	FinalOrderWindow finalOrderWindow;
 	OrderCompleteWindow orderCompleteWindow;
+	private Callback startScreenCallback;
 
 	public ShippingBillingWindow getShippingBillingWindow() {
 		return shippingBillingWindow;
+	}
+	
+	public void setPrimaryStage(Stage ps, Callback callback) {
+		primaryStage = ps;
+		startScreenCallback = callback;
 	}
 
 	// handler for ShoppingCartWindow proceeding to checkout
@@ -383,12 +392,25 @@ public enum CheckoutUIControl {
 	}
 
 	// handlers for OrderCompleteWindow
-
 	private class ContinueFromOrderCompleteHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
-			CatalogListWindow.getInstance().show();
+			// when the window object is created, it is populated
+			CatalogListWindow catList;
+			try {
+				catList = CatalogListWindow.getInstance(primaryStage,
+						FXCollections.observableList(BrowseSelectData.INSTANCE.getCatalogList()));
+				catList.clearMessages();
+				catList.show(); // show the CatalogListWindow
+			} catch (BackendException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+			
 			orderCompleteWindow.hide();
+			
 		}
 	}
 
