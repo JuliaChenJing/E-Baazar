@@ -61,6 +61,7 @@ class DbAction {
     }
     
     Integer performInsert() throws DatabaseException {
+    	
     	extractQueryData();
     	stmt = StatementPrep.createInsertPreparedStatement(
     			con, query, params, paramTypes);

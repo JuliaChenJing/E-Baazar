@@ -122,10 +122,11 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	void loadOrderData() throws BackendException {
 		//implement
+		LOG.warning("Method CustomerSubsystemFacade.loadOrderData has not been implemented.");
 		// retrieve the order history for the customer and store here
 		orderSubsystem = new OrderSubsystemFacade(customerProfile);
-		// orderHistory = orderSubsystem.getOrderHistory();
-		LOG.warning("Method CustomerSubsystemFacade.loadOrderData has not been implemented.");
+		orderHistory = orderSubsystem.getOrderHistory();
+		
 
 	}
 

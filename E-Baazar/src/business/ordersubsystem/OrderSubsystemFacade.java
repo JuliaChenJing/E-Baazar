@@ -73,7 +73,6 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 			orderItems.add(oItem);
 		}
 		order.setOrderItems(orderItems);
-
 		order.setBillAddress(csf.getDefaultBillingAddress());
 		order.setShipAddress(csf.getDefaultShippingAddress());
 		order.setPaymentInfo(csf.getDefaultPaymentInfo());
