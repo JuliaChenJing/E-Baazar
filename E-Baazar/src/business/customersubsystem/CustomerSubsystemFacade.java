@@ -272,7 +272,9 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	@Override
 	public void submitOrder() throws BackendException {
-		orderSubsystem.submitOrder(shoppingCartSubsystem.getLiveCart());
+		LOG.warning("The method submitOrder() in CustomerSubsystemFacade has not been implemented");
+		ShoppingCart liveCart = shoppingCartSubsystem.getLiveCart();
+		orderSubsystem.submitOrder(liveCart);
 	}
 
 	/////////////////// For unit testing only ////////////////

@@ -153,9 +153,10 @@ public class CheckoutController  {
 	
 	/** Asks Customer Subsystem to submit final order */
 	public void submitFinalOrder() throws BackendException {
+		LOG.warning("The method submitFinalOrder() in CheckoutController has not been implemented");
 		//implement
-
-		CacheReader.readCustomer().submitOrder();
+		CustomerSubsystem customer = CacheReader.readCustomer();
+		customer.submitOrder();
 
 
 	}

@@ -335,10 +335,17 @@ public enum CheckoutUIControl {
 		return new AcceptTermsHandler();
 	}
 
-	// handlers for FinalOrderWindow
+	// handlers for submit order in FinalOrderWindow
 	private class SubmitHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
+			CheckoutController checkoutController=new CheckoutController();
+			try {
+				checkoutController.submitFinalOrder();
+			} catch (BackendException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			orderCompleteWindow = new OrderCompleteWindow();
 			orderCompleteWindow.show();
 			finalOrderWindow.clearMessages();

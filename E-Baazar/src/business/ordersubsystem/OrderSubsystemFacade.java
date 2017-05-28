@@ -32,7 +32,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 		DbClassOrder dbClass = new DbClassOrder();
 		List<Order> orderList = new ArrayList<Order>();
 		try {
-			//1 get order ids
+			// 1 get order ids
 			List<Integer> orderIds = dbClass.getAllOrderIds(custProfile);
 			for (int i = 0; i < orderIds.size(); i++) {
 				OrderImpl savedOrder = dbClass.retrieveSavedOrder(orderIds.get(i));
@@ -48,9 +48,8 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 	}
 
 	public void submitOrder(ShoppingCart cart) throws BackendException {
-		// implemented
-		// LOG.warning("The method submitOrder(ShoppingCart cart) in
-		// OrderSubsystemFacade has not been implemented");
+
+		LOG.warning("The method submitOrder(ShoppingCart cart) in OrderSubsystemFacade has not been implemented");
 
 		DbClassOrder dbClass = new DbClassOrder();
 		List<OrderItem> orderItems = new ArrayList<>();

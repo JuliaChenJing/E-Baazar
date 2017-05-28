@@ -46,7 +46,8 @@ class DbClassOrder implements DbClass {
 			+ "(custid, shipaddress1, shipcity, shipstate, shipzipcode, billaddress1, billcity, billstate,"
 			+ "billzipcode, nameoncard,  cardnum,cardtype, expdate, orderdate, totalpriceamount) "
 			+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private String submitOrderItemQuery;
+	private String submitOrderItemQuery = "INSERT into Ord "
+			+ "(orderid, productid,quantity,totalprice,shipmentcost,totalamount) " + "VALUES(?,?,?,?,?,?,)";;
 	Object[] orderItemsParams, orderIdsParams, orderDataParams, submitOrderParams, submitOrderItemParams;
 	int[] orderItemsTypes, orderIdsTypes, orderDataTypes, submitOrderTypes, submitOrderItemTypes;
 
@@ -56,6 +57,7 @@ class DbClassOrder implements DbClass {
 	private List<OrderItem> orderItems;
 	private OrderImpl orderData;
 	private Order order;
+	private int orderid;
 
 	DbClassOrder() {
 	}
@@ -95,11 +97,11 @@ class DbClassOrder implements DbClass {
 			List<OrderItem> items = getOrderItems(id);
 			order.setOrderItems(items);
 
-			//dataAccessSS.commit();
+			// dataAccessSS.commit();
 			return order;
 
 		} catch (DatabaseException e) {
-			//dataAccessSS.rollback();
+			// dataAccessSS.rollback();
 			LOG.warning("Rolling back...");
 			throw (e);
 		} finally {
@@ -115,41 +117,57 @@ class DbClassOrder implements DbClass {
 	 * is done within a transaction. Separate methods are provided
 	 */
 	void submitOrder(CustomerProfile custProfile, Order order) throws DatabaseException {
-		LOG.warning("Method submitOrder(CustomerProfile custProfile, Order order) has not beenimplemented");
+		LOG.warning(
+				"Method submitOrder(CustomerProfile custProfile, Order order)  in DbClassOrder has not beenimplemented");
+		/*this.order = order;
+		this.custProfile = custProfile;
+		orderid = submitOrderData();
+		orderItems = order.getOrderItems();
+		for (int i = 0; i < orderItems.size(); i++)
+			submitOrderItem(orderItems.get(i));
+			*/
 
 	}
 
 	/** This is part of the general submitOrder method */
 	private Integer submitOrderData() throws DatabaseException {
+		LOG.warning("Method submitOrderData() in DbClassOrder has not been implemented.");
 		queryType = Type.SUBMIT_ORDER;
 		Address shipAddr = order.getShipAddress();
 		Address billAddr = order.getBillAddress();
 		CreditCard cc = order.getPaymentInfo();
 		submitOrderParams = new Object[] { custProfile.getCustId(), shipAddr.getStreet(), shipAddr.getCity(),
-				shipAddr.getState(), shipAddr.getZip(), billAddr.getStreet(), billAddr.getCity(), billAddr.getState(),
-				billAddr.getZip(), cc.getNameOnCard(), cc.getCardNum(), cc.getCardType(), cc.getExpirationDate(),
+				shipAddr.getState(), shipAddr.getZip(), // shipping
+				billAddr.getStreet(), billAddr.getCity(), billAddr.getState(), billAddr.getZip(), // billing
+				cc.getNameOnCard(), cc.getCardNum(), cc.getCardType(), cc.getExpirationDate(), // credit
+																								// card
 				Convert.localDateAsString(order.getOrderDate()), order.getTotalPrice() };
 
 		submitOrderTypes = new int[] { Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, // shipping
 				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, // billing
-				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, // cc
+				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, // credit
+																			// card
 				Types.VARCHAR, Types.DOUBLE };
 		// creation and release of connection handled by submitOrder
 		// this should be part of a transaction started in submitOrder
 		return dataAccessSS.insert();
+		//return dataAccessSS.insertWithinTransaction(this);
 	}
 
 	/** This is part of the general submitOrder method */
 	private void submitOrderItem(OrderItem item) throws DatabaseException {
-		queryType = Type.SUBMIT_ORDER_ITEM;
 		LOG.warning("Method submitOrderItem(OrderItem item) in DbClassOrder has not been implemented.");
-		// implement
-		// submitOrderItemParams = new Object[];
-		// submitOrderItemTypes = new int[];
+		queryType = Type.SUBMIT_ORDER_ITEM;
+		// orderid, productid,quantity,totalprice,shipmentcost,totalamount
+		submitOrderItemParams = new Object[] { orderid, item.getProductId(), item.getQuantity(), item.getTotalPrice(),
+				item.getTotalPrice() * 0.1, item.getTotalPrice() * 1.1 };
+		submitOrderItemTypes = new int[] { Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.DOUBLE, Types.DOUBLE,
+				Types.DOUBLE };
 
 		// creation and release of connection handled by submitOrder
 		// this should be part of a transaction started in submitOrder
-		// dataAccessSS.insert();
+		dataAccessSS.insert();
+		//dataAccessSS.insertWithinTransaction(this);
 	}
 
 	private void populateOrderItems(ResultSet resultSet) throws DatabaseException {
@@ -161,11 +179,11 @@ class DbClassOrder implements DbClass {
 				int id = resultSet.getInt("productid");
 				int quantity = resultSet.getInt("quantity");
 				double price = resultSet.getDouble("totalprice");
-				ProductSubsystem productSS=new ProductSubsystemFacade();
+				ProductSubsystem productSS = new ProductSubsystemFacade();
 				Product product = productSS.getProductFromId(id);
-				String productname=product.getProductName();
+				String productname = product.getProductName();
 				OrderItem orderItem = new OrderItemImpl(productname, quantity, price / quantity);
-				
+
 				orderItems.add(orderItem);
 			}
 		} catch (SQLException e) {

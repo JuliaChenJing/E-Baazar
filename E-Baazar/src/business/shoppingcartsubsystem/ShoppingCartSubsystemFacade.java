@@ -44,13 +44,10 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 			ShoppingCartImpl cartFound = dbClass.retrieveSavedCart(customerProfile);
 			if (cartFound == null) {
 
-				// set savedCart to an instance of ShoppingCartImpl
-				// need to create a cartitems list (with at least one element)
-				// and insert into shop cart impl
 				savedCart = new ShoppingCartImpl(new ArrayList<CartItem>());
 			} else {
 
-				// popluate this list
+				// populate this list
 				savedCart = cartFound;
 			}
 		} catch (DatabaseException e) {
@@ -115,9 +112,7 @@ public class ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 
 	@Override
 	public void saveLiveCart() throws BackendException {
-		// TODO Auto-generated method stub
-		// implement
-		// System.out.println("testing..."+customerProfile.getCustId());
+		
 		customerProfile = CacheReader.readCustomer().getCustomerProfile();
 		CustomerSubsystem cust = CacheReader.readCustomer();
 		liveCart.setBillAddress(cust.getDefaultBillingAddress());

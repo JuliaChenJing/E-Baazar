@@ -87,11 +87,9 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest {
 	}
 
 	public void saveCart(CustomerProfile custProfile, ShoppingCart cart) throws DatabaseException {
-		// This will be used by support methods
 		this.cart = cart;
 		Integer cartId = null;
 
-		// this.custProfile = custProfile;
 		List<CartItem> cartItems = cart.getCartItems();
 
 		// Begin transaction
@@ -99,21 +97,20 @@ class DbClassShoppingCart implements DbClass, DbClassCartItemForTest {
 		dataAccessSS.startTransaction();
 		try {
 
-			// 1 If customer has a saved cart already, get its cartId -- will
-			// delete this cart as part of the transaction
+			// 1 If customer has a saved cart already, get its cartId,
+			//will delete this cart as part of the transaction
 			Integer oldCartId = getShoppingCartId(custProfile);
 
-			// First, delete old cart in two steps
+			// First, delete old cart
 			if (oldCartId != null) {
-				deleteCart(oldCartId);
-				deleteAllCartItems(oldCartId);
+				deleteCart(oldCartId);//delete cart
+				deleteAllCartItems(oldCartId);//delete cart items
 			}
 
-			// 2 Second, save top level of cart to be saved
+			// 2 Second, save top level of cart 
 			cartId = saveCartTopLevel(custProfile); // returns new cartId
 
 			// 3 Finally, save the associated cartitems in a loop
-			// We have the cartId for these cartitems
 			for (CartItem item : cartItems) {
 				item.setCartId(cartId);
 				saveCartItem(item);
