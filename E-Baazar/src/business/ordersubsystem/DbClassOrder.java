@@ -12,11 +12,15 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import business.customersubsystem.CustomerSubsystemFacade;
+import business.exceptions.BackendException;
 import business.externalinterfaces.Address;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderItem;
+import business.externalinterfaces.Product;
+import business.externalinterfaces.ProductSubsystem;
+import business.productsubsystem.ProductSubsystemFacade;
 import business.util.Convert;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
@@ -63,24 +67,44 @@ class DbClassOrder implements DbClass {
 		dataAccessSS.atomicRead(this);
 		return Collections.unmodifiableList(orderIds);
 	}
-	
+
 	public List<OrderItem> getOrderItems(Integer orderId) throws DatabaseException {
 		// implement
 		LOG.warning("Method getOrderItems(Integer orderId) has not been implemented");
 		orderItems = new ArrayList<>();
 		queryType = Type.GET_ORDER_ITEMS;
-		orderItemsParams = new Object[] { orderId  };
+		orderItemsParams = new Object[] { orderId };
 		orderItemsTypes = new int[] { Types.INTEGER };
 		dataAccessSS.atomicRead(this);
 		return Collections.unmodifiableList(orderItems);
 	}
-	
+
 	OrderImpl getOrderData(Integer orderId) throws DatabaseException {
 		queryType = Type.GET_ORDER_DATA;
 		orderDataParams = new Object[] { orderId };
 		orderDataTypes = new int[] { Types.INTEGER };
 		dataAccessSS.atomicRead(this);
 		return orderData;
+	}
+
+	OrderImpl retrieveSavedOrder(Integer id) throws DatabaseException {
+		dataAccessSS.establishConnection(this);
+		dataAccessSS.startTransaction();
+		try {
+			OrderImpl order = getOrderData(id);
+			List<OrderItem> items = getOrderItems(id);
+			order.setOrderItems(items);
+
+			//dataAccessSS.commit();
+			return order;
+
+		} catch (DatabaseException e) {
+			//dataAccessSS.rollback();
+			LOG.warning("Rolling back...");
+			throw (e);
+		} finally {
+			dataAccessSS.releaseConnection();
+		}
 	}
 
 	/**
@@ -92,7 +116,7 @@ class DbClassOrder implements DbClass {
 	 */
 	void submitOrder(CustomerProfile custProfile, Order order) throws DatabaseException {
 		LOG.warning("Method submitOrder(CustomerProfile custProfile, Order order) has not beenimplemented");
-		
+
 	}
 
 	/** This is part of the general submitOrder method */
@@ -124,11 +148,9 @@ class DbClassOrder implements DbClass {
 		// submitOrderItemTypes = new int[];
 
 		// creation and release of connection handled by submitOrder
-		 //this should be part of a transaction started in submitOrder
+		// this should be part of a transaction started in submitOrder
 		// dataAccessSS.insert();
 	}
-
-	
 
 	private void populateOrderItems(ResultSet resultSet) throws DatabaseException {
 		LOG.warning("Method populateOrderItems(ResultSet) still needs to be implemented");
@@ -136,14 +158,21 @@ class DbClassOrder implements DbClass {
 		orderItems = new ArrayList<OrderItem>();
 		try {
 			while (resultSet.next()) {
-				String name = resultSet.getString("productid");
+				int id = resultSet.getInt("productid");
 				int quantity = resultSet.getInt("quantity");
 				double price = resultSet.getDouble("totalprice");
-				OrderItem orderItem = new OrderItemImpl(name, quantity, price/quantity);
+				ProductSubsystem productSS=new ProductSubsystemFacade();
+				Product product = productSS.getProductFromId(id);
+				String productname=product.getProductName();
+				OrderItem orderItem = new OrderItemImpl(productname, quantity, price / quantity);
+				
 				orderItems.add(orderItem);
 			}
 		} catch (SQLException e) {
 			throw new DatabaseException(e);
+		} catch (BackendException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -164,8 +193,8 @@ class DbClassOrder implements DbClass {
 		LOG.warning("Method populateOrderData(ResultSet resultSet) still needs to be implemented");
 		orderData = new OrderImpl();
 		Address shippingAddress = null;
-    	Address billingAddress = null;
-    	CreditCard creditCard = null;
+		Address billingAddress = null;
+		CreditCard creditCard = null;
 		try {
 			while (rs.next()) {
 				int orderId = rs.getInt("orderid");

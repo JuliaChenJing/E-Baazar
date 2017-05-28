@@ -25,7 +25,6 @@ import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.DbClassCartItemForTest;
 import business.externalinterfaces.ShoppingCart;
-import business.shoppingcartsubsystem.DbClassShoppingCart.Type;
 
 class DbClassShoppingCart implements DbClass, DbClassCartItemForTest {
 

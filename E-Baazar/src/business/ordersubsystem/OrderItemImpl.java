@@ -15,6 +15,12 @@ public class OrderItemImpl implements OrderItem {
 		this.quantity = quantity;
 		this.unitPrice = price;
 	}
+	
+	public OrderItemImpl( int productId, int quantity, double price) {
+		this.productId = productId;
+		this.quantity = quantity;
+		this.unitPrice = price;
+	}
 
 	public int getOrderItemId() {
 		return orderItemId;
