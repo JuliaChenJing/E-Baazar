@@ -4,7 +4,7 @@
 --------
 *	Need to check the build path
 *	Need to connect to MySQL.
-*	The user name and password are 1,1 and 2 2 if you get the previous database.
+*	The user name and password are 1, 1 and 2, 2 if you get the previous database.
 
 ## 2 Function
 --------
