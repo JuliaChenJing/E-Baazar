@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/creditVerifSystem.jar"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/jess.jar"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/junit.jar" sourcepath="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/jess.jar"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/mysql-connector-java-5.1.20-bin.jar"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/rulesencoding.jar"/>
-	<classpathentry kind="lib" path="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/rulesengine.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/creditVerifSystem.jar"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/jess.jar"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/junit.jar" sourcepath="D:/MUMstudy/Software Engineering/E-Bazaar/code/jars_basic/jess.jar"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/mysql-connector-java-5.1.20-bin.jar"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/rulesengine.jar"/>
+	<classpathentry kind="lib" path="D:/PROJECT/jars/jars_basic/rulesencoding.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
